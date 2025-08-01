@@ -102,7 +102,7 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-start">
             {/* Product Images Carousel */}
-            <div className="bg-secondary/10 p-8 rounded-xl shadow-lg flex justify-center items-center sticky top-24">
+            <div className="bg-secondary/10 p-8 rounded-xl shadow-lg flex justify-center items-center top-24">
               <Carousel className="w-full max-w-md">
                 <CarouselContent>
                   {productImages.map((image, index) => (
