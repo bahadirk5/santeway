@@ -194,19 +194,39 @@ export default function HomePage() {
               Yararlı Bilgiler
             </h2>
             <p className="text-secondary max-w-2xl mx-auto font-medium text-base sm:text-lg">
-              Sağlığınız için en kaliteli ve etkili bileşenleri özenle
-              seçiyoruz.
+              Sağlıklı bir yaşam için ihtiyaç duyduğunuz ipuçları ve öneriler
+              burada sizi bekliyor.
             </p>
           </div>
 
           {/* Responsive Grid - Adjusts columns based on screen size */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 sm:gap-6">
             {[
-              { name: "Vitamin C", subtitle: "Askorbik asit olarak Vitamin C" },
-              { name: "Vitamin B3", subtitle: "Niacinamide" },
-              { name: "Magnezyum", subtitle: "Şelatlı Magnezyum formu" },
-              { name: "Hyaluronik Asit", subtitle: "Hyaluronik Asit %2" },
-              { name: "Lactobacillus", subtitle: "Lactobacillus kompleksi" },
+              {
+                name: "L-Carnitine Nedir, Ne İşe Yarar?",
+                subtitle:
+                  "L-Carnitine nedir? Ne işe yarar? Faydaları nelerdir? L-Carnitine hakkında daha detaylı bilgi edinmek için sayfamızı ziyaret edebilirsiniz.",
+              },
+              {
+                name: "Bağışıklık Sistemi Nedir, Nasıl Güçlendirilir?",
+                subtitle:
+                  "Bağışıklık sistemi nedir? Bağışıklık sistemi neden zayıflar? Bağışıklık sistemi nasıl güçlendirilir? Bağışıklık sistemi hakkında daha detaylı bilgi edinmek için sayfamızı ziyaret edebilirsiniz.",
+              },
+              {
+                name: "Takviye Edici Gıdalar Ne İşe Yarar?",
+                subtitle:
+                  "Takviye edici gıdalar ne işe yarar? Nasıl ve ne zaman kullanılır? Takviye edici gıdalar hakkında daha detaylı bilgi edinmek için sayfamızı ziyaret edebilirsiniz.",
+              },
+              {
+                name: "Yorgunluk Nedir? Nedenleri Neler Olabilir?",
+                subtitle:
+                  "Yorgunluk Nedir? Nedenleri neler olabilir? Yorgunlukla nasıl baş edilir? Yorgunluk hakkında daha detaylı bilgi edinmek için sayfamızı ziyaret edebilirsiniz.",
+              },
+              {
+                name: "Dengeli Beslenme Nedir? Neden Önemlidir?",
+                subtitle:
+                  "Dengeli beslenme nedir? Neden önemlidir? Dengeli bir öğün nasıl olmalıdır? Dengeli beslenme hakkında daha detaylı bilgi edinmek için sayfamızı ziyaret edebilirsiniz.",
+              },
             ].map((ingredient, index) => (
               <Card
                 key={index}
