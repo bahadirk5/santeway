@@ -101,7 +101,7 @@ export default function HomePage() {
                   className="text-xs sm:text-sm font-semibold mb-2 sm:mb-3 tracking-wider"
                   style={{ color: "#C1A667" }}
                 >
-                  Özel Takviyeler
+                  ÖZEL TAKVİYELER
                 </p>
                 <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl font-bold text-primary mb-3 sm:mb-4 md:mb-5 leading-tight">
                   {featuredProduct.name}
