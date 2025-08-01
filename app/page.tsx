@@ -130,7 +130,7 @@ export default function HomePage() {
               <div className="pt-0 sm:pt-2">
                 <Link href={`/urunler/${toSlug(featuredProduct.name)}`}>
                   <Button className="group bg-primary hover:bg-primary/90 rounded-full text-base sm:text-lg py-4 sm:py-6 shadow-lg hover:shadow-xl transition-shadow px-6 sm:px-8 w-full sm:w-auto">
-                    ÜRÜNÜ İNCELE
+                    Ürünü İncele
                     <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 transition-transform duration-300 group-hover:translate-x-2" />
                   </Button>
                 </Link>
@@ -240,7 +240,7 @@ export default function HomePage() {
                       className="w-full h-full object-cover opacity-50"
                     />
                   </div>
-                  <div className="p-3 sm:p-4">
+                  <div className="p-3 sm:p-4 text-center">
                     <h3 className="font-semibold text-primary mb-1 text-sm sm:text-base">
                       {ingredient.name}
                     </h3>
