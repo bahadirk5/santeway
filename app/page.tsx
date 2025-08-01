@@ -1,27 +1,34 @@
-import { Navbar } from "@/components/navbar"
-import { Footer } from "@/components/footer"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { ArrowRight, CheckCircle } from "lucide-react"
-import Link from "next/link"
+import { Navbar } from "@/components/navbar";
+import { Footer } from "@/components/footer";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { ArrowRight, CheckCircle } from "lucide-react";
+import Link from "next/link";
 
 // Helper function to create slugs
 const toSlug = (str: string) => {
   return str
     .toLowerCase()
     .replace(/\s+/g, "-")
-    .replace(/[^\w-]+/g, "")
-}
+    .replace(/[^\w-]+/g, "");
+};
 
 export default function HomePage() {
   // Tek ürün bilgisi
   const featuredProduct = {
-    name: "Magnezyum Kompleksi",
-    imageQuery: "Magnesium supplement bottle high quality",
+    name: "Santeway L-Carnitine Carnipure",
+    imageQuery: "l-carnitine-carnipure",
     description:
-      "Kas ve sinir fonksiyonları için şelatlı magnezyum formülü. Günlük magnezyum ihtiyacınızı karşılar ve enerji metabolizmanızı destekler.",
-    features: ["Şelatlı Magnezyum", "Yüksek Emilim", "Doğal İçerik", "Türkiye Üretimi"],
-  }
+      "L-Carnitine Carnipure, " +
+      "vücuttaki yağ asitlerinin enerjiye dönüşümünü destekleyen saf ve kaliteli bir L-karnitin formudur. " +
+      "Günlük enerjinizi artırmaya, yağ metabolizmanızı desteklemeye ve aktif yaşamınızı güçlendirmeye yardımcı olur.",
+    features: [
+      "Patentli Ham Madde",
+      "Yüksek Biyoyararlanım",
+      "Doğal İçerik",
+      "Vcaps® Bitkisel Kapsül",
+    ],
+  };
 
   return (
     <div className="min-h-screen bg-white">
@@ -34,21 +41,22 @@ export default function HomePage() {
             {/* Text Content */}
             <div className="text-center lg:text-left order-2 lg:order-1">
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-primary mb-4 sm:mb-6 leading-tight">
-                Daha İyi Bir
+                Sağlıklı Yaşama
                 <br />
                 <span className="relative inline-block mt-2">
-                  Sizi Seçin
+                  Giden Yol
                   <div className="absolute bottom-1 sm:bottom-2 left-0 w-full h-2 sm:h-3 bg-secondary/50 -z-10"></div>
                 </span>
               </h1>
               <p className="text-base sm:text-lg md:text-xl lg:text-xl text-gray-700 mb-6 sm:mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0">
-                Santeway ile daha iyi hissedin, genel sağlık ve zindelik için ihtiyacınız olan takviyeler.
+                Santeway ile enerjinizi yeniden keşfedin ve içinizdeki gücü
+                ortaya çıkarın!
               </p>
               <Button
                 size="lg"
                 className="group bg-primary hover:bg-primary/90 rounded-full px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-lg font-medium w-full sm:w-auto"
               >
-                HEMEN İNCELE
+                Ürünü Keşfet
                 <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 transition-transform duration-300 group-hover:translate-x-2" />
               </Button>
             </div>
@@ -90,7 +98,7 @@ export default function HomePage() {
             <div className="space-y-4 sm:space-y-6 md:space-y-8 order-2 lg:order-2 text-center lg:text-left">
               <div>
                 <p
-                  className="text-xs sm:text-sm font-semibold mb-2 sm:mb-3 uppercase tracking-wider"
+                  className="text-xs sm:text-sm font-semibold mb-2 sm:mb-3 tracking-wider"
                   style={{ color: "#C1A667" }}
                 >
                   Özel Takviyeler
@@ -111,7 +119,9 @@ export default function HomePage() {
                     className="flex items-center p-3 sm:p-4 bg-gray-50/80 rounded-lg sm:rounded-xl border border-gray-200/80 shadow-sm hover:shadow-md transition-all duration-300 justify-center lg:justify-start"
                   >
                     <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 mr-2 sm:mr-3 text-secondary flex-shrink-0" />
-                    <span className="text-sm sm:text-base font-medium text-gray-700">{feature}</span>
+                    <span className="text-sm sm:text-base font-medium text-gray-700">
+                      {feature}
+                    </span>
                   </div>
                 ))}
               </div>
@@ -156,15 +166,16 @@ export default function HomePage() {
             {/* Text Content - Responsive Typography */}
             <div className="order-1 lg:order-2 text-center lg:text-left">
               <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-4xl font-bold text-primary mb-4 sm:mb-6 leading-tight">
-                Sağlığınızı Güçlendirin
+                Biz Kimiz?
               </h2>
               <p className="text-base sm:text-lg text-gray-700 mb-4 sm:mb-6 leading-relaxed">
-                Santeway'de işleri biraz farklı yapıyoruz: sağlığınızı ihtiyacınız olan şekilde hedefleyen dengeli ve
-                Türkiye'de üretilmiş takviyeler oluşturmak için titiz bilimsel araştırmalar kullanıyoruz.
-              </p>
-              <p className="text-base sm:text-lg text-gray-700 mb-6 sm:mb-8 leading-relaxed">
-                Probiyotik Kompleksimizle sağlıklı bir bağırsak mikrobiyomunu desteklemekten Multivitaminimizle günlük
-                modern yaşam için sizi güçlendirmeye kadar, ihtiyacınız olan tamamen doğal takviyelere sahibiz.
+                Santeway olarak, sağlıklı yaşamı destekleyen, güvenilir ve
+                etkili takviyeler üretmek amacıyla çıktığımız bu yolda; sağlığın
+                sadece bir hedef değil, yaşam tarzı olduğuna inanmaktayız.
+                Bilimsel araştırmalar ışığında formüle edilen ürünlerimiz ile
+                yaşam kalitenizi arttırmayı hedefliyoruz. Ürün yelpazemizi
+                geliştirerek sağlıklı yaşam yolculuğunuzda sizlere eşlik etmek
+                amacıyla var gücümüzle çalışmaya devam ediyoruz.
               </p>
               <Button className="group bg-primary hover:bg-primary/90 rounded-full px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-lg w-full sm:w-auto">
                 DEVAMI
@@ -180,10 +191,11 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 sm:mb-16">
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl font-bold text-primary mb-4 sm:mb-6">
-              Daha İyi İçerikler
+              Yararlı Bilgiler
             </h2>
             <p className="text-secondary max-w-2xl mx-auto font-medium text-base sm:text-lg">
-              Sağlığınız için en kaliteli ve etkili bileşenleri özenle seçiyoruz.
+              Sağlığınız için en kaliteli ve etkili bileşenleri özenle
+              seçiyoruz.
             </p>
           </div>
 
@@ -196,7 +208,10 @@ export default function HomePage() {
               { name: "Hyaluronik Asit", subtitle: "Hyaluronik Asit %2" },
               { name: "Lactobacillus", subtitle: "Lactobacillus kompleksi" },
             ].map((ingredient, index) => (
-              <Card key={index} className="overflow-hidden hover:shadow-lg hover:scale-105 transition-all duration-300">
+              <Card
+                key={index}
+                className="overflow-hidden hover:shadow-lg hover:scale-105 transition-all duration-300"
+              >
                 <CardContent className="p-0">
                   <div className="bg-secondary/20 h-24 sm:h-28 md:h-32 relative">
                     <img
@@ -206,8 +221,12 @@ export default function HomePage() {
                     />
                   </div>
                   <div className="p-3 sm:p-4">
-                    <h3 className="font-semibold text-primary mb-1 text-sm sm:text-base">{ingredient.name}</h3>
-                    <p className="text-xs sm:text-sm text-gray-600 leading-tight">{ingredient.subtitle}</p>
+                    <h3 className="font-semibold text-primary mb-1 text-sm sm:text-base">
+                      {ingredient.name}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-gray-600 leading-tight">
+                      {ingredient.subtitle}
+                    </p>
                   </div>
                 </CardContent>
               </Card>
@@ -218,5 +237,5 @@ export default function HomePage() {
 
       <Footer />
     </div>
-  )
+  );
 }
