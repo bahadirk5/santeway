@@ -178,7 +178,7 @@ export default function HomePage() {
                 amacıyla var gücümüzle çalışmaya devam ediyoruz.
               </p>
               <Button className="group bg-primary hover:bg-primary/90 rounded-full px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-lg w-full sm:w-auto">
-                DEVAMI
+                Devamı
                 <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 transition-transform duration-300 group-hover:translate-x-2" />
               </Button>
             </div>
