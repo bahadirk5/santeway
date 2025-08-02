@@ -64,7 +64,7 @@ export async function generateMetadata({
       url: `https://santeway.com/urunler/${product.slug}`,
       images: [
         {
-          url: product.image || "/placeholder.svg",
+          url: `https://santeway.com${product.image}` || "https://santeway.com/placeholder.svg",
           width: 800,
           height: 600,
           alt: product.name,
@@ -75,7 +75,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: product.name,
       description: product.shortDescription,
-      images: [product.image || "/placeholder.svg"],
+      images: [`https://santeway.com${product.image}` || "https://santeway.com/placeholder.svg"],
     },
     alternates: {
       canonical: `https://santeway.com/urunler/${product.slug}`,
@@ -183,7 +183,7 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
             category: product.category,
             sku: product.slug,
             gtin: product.id.toString(),
-            image: product.image || "/placeholder.svg",
+            image: `https://santeway.com${product.image}` || "https://santeway.com/placeholder.svg",
             offers: {
               "@type": "AggregateOffer",
               availability: "https://schema.org/InStock",
