@@ -5,10 +5,97 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent } from "@/components/ui/card"
 import { MapPin, Phone, Mail, Clock } from "lucide-react"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "İletişim | Santeway - Bize Ulaşın",
+  description: "Santeway müşteri hizmetleri ile iletişime geçin. Sorularınız, önerileriniz veya siparişleriniz için bizimle iletişime geçebilirsiniz. Telefon: +90 0507 292 88 67",
+  keywords: [
+    "santeway iletişim",
+    "müşteri hizmetleri",
+    "santeway telefon",
+    "santeway adres",
+    "santeway email",
+    "müşteri destek",
+    "sipariş sorgusu",
+    "geri bildirim",
+    "şikayet",
+    "öneri",
+    "yardım"
+  ],
+  openGraph: {
+    title: "İletişim | Santeway",
+    description: "Sorularınız için bizimle iletişime geçin. Müşteri hizmetlerimiz size yardımcı olmaktan mutluluk duyar.",
+    type: "website",
+    url: "https://santeway.com/iletisim",
+    images: [
+      {
+        url: "/images/santeway-logo.png",
+        width: 1200,
+        height: 630,
+        alt: "Santeway İletişim",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "İletişim | Santeway",
+    description: "Sorularınız için bizimle iletişime geçin.",
+    images: ["/images/santeway-logo.png"],
+  },
+  alternates: {
+    canonical: "https://santeway.com/iletisim",
+  },
+};
 
 export default function ContactPage() {
   return (
     <div className="min-h-screen bg-white">
+      {/* Structured Data for Contact Page */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ContactPage",
+            "mainEntity": {
+              "@type": "Organization",
+              "name": "Santeway",
+              "url": "https://santeway.com",
+              "contactPoint": [
+                {
+                  "@type": "ContactPoint",
+                  "telephone": "+90-507-292-88-67",
+                  "contactType": "customer service",
+                  "email": "info@santeway.com",
+                  "areaServed": "TR",
+                  "availableLanguage": "Turkish",
+                  "hoursAvailable": {
+                    "@type": "OpeningHoursSpecification",
+                    "dayOfWeek": [
+                      "Monday",
+                      "Tuesday", 
+                      "Wednesday",
+                      "Thursday",
+                      "Friday"
+                    ],
+                    "opens": "09:00",
+                    "closes": "18:00"
+                  }
+                }
+              ],
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Burç Mahallesi 681. Sokak Duru Sitesi 2 No:17/12",
+                "addressLocality": "Yenimahalle",
+                "addressRegion": "Ankara",
+                "addressCountry": "TR"
+              }
+            }
+          })
+        }}
+      />
+      
       <Navbar />
 
       {/* Header Section - Responsive */}

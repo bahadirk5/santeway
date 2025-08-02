@@ -1,22 +1,23 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Link from "next/link"
-import { Menu, Instagram, Mail, Linkedin, Facebook } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import Image from "next/image"
+import { useState } from "react";
+import Link from "next/link";
+import { Menu, Instagram, Mail, Linkedin, Facebook } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import Image from "next/image";
 
 export function Navbar() {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
 
   const navItems = [
+    { name: "Ana Sayfa", href: "/" },
     { name: "Ürünler", href: "/urunler" },
     { name: "Hakkımızda", href: "/hakkimizda" },
     { name: "Yararlı Bilgiler", href: "/yararli-bilgiler" },
     { name: "SSS", href: "/sss" },
     { name: "İletişim", href: "/iletisim" },
-  ]
+  ];
 
   return (
     <>
@@ -57,7 +58,7 @@ export function Navbar() {
                 <Facebook className="h-3 w-3 sm:h-4 sm:w-4" />
               </Link>
               <Link
-                href="https://instagram.com"
+                href="https://www.instagram.com/santewayturkiye?igsh=MWJiYzQ2aTlrY2Jsbg=="
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white hover:text-[#191970] transition-colors duration-200"
@@ -124,7 +125,10 @@ export function Navbar() {
                     <Menu className="h-4 w-4 sm:h-5 sm:w-5" />
                   </Button>
                 </SheetTrigger>
-                <SheetContent side="right" className="w-[280px] sm:w-[320px] bg-[#EEE7D8]">
+                <SheetContent
+                  side="right"
+                  className="w-[280px] sm:w-[320px] bg-[#EEE7D8]"
+                >
                   {" "}
                   {/* Changed background to #EEE7D8 */}
                   <div className="flex flex-col space-y-4 mt-8">
@@ -146,5 +150,5 @@ export function Navbar() {
         </div>
       </header>
     </>
-  )
+  );
 }

@@ -7,6 +7,48 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Card, CardContent } from "@/components/ui/card";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Sıkça Sorulan Sorular (SSS) | Santeway",
+  description: "Santeway gıda takviyeleri hakkında merak ettiğiniz tüm soruların cevapları burada. L-Carnitine, genel sağlık soruları ve ürün bilgileri için SSS sayfamızı ziyaret edin.",
+  keywords: [
+    "santeway sss",
+    "gıda takviyesi sorular",
+    "l-carnitine sorular",
+    "vitamin soruları",
+    "sağlık soruları",
+    "ürün bilgileri",
+    "müşteri hizmetleri",
+    "santeway müşteri destek",
+    "gıda takviyesi nasıl kullanılır",
+    "yan etki",
+    "saklama koşulları"
+  ],
+  openGraph: {
+    title: "Sıkça Sorulan Sorular | Santeway",
+    description: "Gıda takviyeleri ve sağlık hakkında merak ettiğiniz tüm soruların cevapları burada.",
+    type: "website",
+    url: "https://santeway.com/sss",
+    images: [
+      {
+        url: "/images/santeway-logo.png",
+        width: 1200,
+        height: 630,
+        alt: "Santeway SSS",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Sıkça Sorulan Sorular | Santeway",
+    description: "Gıda takviyeleri ve sağlık hakkında merak ettiğiniz tüm soruların cevapları burada.",
+    images: ["/images/santeway-logo.png"],
+  },
+  alternates: {
+    canonical: "https://santeway.com/sss",
+  },
+};
 
 export default function FAQPage() {
   const faqCategories = [
@@ -105,6 +147,27 @@ export default function FAQPage() {
 
   return (
     <div className="min-h-screen bg-white">
+      {/* Structured Data for FAQ */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": faqCategories.flatMap(category =>
+              category.questions.map(faq => ({
+                "@type": "Question",
+                "name": faq.question,
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": faq.answer
+                }
+              }))
+            )
+          })
+        }}
+      />
+      
       <Navbar />
 
       {/* Header Section - Responsive */}

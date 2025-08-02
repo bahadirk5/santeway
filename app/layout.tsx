@@ -72,6 +72,8 @@ export const metadata: Metadata = {
   },
   other: {
     "google-site-verification": "your-google-verification-code", // Google Search Console'dan alınacak
+    "msvalidate.01": "your-bing-verification-code", // Bing Webmaster Tools'dan alınacak
+    "yandex-verification": "your-yandex-verification-code", // Yandex Webmaster'dan alınacak
   },
   metadataBase: new URL("https://santeway.com"),
 };
@@ -90,6 +92,29 @@ export default function RootLayout({
         <link rel="manifest" href="/site.webmanifest" />
         <meta name="theme-color" content="#2E3A87" />
         <meta name="msapplication-TileColor" content="#2E3A87" />
+        
+        {/* SEO Meta Tags */}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="google" content="notranslate" />
+        <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="language" content="Turkish" />
+        <meta name="revisit-after" content="7 days" />
+        <meta name="distribution" content="global" />
+        <meta name="rating" content="general" />
+        
+        {/* Geo Tags */}
+        <meta name="geo.region" content="TR" />
+        <meta name="geo.placename" content="Turkey" />
+        
+        {/* Apple Meta Tags */}
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="apple-mobile-web-app-title" content="Santeway" />
+        
+        {/* Microsoft Meta Tags */}
+        <meta name="msapplication-config" content="/browserconfig.xml" />
+        
         <style>{`
 html {
   font-family: ${GeistSans.style.fontFamily};

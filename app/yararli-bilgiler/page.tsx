@@ -4,11 +4,100 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Calendar } from "lucide-react";
 import Link from "next/link";
 import { articlesData } from "./articles-data";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Yararlı Bilgiler | Santeway - Sağlık İpuçları ve Öneriler",
+  description: "Sağlıklı yaşam için faydalı ipuçları, beslenme önerileri ve gıda takviyeleri hakkında bilgilendirici makaleler. Uzman tavsiyeleri ile sağlığınızı destekleyin.",
+  keywords: [
+    "sağlık ipuçları",
+    "beslenme önerileri", 
+    "gıda takviyesi rehberi",
+    "sağlıklı yaşam",
+    "vitamin bilgileri",
+    "mineral faydaları",
+    "l-carnitine faydaları",
+    "enerji artırma",
+    "metabolizma hızlandırma",
+    "antioxidant",
+    "bağışıklık sistemi",
+    "spor beslenme"
+  ],
+  openGraph: {
+    title: "Yararlı Bilgiler | Santeway",
+    description: "Sağlıklı yaşam için ipuçları ve pratik öneriler. Uzman tavsiyeleri ile sağlığınızı destekleyin.",
+    type: "website",
+    url: "https://santeway.com/yararli-bilgiler",
+    images: [
+      {
+        url: "/images/newsletter.png",
+        width: 1200,
+        height: 630,
+        alt: "Santeway Yararlı Bilgiler",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Yararlı Bilgiler | Santeway",
+    description: "Sağlıklı yaşam için ipuçları ve pratik öneriler.",
+    images: ["/images/newsletter.png"],
+  },
+  alternates: {
+    canonical: "https://santeway.com/yararli-bilgiler",
+  },
+};
 
 export default function BlogPage() {
 
   return (
     <div className="min-h-screen bg-white">
+      {/* Structured Data for Blog Page */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Blog",
+            "name": "Santeway Yararlı Bilgiler",
+            "description": "Sağlıklı yaşam için ipuçları ve pratik öneriler",
+            "url": "https://santeway.com/yararli-bilgiler",
+            "publisher": {
+              "@type": "Organization",
+              "name": "Santeway",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://santeway.com/images/santeway-logo.png"
+              }
+            },
+            "blogPost": articlesData.slice(0, 6).map(article => ({
+              "@type": "BlogPosting",
+              "headline": article.title,
+              "description": article.excerpt,
+              "url": `https://santeway.com/yararli-bilgiler/${article.id}`,
+              "datePublished": article.date,
+              "author": {
+                "@type": "Organization",
+                "name": "Santeway"
+              },
+              "publisher": {
+                "@type": "Organization",
+                "name": "Santeway",
+                "logo": {
+                  "@type": "ImageObject",
+                  "url": "https://santeway.com/images/santeway-logo.png"
+                }
+              },
+              "image": article.image || "https://santeway.com/images/santeway-logo.png",
+              "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": `https://santeway.com/yararli-bilgiler/${article.id}`
+              }
+            }))
+          })
+        }}
+      />
+      
       <Navbar />
 
       {/* Header Section - Responsive */}
