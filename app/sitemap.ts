@@ -57,7 +57,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Blog makaleleri
   const articlePages = articlesData.map((article) => ({
     url: `${baseUrl}/yararli-bilgiler/${article.id}`,
-    lastModified: new Date(article.date),
+    lastModified: new Date(), // Use current date since article.date is in Turkish format
     changeFrequency: 'monthly' as const,
     priority: 0.6,
   }))
