@@ -5,12 +5,71 @@ import { articlesData, type ArticleContentBlock } from "../articles-data"; // G�
 import { Calendar, User, Edit3 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { Metadata } from "next";
 
 interface ArticleDetailPageProps {
   params: {
     // Dinamik rota segmenti string olmalı, bu yüzden id'yi string olarak alıyoruz.
     // Veri kaynağımızda id number olduğu için parse etmemiz gerekecek.
     id: string;
+  };
+}
+
+// Generate metadata for SEO
+export async function generateMetadata({
+  params,
+}: ArticleDetailPageProps): Promise<Metadata> {
+  const articleId = Number.parseInt(params.id, 10);
+  const article = articlesData.find((a) => a.id === articleId);
+
+  if (!article) {
+    return {
+      title: "Makale Bulunamadı | Santeway",
+      description: "Aradığınız makale bulunamadı veya mevcut değil.",
+    };
+  }
+
+  return {
+    title: `${article.title} | Santeway`,
+    description: article.excerpt,
+    keywords: [
+      article.title.toLowerCase(),
+      "sağlık",
+      "beslenme",
+      "gıda takviyesi",
+      "sağlıklı yaşam",
+      "vitamin",
+      "mineral",
+      "santeway blog",
+      "yararlı bilgiler",
+      ...(article.title.includes("L-Carnitine") ? ["l-carnitine", "enerji", "metabolizma"] : []),
+      ...(article.title.includes("vitamin") ? ["vitamin eksikliği", "besin"] : []),
+    ],
+    openGraph: {
+      title: article.title,
+      description: article.excerpt,
+      type: "article",
+      url: `https://santeway.com/yararli-bilgiler/${article.id}`,
+      images: [
+        {
+          url: article.image || "https://santeway.com/images/newsletter.png",
+          width: 1200,
+          height: 630,
+          alt: article.title,
+        },
+      ],
+      publishedTime: article.date,
+      authors: ["Santeway"],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: article.title,
+      description: article.excerpt,
+      images: [article.image || "https://santeway.com/images/newsletter.png"],
+    },
+    alternates: {
+      canonical: `https://santeway.com/yararli-bilgiler/${article.id}`,
+    },
   };
 }
 
@@ -95,7 +154,115 @@ export default function ArticleDetailPage({ params }: ArticleDetailPageProps) {
 
   return (
     <div className="min-h-screen bg-white">
+      {/* Structured Data for Article */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Article",
+            "headline": article.title,
+            "description": article.excerpt,
+            "image": article.image || "https://santeway.com/images/newsletter.png",
+            "datePublished": article.date,
+            "dateModified": article.date,
+            "author": {
+              "@type": "Organization",
+              "name": "Santeway",
+              "url": "https://santeway.com"
+            },
+            "publisher": {
+              "@type": "Organization",
+              "name": "Santeway",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://santeway.com/images/santeway-logo.png"
+              }
+            },
+            "mainEntityOfPage": {
+              "@type": "WebPage",
+              "@id": `https://santeway.com/yararli-bilgiler/${article.id}`
+            },
+            "url": `https://santeway.com/yararli-bilgiler/${article.id}`,
+            "articleSection": "Sağlık ve Beslenme",
+            "wordCount": article.content.reduce((count, block) => {
+              if (block.type === "paragraph") {
+                return count + (block.text?.split(" ").length || 0);
+              }
+              return count;
+            }, 0),
+            "keywords": article.title.toLowerCase().split(" ").concat([
+              "sağlık", "beslenme", "gıda takviyesi", "santeway"
+            ]).join(", ")
+          })
+        }}
+      />
+      
+      {/* Breadcrumb Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Ana Sayfa",
+                "item": "https://santeway.com"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Yararlı Bilgiler",
+                "item": "https://santeway.com/yararli-bilgiler"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": article.title,
+                "item": `https://santeway.com/yararli-bilgiler/${article.id}`
+              }
+            ]
+          })
+        }}
+      />
+      
       <Navbar />
+
+      {/* Breadcrumb Navigation */}
+      <nav aria-label="Breadcrumb" className="bg-gray-50 py-3">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <ol className="flex items-center space-x-2 text-sm">
+            <li>
+              <Link
+                href="/"
+                className="text-gray-500 hover:text-primary transition-colors"
+                aria-label="Ana sayfaya git"
+              >
+                Ana Sayfa
+              </Link>
+            </li>
+            <li className="text-gray-300">/</li>
+            <li>
+              <Link
+                href="/yararli-bilgiler"
+                className="text-gray-500 hover:text-primary transition-colors"
+                aria-label="Yararlı bilgiler sayfasına git"
+              >
+                Yararlı Bilgiler
+              </Link>
+            </li>
+            <li className="text-gray-300">/</li>
+            <li>
+              <span className="text-gray-900 font-medium" aria-current="page">
+                {article.title.length > 50 ? `${article.title.substring(0, 50)}...` : article.title}
+              </span>
+            </li>
+          </ol>
+        </div>
+      </nav>
 
       {/* Article Header */}
       <section className="bg-gradient-to-br from-secondary/20 to-secondary/40 py-12 sm:py-16">

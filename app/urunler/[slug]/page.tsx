@@ -43,7 +43,7 @@ export async function generateMetadata({
   }
 
   return {
-    title: product.name,
+    title: `${product.name} | Santeway`,
     description: product.shortDescription,
     keywords: [
       product.name.toLowerCase(),

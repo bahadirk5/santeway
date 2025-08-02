@@ -1,13 +1,55 @@
-"use client";
-
-import { useState } from "react";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Filter } from "lucide-react";
 import Link from "next/link";
 import { productsData } from "./products-data";
+import { ProductsClient } from "./products-client";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Ürünler | Santeway",
+  description:
+    "Sağlığınız için özenle seçilmiş, uluslararası standartlara göre üretilmiş vitamin ve besin takviyeleri. L-Carnitine Carnipure ve diğer kaliteli gıda takviyelerini keşfedin.",
+  keywords: [
+    "santeway ürünler",
+    "gıda takviyeleri",
+    "l-carnitine carnipure",
+    "vitamin",
+    "mineral",
+    "besin takviyeleri",
+    "sağlıklı yaşam",
+    "enerji",
+    "metabolizma",
+    "antioxidant",
+    "protein",
+    "amino asit",
+    "doğal ürünler",
+  ],
+  openGraph: {
+    title: "Ürünler | Santeway",
+    description:
+      "Kaliteli gıda takviyeleri ve vitamin ürünleri. Sağlıklı yaşamınızı desteklemek için özenle seçilmiş ürünler.",
+    type: "website",
+    url: "https://santeway.com/urunler",
+    images: [
+      {
+        url: "/images/featured-product.png",
+        width: 1200,
+        height: 630,
+        alt: "Santeway Ürünler",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Ürünler | Santeway",
+    description: "Kaliteli gıda takviyeleri ve vitamin ürünleri.",
+    images: ["/images/featured-product.png"],
+  },
+  alternates: {
+    canonical: "https://santeway.com/urunler",
+  },
+};
 
 const toSlug = (str: string) => {
   return str
@@ -17,21 +59,66 @@ const toSlug = (str: string) => {
 };
 
 export default function ProductsPage() {
-  const [activeCategory, setActiveCategory] = useState("Tümü");
-
   // productsData'dan ürünleri al
   const products = productsData;
 
-  // Kategorileri dinamik olarak oluştur
-  const categories = ["Tümü", ...Array.from(new Set(products.map(product => product.category)))];
-
-  const filteredProducts =
-    activeCategory === "Tümü"
-      ? products
-      : products.filter((product) => product.category === activeCategory);
-
   return (
     <div className="min-h-screen bg-white">
+      {/* Structured Data for Products Page */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            name: "Santeway Ürünler",
+            description:
+              "Sağlığınız için özenle seçilmiş, uluslararası standartlara göre üretilmiş vitamin ve besin takviyeleri",
+            url: "https://santeway.com/urunler",
+            mainEntity: {
+              "@type": "ItemList",
+              numberOfItems: products.length,
+              itemListElement: products.map((product, index) => ({
+                "@type": "Product",
+                position: index + 1,
+                name: product.name,
+                url: `https://santeway.com/urunler/${product.slug}`,
+                category: product.category,
+                brand: {
+                  "@type": "Brand",
+                  name: "Santeway",
+                },
+                image:
+                  product.image ||
+                  `https://santeway.com/placeholder.svg?query=${product.slug}`,
+                offers: {
+                  "@type": "Offer",
+                  availability: "https://schema.org/InStock",
+                  priceCurrency: "TRY",
+                },
+              })),
+            },
+            breadcrumb: {
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                {
+                  "@type": "ListItem",
+                  position: 1,
+                  name: "Ana Sayfa",
+                  item: "https://santeway.com",
+                },
+                {
+                  "@type": "ListItem",
+                  position: 2,
+                  name: "Ürünler",
+                  item: "https://santeway.com/urunler",
+                },
+              ],
+            },
+          }),
+        }}
+      />
+
       <Navbar />
 
       {/* Header Section - Responsive */}
@@ -49,94 +136,7 @@ export default function ProductsPage() {
         </div>
       </section>
 
-      {/* Filter Section - Responsive */}
-      <section className="py-6 sm:py-8 border-b bg-white sticky top-16 sm:top-20 z-30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col space-y-4 sm:space-y-0 sm:flex-row sm:items-center sm:justify-between">
-            {/* Filter Button and Categories */}
-            <div className="flex flex-col space-y-3 sm:space-y-0 sm:flex-row sm:items-center sm:space-x-4">
-              <Button
-                variant="outline"
-                className="rounded-full hover:bg-secondary hover:text-primary hover:border-secondary transition-colors w-full sm:w-auto bg-transparent"
-              >
-                <Filter className="mr-2 h-4 w-4" />
-                Filtrele
-              </Button>
-
-              {/* Category Pills - Responsive */}
-              <div className="flex flex-wrap gap-2 justify-center sm:justify-start">
-                {categories.map((category) => (
-                  <button
-                    key={category}
-                    onClick={() => setActiveCategory(category)}
-                    className={`cursor-pointer px-3 py-2 rounded-full text-xs sm:text-sm transition-colors border whitespace-nowrap ${
-                      activeCategory === category
-                        ? "bg-secondary text-primary border-secondary"
-                        : "bg-transparent text-gray-700 border-gray-300 hover:bg-secondary/70 hover:text-primary hover:border-secondary/70"
-                    }`}
-                  >
-                    {category}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Results Count */}
-            <p className="text-gray-600 text-sm text-center sm:text-right">
-              {filteredProducts.length} ürün bulundu
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Products Grid - Responsive */}
-      <section className="py-12 sm:py-16 md:py-20 lg:py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6 sm:gap-8">
-            {filteredProducts.map((product) => (
-              <Link
-                key={product.id}
-                href={`/urunler/${product.slug}`}
-                className="block group h-full"
-              >
-                <Card className="hover:shadow-xl transition-all duration-300 overflow-hidden hover:scale-105 flex flex-col h-full">
-                  <CardContent className="p-0 flex flex-col flex-grow">
-                    {/* Product Image */}
-                    <div className="relative">
-                      <div className=" relative overflow-hidden aspect-square flex items-center justify-center">
-                        <img
-                          src={
-                            product.image ||
-                            `/placeholder.svg?height=300&width=250&query=${product.slug}`
-                          }
-                          alt={product.name}
-                          className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300 rounded-lg"
-                        />
-                      </div>
-                    </div>
-
-                    {/* Product Info */}
-                    <div className="p-4 sm:p-6 flex flex-col flex-grow justify-between">
-                      <Button
-                        variant="default"
-                        size="sm"
-                        className="bg-secondary text-primary rounded-full w-full mb-3 sm:mb-4 pointer-events-none text-xs sm:text-sm"
-                      >
-                        {product.category}
-                      </Button>
-                      <div className="text-center">
-                        <h3 className="text-lg sm:text-xl font-semibold text-primary mb-2 sm:mb-3 leading-tight">
-                          {product.name}
-                        </h3>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
+      <ProductsClient products={products} />
 
       <Footer />
     </div>
