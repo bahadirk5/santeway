@@ -1,7 +1,12 @@
-import { Navbar } from "@/components/navbar"
-import { Footer } from "@/components/footer"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import { Card, CardContent } from "@/components/ui/card"
+import { Navbar } from "@/components/navbar";
+import { Footer } from "@/components/footer";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { Card, CardContent } from "@/components/ui/card";
 
 export default function FAQPage() {
   const faqCategories = [
@@ -9,63 +14,52 @@ export default function FAQPage() {
       title: "Genel Sorular",
       questions: [
         {
-          question: "BetterVits ürünleri nasıl kullanılır?",
+          question: "Gıda takviyesi nedir?",
+          answer: `Türk Gıda Kodeksi ve Takviye Edici Gıdalar
+            Tebliğinde geçen tanımı ile takviye edici gıda: Normal beslenmeyi takviye etmek
+            amacıyla, vitamin, mineral, protein, karbonhidrat, lif, yağ asidi, amino asit gibi besin
+            öğelerinin veya bunların dışında besleyici veya fizyolojik etkileri bulunan bitki,
+            bitkisel ve hayvansal kaynaklı maddeler, biyoaktif maddeler ve benzeri maddelerin
+            konsantre veya ekstraktlarının tek başına veya karışımlarının kapsül, tablet, pastil, tek
+            kullanımlık toz paket, sıvı ampul, damlalıklı şişe ve diğer benzeri sıvı veya toz
+            formlarda hazırlanarak günlük alım dozu belirlenmiş ürünleri” ifade eder.`,
+        },
+        {
+          question: "Gıda takviyelerini günün hangi saatinde almalıyım?",
+          answer: `Her gıda takviyesinin etkisi,
+            içeriğine ve kullanım şekline göre değişir. Bazı vitamin ve mineraller aç karnına
+            alındığında daha iyi emilirken, bazıları tok karnına kullanıldığında daha faydalı
+            olabilir. Enerji veren takviyeler (örneğin kafein veya ginseng içerenler) akşam
+            saatlerinde alındığında uykuyu zorlaştırabilir. Uykuya yardımcı olan takviyeler
+            (örneğin melatonin ya da magnezyum) ise gündüz alındığında yorgunluk ve dalgınlığa
+            yol açabilir. Bu nedenle, her takviyenin ne zaman ve nasıl kullanılacağı içeriğine ve
+            kişinin ihtiyacına göre belirlenmelidir.`,
+        },
+        {
+          question: "Gıda takviyelerini nasıl saklamalıyım?",
           answer:
-            "Her ürünün ambalajında belirtilen kullanım talimatlarını takip etmenizi öneririz. Genellikle günde 1-2 kapsül, yemeklerle birlikte alınması önerilir. Herhangi bir sağlık sorununuz varsa doktorunuza danışın.",
+            "Gıda takviyeleri serin, kuru ve güneş ışığından uzak bir yerde, orijinal ambalajında ve ağzı kapalı olarak saklanmalıdır.",
         },
         {
-          question: "Ürünleriniz ne kadar sürede etki gösterir?",
+          question: "Sağlık Bakanlığını onayınız var mı?",
           answer:
-            "Etkiler kişiden kişiye değişiklik gösterebilir. Çoğu müşterimiz 2-4 hafta içinde olumlu değişiklikler fark eder. Düzenli kullanım önemlidir.",
+            "Gıda takviyesi kategorisinde yer alan tüm ürünlerin onayları yalnızca T.C Tarım ve Orman Bakanlığı tarafından verilmektedir. Ürünlerimiz T.C Tarım ve Orman Bakanlığı onaylıdır.",
         },
         {
-          question: "Ürünleriniz vegan/vejetaryen dostu mu?",
+          question:
+            "Kullandığınız kapsüllerin Kosher ve Helal sertifikaları var mı?",
           answer:
-            "Evet, ürünlerimizin çoğu vegan ve vejetaryen dostudur. Her ürünün etiketinde bu bilgiyi bulabilirsiniz.",
+            "Ürünlerimizde kullandığımız kapsüllerin; Kosher ve Helal sertifikaları mevcuttur.",
         },
         {
-          question: "Hamilelik döneminde kullanılabilir mi?",
+          question: "Kullandığınız kapsüllerin kaynağı nedir?",
           answer:
-            "Hamilelik ve emzirme döneminde herhangi bir takviye kullanmadan önce mutlaka doktorunuza danışmanızı öneririz.",
-        },
-      ],
-    },
-    {
-      title: "Sipariş ve Teslimat",
-      questions: [
-        {
-          question: "Kargo ücreti ne kadar?",
-          answer: "Tüm siparişlerde ücretsiz kargo sunuyoruz. Minimum sipariş tutarı yoktur.",
+            "Kapsül şeklinde formüle edilmiş ürünlerimiz vejetaryen ve vegan kullanımına uygun olup, kapsüller tamamen bitkisel selülozdan (hidroksipropil metil selüloz) elde edilmektedir.",
         },
         {
-          question: "Siparişim ne kadar sürede gelir?",
-          answer: "Siparişleriniz 1-3 iş günü içinde kargoya verilir ve 2-5 iş günü içinde adresinize ulaşır.",
-        },
-        {
-          question: "Sipariş iptali yapabilir miyim?",
-          answer: "Siparişiniz kargoya verilmeden önce iptal edebilirsiniz. Müşteri hizmetlerimizle iletişime geçin.",
-        },
-        {
-          question: "Hangi ödeme yöntemlerini kabul ediyorsunuz?",
-          answer: "Kredi kartı, banka kartı, havale/EFT ve kapıda ödeme seçeneklerini kabul ediyoruz.",
-        },
-      ],
-    },
-    {
-      title: "İade ve Değişim",
-      questions: [
-        {
-          question: "İade politikanız nedir?",
-          answer: "60 günlük para iade garantimiz vardır. Memnun kalmazsanız ürünü iade edebilirsiniz.",
-        },
-        {
-          question: "Açılmış ürünleri iade edebilir miyim?",
+          question: "Kapsülleri açarak kullanabilir miyim?",
           answer:
-            "Evet, açılmış ürünleri de iade edebilirsiniz. Sağlık ve hijyen nedeniyle sadece para iadesi yapılır.",
-        },
-        {
-          question: "İade süreci nasıl işler?",
-          answer: "Müşteri hizmetlerimizle iletişime geçin, iade kodunuzu alın ve ürünü ücretsiz kargo ile gönderin.",
+            "Kapsülleri yutmakta sorun yaşıyorsanız kapsülleri açarak bol su ile kullanabilirsiniz.",
         },
       ],
     },
@@ -73,26 +67,41 @@ export default function FAQPage() {
       title: "Ürün Bilgileri",
       questions: [
         {
-          question: "Ürünlerinizde yan etki var mı?",
-          answer:
-            "Ürünlerimiz doğal bileşenlerden üretilir ve genellikle yan etki göstermez. Ancak alerjiniz varsa içerik listesini kontrol edin.",
+          question:
+            "L-Carnitine Carnipure hangi formdadır ve emilimi nasıldır?",
+          answer: `Ürünümüzde kullanılan L-Carnitine,
+            İsviçre üretimi Carnipure® markalı ham maddeden elde edilmektedir. L-Carnitine
+            Tartarat, L-Carnitine’in stabilize edilmiş tuz formudur ve gıda takviyelerinde yaygın
+            olarak tercih edilir. Formülasyonda 750 mg L-Carnitine Tartarat kullanılmış olup, bu
+            miktar yaklaşık 510 mg saf L-Carnitine’e karşılık gelir. Yüksek saflık ve
+            biyoyararlanım sunan Carnipure®, bağırsaklardan hızlı ve etkili emilim sağlar.`,
         },
         {
-          question: "Ürünleriniz laboratuvar testinden geçiyor mu?",
-          answer: "Evet, tüm ürünlerimiz üçüncü taraf laboratuvarlarda test edilir ve kalite sertifikalarına sahiptir.",
+          question:
+            "Ürünlerin tavsiye edilen tüketim tarihini nereden görebilirim?",
+          answer: `Tavsiye edilen tüketim tarihi ürünler uygun şekilde muhafaza edildiğinde,
+            gıdanın kendine has özelliklerini koruduğu süreyi gösterir. Ürünlerimizin etiketi
+            üzerinde “Tavsiye Edilen Tüketim Tarihi (TETT)” şeklinde görebilirsiniz. Tavsiye
+            edilen tüketim tarihi ay ve yıl olarak belirtilmektedir.`,
         },
         {
-          question: "Son kullanma tarihi ne kadar?",
-          answer:
-            "Ürünlerimizin son kullanma tarihi genellikle üretim tarihinden itibaren 2-3 yıldır. Her üründe belirtilmiştir.",
+          question: "Ürünlerinizin onaylı olduğunu nasıl anlarız?",
+          answer: `Gıda Güvenliği Bilgi Sistemi - GGBS (ggbs.tarim.gov.tr)
+            Santeway ürünlerinin GGBS numaraları ürün etiketlerinde bulunmaktadır. Takviye
+            Edici Gıda Onay Numarası ve ilgili ürünü kontrol etmek için https://ggbs.tarim.gov.tr
+            adresinden "Onaylı Takviye Edici Gıdalar Listesi" linkine tıklayarak işlem
+            yapabilirsiniz.`,
         },
         {
-          question: "Çocuklar kullanabilir mi?",
-          answer: "18 yaş altı çocuklar için özel formüllerimiz mevcuttur. Genel ürünler yetişkinler içindir.",
+          question: "Ürünlerinizin yan etkisi var mıdır?",
+          answer: `Santeway ürünleri takviye edici gıda ürünleridir. Belirli bir yan etkisi
+            bulunmamaktadır. Ürünlerin içindeki bileşenler T.C. Tarım ve Orman Bakanlığı’nın
+            belirlediği günlük kullanım sınırları içerisindedir. Özel bir durumunuz veya
+            hastalığınız var ise doktorunuza danışmanız gerekir.`,
         },
       ],
     },
-  ]
+  ];
 
   return (
     <div className="min-h-screen bg-white">
@@ -127,7 +136,10 @@ export default function FAQPage() {
                 <CardContent className="p-4 sm:p-6">
                   <Accordion type="single" collapsible className="w-full">
                     {category.questions.map((faq, index) => (
-                      <AccordionItem key={index} value={`item-${categoryIndex}-${index}`}>
+                      <AccordionItem
+                        key={index}
+                        value={`item-${categoryIndex}-${index}`}
+                      >
                         <AccordionTrigger className="text-left text-primary font-semibold hover:no-underline text-sm sm:text-base py-4">
                           {faq.question}
                         </AccordionTrigger>
@@ -156,20 +168,32 @@ export default function FAQPage() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
             <Card className="p-4 sm:p-6 hover:shadow-lg transition-shadow duration-300">
               <CardContent className="p-0 text-center">
-                <h3 className="font-semibold text-primary mb-2 text-sm sm:text-base">E-posta</h3>
-                <p className="text-gray-600 text-sm sm:text-base">info@bettervits.com</p>
+                <h3 className="font-semibold text-primary mb-2 text-sm sm:text-base">
+                  E-posta
+                </h3>
+                <p className="text-gray-600 text-sm sm:text-base">
+                  info@santeway.com
+                </p>
               </CardContent>
             </Card>
             <Card className="p-4 sm:p-6 hover:shadow-lg transition-shadow duration-300">
               <CardContent className="p-0 text-center">
-                <h3 className="font-semibold text-primary mb-2 text-sm sm:text-base">Telefon</h3>
-                <p className="text-gray-600 text-sm sm:text-base">0850 123 45 67</p>
+                <h3 className="font-semibold text-primary mb-2 text-sm sm:text-base">
+                  Telefon
+                </h3>
+                <p className="text-gray-600 text-sm sm:text-base">
+                  +90 0507 292 88 67
+                </p>
               </CardContent>
             </Card>
             <Card className="p-4 sm:p-6 hover:shadow-lg transition-shadow duration-300">
               <CardContent className="p-0 text-center">
-                <h3 className="font-semibold text-primary mb-2 text-sm sm:text-base">Çalışma Saatleri</h3>
-                <p className="text-gray-600 text-sm sm:text-base">Pzt-Cum 09:00-18:00</p>
+                <h3 className="font-semibold text-primary mb-2 text-sm sm:text-base">
+                  Çalışma Saatleri
+                </h3>
+                <p className="text-gray-600 text-sm sm:text-base">
+                  Pzt-Cum 09:00-18:00
+                </p>
               </CardContent>
             </Card>
           </div>
@@ -178,5 +202,5 @@ export default function FAQPage() {
 
       <Footer />
     </div>
-  )
+  );
 }
