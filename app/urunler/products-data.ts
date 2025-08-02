@@ -10,6 +10,12 @@ export interface ProductFeatures {
   vegan?: boolean; // Vegan
 }
 
+export interface SaleLinks {
+  trendyol?: string;
+  hepsiburada?: string;
+  amazon?: string;
+}
+
 export interface Product {
   id: number;
   slug: string;
@@ -18,6 +24,8 @@ export interface Product {
   longDescription: string; // Ürün detay sayfasındaki uzun açıklama
   image: string;
   category: string;
+  // Satış linkleri
+  saleLinks?: SaleLinks;
   // Ürün özellikleri
   features?: ProductFeatures;
   // Accordion için alanlar
@@ -50,6 +58,11 @@ export const productsData: Product[] = [
       güvenle tüketilebilir.`,
     image: "/placeholder.svg?height=400&width=300",
     category: "Özel Takviyeler",
+    saleLinks: {
+      trendyol: "https://www.trendyol.com/santeway/l-carnitine-carnipure-60-kapsul-p-951850283?boutiqueId=61&merchantId=1137807",
+      hepsiburada: "https://www.hepsiburada.com/l-carnitine-carnipure-60-kapsul-pm-HBC000096L99X?magaza=Santeway",
+      amazon: "https://www.amazon.com.tr/Santeway-L-Carnitine-Carnipure-60-Kaps%C3%BCl/dp/B0FJM4TWSD/ref=sr_1_1?__mk_tr_TR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=1L95BPGLUNHCV&dib=eyJ2IjoiMSJ9.baWslxbCoCUBqBPkhzBr7Q.wxKkX-KDOMIEDDsDriPDm--0XIXJOB1N2yjdN2KS95c&dib_tag=se&keywords=santeway&qid=1754132690&sprefix=santeway%2Caps%2C769&sr=8-1",
+    },
     features: {
       glutenFree: true,
       preservativeFree: true,

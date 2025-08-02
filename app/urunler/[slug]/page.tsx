@@ -1,37 +1,56 @@
-import { Navbar } from "@/components/navbar"
-import { Footer } from "@/components/footer"
-import { productsData } from "../products-data"
-import { Badge } from "@/components/ui/badge"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import { AlertTriangle, Wheat, Shield, Candy, Leaf } from "lucide-react"
-import Image from "next/image"
-import Link from "next/link"
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
+import { Navbar } from "@/components/navbar";
+import { Footer } from "@/components/footer";
+import { productsData } from "../products-data";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { AlertTriangle, Wheat, Shield, Candy, Leaf, ExternalLink } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 interface ProductDetailPageProps {
   params: {
-    slug: string
-  }
+    slug: string;
+  };
 }
 
 export default function ProductDetailPage({ params }: ProductDetailPageProps) {
-  const product = productsData.find((p) => p.slug === params.slug)
+  const product = productsData.find((p) => p.slug === params.slug);
 
   if (!product) {
     return (
       <div className="min-h-screen bg-white">
         <Navbar />
         <div className="py-20 text-center">
-          <h1 className="text-3xl font-bold text-primary mb-4">Ürün Bulunamadı</h1>
-          <p className="text-gray-600 mb-8">Aradığınız ürün mevcut değil veya kaldırılmış olabilir.</p>
-          <Link href="/urunler" className="text-primary hover:underline font-semibold">
+          <h1 className="text-3xl font-bold text-primary mb-4">
+            Ürün Bulunamadı
+          </h1>
+          <p className="text-gray-600 mb-8">
+            Aradığınız ürün mevcut değil veya kaldırılmış olabilir.
+          </p>
+          <Link
+            href="/urunler"
+            className="text-primary hover:underline font-semibold"
+          >
             Tüm Ürünlere Göz Atın
           </Link>
         </div>
         <Footer />
       </div>
-    )
+    );
   }
 
   // Ürün özelliklerini tanımla - sadece true olanları göster
@@ -60,12 +79,14 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
       value: product.features?.vegan,
       icon: <Leaf className="h-4 w-4 text-primary" />,
     },
-  ].filter((feature) => feature.value === true) // Sadece true olanları göster
+  ].filter((feature) => feature.value === true); // Sadece true olanları göster
 
   // Ürün görselleri - ana görsel ve farklı açılardan görüntüler
   const productImages = [
     {
-      src: product.image || `/placeholder.svg?height=500&width=400&query=${product.slug}`,
+      src:
+        product.image ||
+        `/placeholder.svg?height=500&width=400&query=${product.slug}`,
       alt: `${product.name} - Ana Görsel`,
     },
     {
@@ -80,7 +101,7 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
       src: `/placeholder.svg?height=500&width=400&query=${product.slug}+packaging`,
       alt: `${product.name} - Ambalaj`,
     },
-  ]
+  ];
 
   return (
     <div className="min-h-screen bg-white">
@@ -90,8 +111,12 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
       <section className="bg-gradient-to-br from-secondary/20 to-secondary/40 py-12 sm:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <Badge className="bg-primary text-white mb-2">{product.category}</Badge>
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-primary mb-2">{product.name}</h1>
+            <Badge className="bg-primary text-white mb-2">
+              {product.category}
+            </Badge>
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-primary mb-2">
+              {product.name}
+            </h1>
           </div>
         </div>
       </section>
@@ -131,9 +156,69 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
             <div className="w-full space-y-6">
               {/* Product Description (Always Visible) */}
               <div>
-                <h2 className="text-2xl font-semibold text-primary mb-3">Ürün Açıklaması</h2>
-                <p className="text-gray-700 leading-relaxed text-justify break-words hyphens-auto">{product.longDescription}</p>
+                <h2 className="text-2xl font-semibold text-primary mb-3">
+                  Ürün Açıklaması
+                </h2>
+                <p className="text-gray-700 leading-relaxed text-justify break-words hyphens-auto">
+                  {product.longDescription}
+                </p>
               </div>
+
+              {/* Sale Links Buttons */}
+              {product.saleLinks && (
+                <div className="space-y-3">
+                  <h3 className="text-lg font-semibold text-primary">
+                    Satın Al
+                  </h3>
+                  <div className="flex flex-wrap gap-3">
+                    {product.saleLinks.trendyol && (
+                      <Button
+                        asChild
+                        className="bg-[#F27A1A] hover:bg-[#F27A1A]/90 text-white flex items-center gap-2"
+                      >
+                        <a
+                          href={product.saleLinks.trendyol}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <span>Trendyol</span>
+                          <ExternalLink className="h-4 w-4" />
+                        </a>
+                      </Button>
+                    )}
+                    {product.saleLinks.hepsiburada && (
+                      <Button
+                        asChild
+                        className="bg-[#FF6000] hover:bg-[#FF6000]/90 text-white flex items-center gap-2"
+                      >
+                        <a
+                          href={product.saleLinks.hepsiburada}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <span>Hepsiburada</span>
+                          <ExternalLink className="h-4 w-4" />
+                        </a>
+                      </Button>
+                    )}
+                    {product.saleLinks.amazon && (
+                      <Button
+                        asChild
+                        className="bg-[#232F3E] hover:bg-[#232F3E]/90 text-white flex items-center gap-2"
+                      >
+                        <a
+                          href={product.saleLinks.amazon}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <span>Amazon</span>
+                          <ExternalLink className="h-4 w-4" />
+                        </a>
+                      </Button>
+                    )}
+                  </div>
+                </div>
+              )}
 
               {/* Product Features - Sadece true olanları göster */}
               {productFeatures.length > 0 && (
@@ -143,8 +228,12 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
                       key={feature.key}
                       className="flex items-center p-3 bg-gray-50 rounded-lg border border-gray-100 hover:shadow-md transition-shadow duration-200"
                     >
-                      <div className="flex-shrink-0 pr-3 border-r border-gray-300">{feature.icon}</div>
-                      <span className="text-sm font-semibold text-primary pl-3 flex-1">{feature.label}</span>
+                      <div className="flex-shrink-0 pr-3 border-r border-gray-300">
+                        {feature.icon}
+                      </div>
+                      <span className="text-sm font-semibold text-primary pl-3 flex-1">
+                        {feature.label}
+                      </span>
                     </div>
                   ))}
                 </div>
@@ -180,25 +269,36 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
                         value="active-ingredients"
                         className="mt-4 p-4 border bg-white rounded-md min-h-[120px]"
                       >
-                        {product.activeIngredients && product.activeIngredients.length > 0 ? (
+                        {product.activeIngredients &&
+                        product.activeIngredients.length > 0 ? (
                           <ul className="list-disc list-inside text-gray-600 space-y-2 text-sm">
-                            {product.activeIngredients.map((ingredient, index) => (
-                              <li key={index}>{ingredient}</li>
-                            ))}
+                            {product.activeIngredients.map(
+                              (ingredient, index) => (
+                                <li key={index}>{ingredient}</li>
+                              )
+                            )}
                           </ul>
                         ) : (
-                          <p className="text-gray-500 text-sm">Bu ürün için etken madde bilgisi bulunmamaktadır.</p>
+                          <p className="text-gray-500 text-sm">
+                            Bu ürün için etken madde bilgisi bulunmamaktadır.
+                          </p>
                         )}
                       </TabsContent>
-                      <TabsContent value="content-info" className="mt-4 p-4 border bg-white rounded-md min-h-[120px]">
-                        {product.ingredients && product.ingredients.length > 0 ? (
+                      <TabsContent
+                        value="content-info"
+                        className="mt-4 p-4 border bg-white rounded-md min-h-[120px]"
+                      >
+                        {product.ingredients &&
+                        product.ingredients.length > 0 ? (
                           <ul className="list-disc list-inside text-gray-600 space-y-2 text-sm">
                             {product.ingredients.map((ingredient, index) => (
                               <li key={index}>{ingredient}</li>
                             ))}
                           </ul>
                         ) : (
-                          <p className="text-gray-500 text-sm">Bu ürün için içerik bilgisi bulunmamaktadır.</p>
+                          <p className="text-gray-500 text-sm">
+                            Bu ürün için içerik bilgisi bulunmamaktadır.
+                          </p>
                         )}
                       </TabsContent>
                     </Tabs>
@@ -217,23 +317,53 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
                     <div className="p-4 border bg-gray-50 rounded-md">
                       <ul className="list-disc list-inside text-gray-700 space-y-3 text-sm">
                         {[
-                          { key: "glutenFree", label: "Gluten İçermez", icon: <Wheat className="h-4 w-4" /> },
-                          { key: "preservativeFree", label: "Koruyucu İçermez", icon: <Shield className="h-4 w-4" /> },
-                          { key: "colorantFree", label: "Renklendirici İçermez", icon: null },
-                          { key: "sugarFree", label: "Şeker İçermez", icon: <Candy className="h-4 w-4" /> },
-                          { key: "vegan", label: "Vegan", icon: <Leaf className="h-4 w-4" /> },
+                          {
+                            key: "glutenFree",
+                            label: "Gluten İçermez",
+                            icon: <Wheat className="h-4 w-4" />,
+                          },
+                          {
+                            key: "preservativeFree",
+                            label: "Koruyucu İçermez",
+                            icon: <Shield className="h-4 w-4" />,
+                          },
+                          {
+                            key: "colorantFree",
+                            label: "Renklendirici İçermez",
+                            icon: null,
+                          },
+                          {
+                            key: "sugarFree",
+                            label: "Şeker İçermez",
+                            icon: <Candy className="h-4 w-4" />,
+                          },
+                          {
+                            key: "vegan",
+                            label: "Vegan",
+                            icon: <Leaf className="h-4 w-4" />,
+                          },
                         ].map((feature) => {
-                          const value = product.features?.[feature.key as keyof typeof product.features]
+                          const value =
+                            product.features?.[
+                              feature.key as keyof typeof product.features
+                            ];
                           return (
-                            <li key={feature.key} className="text-gray-700 text-sm">
+                            <li
+                              key={feature.key}
+                              className="text-gray-700 text-sm"
+                            >
                               <span>
                                 {feature.label}:{" "}
                                 <span className="text-gray-700">
-                                  {value === true ? "Evet" : value === false ? "Hayır" : "Belirtilmemiş"}
+                                  {value === true
+                                    ? "Evet"
+                                    : value === false
+                                    ? "Hayır"
+                                    : "Belirtilmemiş"}
                                 </span>
                               </span>
                             </li>
-                          )
+                          );
                         })}
                       </ul>
                     </div>
@@ -242,14 +372,26 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
 
                 {/* Diğer Accordion Öğeleri */}
                 {[
-                  { value: "net-quantity", title: "Net Miktar", content: product.netQuantity },
-                  { value: "storage-conditions", title: "Muhafaza Koşulları", content: product.storageConditions },
+                  {
+                    value: "net-quantity",
+                    title: "Net Miktar",
+                    content: product.netQuantity,
+                  },
+                  {
+                    value: "storage-conditions",
+                    title: "Muhafaza Koşulları",
+                    content: product.storageConditions,
+                  },
                   {
                     value: "usage-recommendation",
                     title: "Kullanım Önerisi",
                     content: product.usageRecommendation,
                   },
-                  { value: "additional-info", title: "Ek Bilgi", content: product.additionalInfo },
+                  {
+                    value: "additional-info",
+                    title: "Ek Bilgi",
+                    content: product.additionalInfo,
+                  },
                 ].map((item) =>
                   item.content ? ( // Sadece content varsa accordion item'ı oluştur
                     <AccordionItem
@@ -262,11 +404,13 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
                       </AccordionTrigger>
                       <AccordionContent className="bg-white px-6 pb-6 pt-2">
                         <div className="p-4 border bg-gray-50 rounded-md">
-                          <p className="text-gray-700 text-sm">{item.content}</p>
+                          <p className="text-gray-700 text-sm">
+                            {item.content}
+                          </p>
                         </div>
                       </AccordionContent>
                     </AccordionItem>
-                  ) : null,
+                  ) : null
                 )}
               </Accordion>
             </div>
@@ -277,7 +421,9 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
               <div className="flex items-start">
                 <AlertTriangle className="h-6 w-6 text-[#C1A667] mr-3 flex-shrink-0" />
                 <div>
-                  <h3 className="text-lg font-semibold text-yellow-800 mb-2">Önemli Uyarılar</h3>
+                  <h3 className="text-lg font-semibold text-yellow-800 mb-2">
+                    Önemli Uyarılar
+                  </h3>
                   <ul className="list-disc list-inside text-yellow-700 space-y-1">
                     {product.warnings.map((warning, index) => (
                       <li key={index}>{warning}</li>
@@ -292,5 +438,5 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
 
       <Footer />
     </div>
-  )
+  );
 }
