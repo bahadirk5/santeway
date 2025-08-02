@@ -102,28 +102,30 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-start">
             {/* Product Images Carousel */}
-            <div className="bg-secondary/10 p-8 rounded-xl shadow-lg flex justify-center items-center top-24">
-              <Carousel className="w-full max-w-md">
-                <CarouselContent>
-                  {productImages.map((image, index) => (
-                    <CarouselItem key={index}>
-                      <div className="p-1">
-                        <div className="bg-white rounded-lg p-6 flex items-center justify-center">
-                          <Image
-                            src={image.src || "/placeholder.svg"}
-                            alt={image.alt}
-                            width={400}
-                            height={500}
-                            className="object-contain rounded-lg max-h-[400px]"
-                          />
+            <div className="relative">
+              <div className="bg-secondary/10 p-8 rounded-xl shadow-lg flex justify-center items-center">
+                <Carousel className="w-full max-w-md">
+                  <CarouselContent>
+                    {productImages.map((image, index) => (
+                      <CarouselItem key={index}>
+                        <div className="p-1">
+                          <div className="bg-white rounded-lg p-6 flex items-center justify-center">
+                            <Image
+                              src={image.src || "/placeholder.svg"}
+                              alt={image.alt}
+                              width={400}
+                              height={500}
+                              className="object-contain rounded-lg max-h-[400px]"
+                            />
+                          </div>
                         </div>
-                      </div>
-                    </CarouselItem>
-                  ))}
-                </CarouselContent>
-                <CarouselPrevious className="left-6 bg-[#C1A667] hover:bg-[#C1A667]/90 text-white border-[#C1A667]" />
-                <CarouselNext className="right-6 bg-[#C1A667] hover:bg-[#C1A667]/90 text-white border-[#C1A667]" />
-              </Carousel>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  <CarouselPrevious className="-left-12 bg-[#C1A667] hover:bg-[#C1A667]/90 text-white border-[#C1A667]" />
+                  <CarouselNext className="-right-12 bg-[#C1A667] hover:bg-[#C1A667]/90 text-white border-[#C1A667]" />
+                </Carousel>
+              </div>
             </div>
 
             {/* Product Info: Description + Features + Accordion */}

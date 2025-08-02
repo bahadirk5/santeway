@@ -130,7 +130,7 @@ export default function HomePage() {
               <div className="pt-0 sm:pt-2">
                 <Link href={`/urunler/${toSlug(featuredProduct.name)}`}>
                   <Button className="group bg-primary hover:bg-primary/90 rounded-full text-base sm:text-lg py-4 sm:py-6 shadow-lg hover:shadow-xl transition-shadow px-6 sm:px-8 w-full sm:w-auto">
-                    Ürünü İncele
+                    Ürünü Keşfet
                     <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 transition-transform duration-300 group-hover:translate-x-2" />
                   </Button>
                 </Link>
