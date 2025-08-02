@@ -5,8 +5,8 @@ import { Users, Award, Heart, Target, Lightbulb, Leaf } from "lucide-react";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Hakkımızda | Santeway - Sağlıklı Yaşama Giden Yol",
-  description: "Santeway olarak sağlıklı yaşamı destekleyen, güvenilir ve etkili gıda takviyeleri üretiyoruz. Misyonumuz, vizyonumuz ve değerlerimizi keşfedin.",
+  title: "Hakkımızda | Santeway",
+  description: "Sağlıklı yaşamı destekleyen, güvenilir ve etkili gıda takviyeleri üretiyoruz. Misyonumuz, vizyonumuz ve değerlerimizi keşfedin.",
   keywords: [
     "santeway hakkında",
     "santeway misyon",

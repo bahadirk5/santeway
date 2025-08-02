@@ -8,8 +8,8 @@ import { MapPin, Phone, Mail, Clock } from "lucide-react"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "İletişim | Santeway - Bize Ulaşın",
-  description: "Santeway müşteri hizmetleri ile iletişime geçin. Sorularınız, önerileriniz veya siparişleriniz için bizimle iletişime geçebilirsiniz. Telefon: +90 0507 292 88 67",
+  title: "İletişim | Santeway",
+  description: "Müşteri hizmetleri ile iletişime geçin. Sorularınız, önerileriniz veya siparişleriniz için bizimle iletişime geçebilirsiniz. Telefon: +90 0507 292 88 67",
   keywords: [
     "santeway iletişim",
     "müşteri hizmetleri",

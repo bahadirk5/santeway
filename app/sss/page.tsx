@@ -11,7 +11,7 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Sıkça Sorulan Sorular (SSS) | Santeway",
-  description: "Santeway gıda takviyeleri hakkında merak ettiğiniz tüm soruların cevapları burada. L-Carnitine, genel sağlık soruları ve ürün bilgileri için SSS sayfamızı ziyaret edin.",
+  description: "Gıda takviyeleri hakkında merak ettiğiniz tüm soruların cevapları burada. L-Carnitine, genel sağlık soruları ve ürün bilgileri için SSS sayfamızı ziyaret edin.",
   keywords: [
     "santeway sss",
     "gıda takviyesi sorular",

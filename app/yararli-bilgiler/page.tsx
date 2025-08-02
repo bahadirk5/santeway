@@ -7,7 +7,7 @@ import { articlesData } from "./articles-data";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Yararlı Bilgiler | Santeway - Sağlık İpuçları ve Öneriler",
+  title: "Yararlı Bilgiler | Santeway",
   description: "Sağlıklı yaşam için faydalı ipuçları, beslenme önerileri ve gıda takviyeleri hakkında bilgilendirici makaleler. Uzman tavsiyeleri ile sağlığınızı destekleyin.",
   keywords: [
     "sağlık ipuçları",
