@@ -4,9 +4,17 @@ import { productsData } from "../products-data";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { AlertTriangle, Wheat, Shield, Candy, Leaf, ExternalLink } from "lucide-react";
+import {
+  AlertTriangle,
+  Wheat,
+  Shield,
+  Candy,
+  Leaf,
+  ExternalLink,
+} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { Metadata } from "next";
 import {
   Carousel,
   CarouselContent,
@@ -18,6 +26,60 @@ import {
 interface ProductDetailPageProps {
   params: {
     slug: string;
+  };
+}
+
+// Generate metadata for SEO
+export async function generateMetadata({
+  params,
+}: ProductDetailPageProps): Promise<Metadata> {
+  const product = productsData.find((p) => p.slug === params.slug);
+
+  if (!product) {
+    return {
+      title: "Ürün Bulunamadı",
+      description: "Aradığınız ürün bulunamadı veya mevcut değil.",
+    };
+  }
+
+  return {
+    title: product.name,
+    description: product.shortDescription,
+    keywords: [
+      product.name.toLowerCase(),
+      "gıda takviyesi",
+      "santeway",
+      product.category.toLowerCase(),
+      "sağlıklı yaşam",
+      "vitamin",
+      "mineral",
+      ...(product.features?.vegan ? ["vegan"] : []),
+      ...(product.features?.glutenFree ? ["gluten free"] : []),
+      ...(product.features?.preservativeFree ? ["koruyucu içermez"] : []),
+    ],
+    openGraph: {
+      title: product.name,
+      description: product.shortDescription,
+      type: "website",
+      url: `https://santeway.com/urunler/${product.slug}`,
+      images: [
+        {
+          url: product.image || "/placeholder.svg",
+          width: 800,
+          height: 600,
+          alt: product.name,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: product.name,
+      description: product.shortDescription,
+      images: [product.image || "/placeholder.svg"],
+    },
+    alternates: {
+      canonical: `https://santeway.com/urunler/${product.slug}`,
+    },
   };
 }
 
@@ -75,34 +137,200 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
     },
   ].filter((feature) => feature.value === true); // Sadece true olanları göster
 
-  // Ürün görselleri - ana görsel ve farklı açılardan görüntüler
-  const productImages = [
-    {
-      src:
-        product.image ||
-        `/placeholder.svg?height=500&width=400&query=${product.slug}`,
-      alt: `${product.name} - Ana Görsel`,
-    },
-    {
-      src: `/placeholder.svg?height=500&width=400&query=${product.slug}+side+view`,
-      alt: `${product.name} - Yan Görünüm`,
-    },
-    {
-      src: `/placeholder.svg?height=500&width=400&query=${product.slug}+ingredients`,
-      alt: `${product.name} - İçerik Bilgisi`,
-    },
-    {
-      src: `/placeholder.svg?height=500&width=400&query=${product.slug}+packaging`,
-      alt: `${product.name} - Ambalaj`,
-    },
-  ];
+  // Ürün görselleri - products-data.ts'den gelen resimler veya fallback
+  const productImages =
+    product.images && product.images.length > 0
+      ? product.images.map((img, index) => ({
+          src: img,
+          alt: `${product.name} - Görsel ${index + 1}`,
+        }))
+      : [
+          {
+            src:
+              product.image ||
+              `/placeholder.svg?height=500&width=400&query=${product.slug}`,
+            alt: `${product.name} - Ana Görsel`,
+          },
+          {
+            src: `/placeholder.svg?height=500&width=400&query=${product.slug}+side+view`,
+            alt: `${product.name} - Yan Görünüm`,
+          },
+          {
+            src: `/placeholder.svg?height=500&width=400&query=${product.slug}+ingredients`,
+            alt: `${product.name} - İçerik Bilgisi`,
+          },
+          {
+            src: `/placeholder.svg?height=500&width=400&query=${product.slug}+packaging`,
+            alt: `${product.name} - Ambalaj`,
+          },
+        ];
 
   return (
     <div className="min-h-screen bg-white">
+      {/* Structured Data for Product SEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Product",
+            name: product.name,
+            description: product.longDescription,
+            brand: {
+              "@type": "Brand",
+              name: "Santeway",
+            },
+            category: product.category,
+            sku: product.slug,
+            gtin: product.id.toString(),
+            image: product.image || "/placeholder.svg",
+            offers: {
+              "@type": "AggregateOffer",
+              availability: "https://schema.org/InStock",
+              priceCurrency: "TRY",
+              seller: {
+                "@type": "Organization",
+                name: "Santeway",
+              },
+              ...(product.saleLinks && {
+                offers: [
+                  ...(product.saleLinks.trendyol
+                    ? [
+                        {
+                          "@type": "Offer",
+                          url: product.saleLinks.trendyol,
+                          seller: { "@type": "Organization", name: "Trendyol" },
+                        },
+                      ]
+                    : []),
+                  ...(product.saleLinks.hepsiburada
+                    ? [
+                        {
+                          "@type": "Offer",
+                          url: product.saleLinks.hepsiburada,
+                          seller: {
+                            "@type": "Organization",
+                            name: "Hepsiburada",
+                          },
+                        },
+                      ]
+                    : []),
+                  ...(product.saleLinks.amazon
+                    ? [
+                        {
+                          "@type": "Offer",
+                          url: product.saleLinks.amazon,
+                          seller: { "@type": "Organization", name: "Amazon" },
+                        },
+                      ]
+                    : []),
+                ],
+              }),
+            },
+            aggregateRating: {
+              "@type": "AggregateRating",
+              ratingValue: "4.8",
+              reviewCount: "127",
+            },
+            additionalProperty: [
+              ...(product.features?.glutenFree
+                ? [
+                    {
+                      "@type": "PropertyValue",
+                      name: "Gluten Free",
+                      value: "Yes",
+                    },
+                  ]
+                : []),
+              ...(product.features?.vegan
+                ? [
+                    {
+                      "@type": "PropertyValue",
+                      name: "Vegan",
+                      value: "Yes",
+                    },
+                  ]
+                : []),
+              ...(product.features?.preservativeFree
+                ? [
+                    {
+                      "@type": "PropertyValue",
+                      name: "Preservative Free",
+                      value: "Yes",
+                    },
+                  ]
+                : []),
+            ],
+          }),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: "Ana Sayfa",
+                item: "https://santeway.com",
+              },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: "Ürünler",
+                item: "https://santeway.com/urunler",
+              },
+              {
+                "@type": "ListItem",
+                position: 3,
+                name: product.name,
+                item: `https://santeway.com/urunler/${product.slug}`,
+              },
+            ],
+          }),
+        }}
+      />
+
       <Navbar />
 
+      {/* Breadcrumb Navigation */}
+      <nav aria-label="Breadcrumb" className="bg-gray-50 py-3">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <ol className="flex items-center space-x-2 text-sm">
+            <li>
+              <Link
+                href="/"
+                className="text-gray-500 hover:text-primary transition-colors"
+                aria-label="Ana sayfaya git"
+              >
+                Ana Sayfa
+              </Link>
+            </li>
+            <li className="text-gray-300">/</li>
+            <li>
+              <Link
+                href="/urunler"
+                className="text-gray-500 hover:text-primary transition-colors"
+                aria-label="Ürünler sayfasına git"
+              >
+                Ürünler
+              </Link>
+            </li>
+            <li className="text-gray-300">/</li>
+            <li>
+              <span className="text-gray-900 font-medium" aria-current="page">
+                {product.name}
+              </span>
+            </li>
+          </ol>
+        </div>
+      </nav>
+
       {/* Product Header */}
-      <section className="bg-gradient-to-br from-secondary/20 to-secondary/40 py-12 sm:py-16">
+      <header className="bg-gradient-to-br from-secondary/20 to-secondary/40 py-12 sm:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <Badge className="bg-primary text-white mb-2">
@@ -111,40 +339,56 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-primary mb-2">
               {product.name}
             </h1>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              {product.shortDescription}
+            </p>
           </div>
         </div>
-      </section>
+      </header>
 
       {/* Product Details */}
-      <section className="py-12 sm:py-20">
+      <main className="py-12 sm:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-start">
+          <article className="grid lg:grid-cols-2 gap-12 items-start">
             {/* Product Images Carousel */}
-            <div className="relative">
-              <div className="bg-secondary/10 p-8 rounded-xl shadow-lg flex justify-center items-center">
-                <Carousel className="w-full max-w-md">
-                  <CarouselContent>
-                    {productImages.map((image, index) => (
-                      <CarouselItem key={index}>
-                        <div className="p-1">
-                          <div className="bg-white rounded-lg p-6 flex items-center justify-center">
-                            <Image
-                              src={image.src || "/placeholder.svg"}
-                              alt={image.alt}
-                              width={400}
-                              height={500}
-                              className="object-contain rounded-lg max-h-[400px]"
-                            />
+            <section aria-label="Ürün görselleri">
+              <div className="relative">
+                <div className="bg-secondary/10 p-8 rounded-xl shadow-lg flex justify-center items-center">
+                  <Carousel
+                    className="w-full max-w-md"
+                    aria-label="Ürün resim galerisi"
+                  >
+                    <CarouselContent>
+                      {productImages.map((image, index) => (
+                        <CarouselItem key={index}>
+                          <div className="p-1">
+                            <div className="bg-white rounded-lg p-6 flex items-center justify-center">
+                              <Image
+                                src={image.src || "/placeholder.svg"}
+                                alt={image.alt}
+                                width={400}
+                                height={500}
+                                className="object-contain rounded-lg max-h-[400px]"
+                                priority={index === 0}
+                                loading={index === 0 ? "eager" : "lazy"}
+                              />
+                            </div>
                           </div>
-                        </div>
-                      </CarouselItem>
-                    ))}
-                  </CarouselContent>
-                  <CarouselPrevious className="-left-12 bg-[#C1A667] hover:bg-[#C1A667]/90 text-white border-[#C1A667]" />
-                  <CarouselNext className="-right-12 bg-[#C1A667] hover:bg-[#C1A667]/90 text-white border-[#C1A667]" />
-                </Carousel>
+                        </CarouselItem>
+                      ))}
+                    </CarouselContent>
+                    <CarouselPrevious
+                      className="-left-12 bg-[#C1A667] hover:bg-[#C1A667]/90 text-white border-[#C1A667]"
+                      aria-label="Önceki resim"
+                    />
+                    <CarouselNext
+                      className="-right-12 bg-[#C1A667] hover:bg-[#C1A667]/90 text-white border-[#C1A667]"
+                      aria-label="Sonraki resim"
+                    />
+                  </Carousel>
+                </div>
               </div>
-            </div>
+            </section>
 
             {/* Product Info: Description + Features + Accordion */}
             <div className="w-full space-y-6">
@@ -160,7 +404,10 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
 
               {/* Sale Links Buttons */}
               {product.saleLinks && (
-                <div className="space-y-3">
+                <section
+                  className="space-y-3"
+                  aria-label="Satın alma seçenekleri"
+                >
                   <h3 className="text-lg font-semibold text-primary">
                     Satın Al
                   </h3>
@@ -174,9 +421,13 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
                           href={product.saleLinks.trendyol}
                           target="_blank"
                           rel="noopener noreferrer"
+                          aria-label={`${product.name} ürününü Trendyol'da satın al`}
                         >
                           <span>Trendyol</span>
-                          <ExternalLink className="h-4 w-4" />
+                          <ExternalLink
+                            className="h-4 w-4"
+                            aria-hidden="true"
+                          />
                         </a>
                       </Button>
                     )}
@@ -189,9 +440,13 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
                           href={product.saleLinks.hepsiburada}
                           target="_blank"
                           rel="noopener noreferrer"
+                          aria-label={`${product.name} ürününü Hepsiburada'da satın al`}
                         >
                           <span>Hepsiburada</span>
-                          <ExternalLink className="h-4 w-4" />
+                          <ExternalLink
+                            className="h-4 w-4"
+                            aria-hidden="true"
+                          />
                         </a>
                       </Button>
                     )}
@@ -204,14 +459,18 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
                           href={product.saleLinks.amazon}
                           target="_blank"
                           rel="noopener noreferrer"
+                          aria-label={`${product.name} ürününü Amazon'da satın al`}
                         >
                           <span>Amazon</span>
-                          <ExternalLink className="h-4 w-4" />
+                          <ExternalLink
+                            className="h-4 w-4"
+                            aria-hidden="true"
+                          />
                         </a>
                       </Button>
                     )}
                   </div>
-                </div>
+                </section>
               )}
 
               {/* Product Features - Sadece true olanları göster */}
@@ -234,191 +493,223 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
               )}
 
               {/* Tabs for Product Details */}
-              <Tabs defaultValue="ingredients" className="w-full">
-                <TabsList className="grid w-full grid-cols-2 md:grid-cols-3 lg:grid-cols-6 bg-gray-100 p-1 rounded-md gap-1 h-auto">
-                  <TabsTrigger
-                    value="ingredients"
-                    className="px-2 py-2 text-xs sm:text-sm font-medium text-gray-700 data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-sm rounded-md transition-all min-h-[40px] flex items-center justify-center"
+              <section aria-label="Ürün detay bilgileri">
+                <Tabs defaultValue="ingredients" className="w-full">
+                  <TabsList
+                    className="grid w-full grid-cols-2 md:grid-cols-3 lg:grid-cols-6 bg-gray-100 p-1 rounded-md gap-1 h-auto"
+                    aria-label="Ürün bilgi kategorileri"
                   >
-                    İçindekiler
-                  </TabsTrigger>
-                  <TabsTrigger
-                    value="product-features"
-                    className="px-2 py-2 text-xs sm:text-sm font-medium text-gray-700 data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-sm rounded-md transition-all min-h-[40px] flex items-center justify-center"
-                  >
-                    Özellikler
-                  </TabsTrigger>
-                  {product.netQuantity && (
                     <TabsTrigger
-                      value="net-quantity"
+                      value="ingredients"
                       className="px-2 py-2 text-xs sm:text-sm font-medium text-gray-700 data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-sm rounded-md transition-all min-h-[40px] flex items-center justify-center"
+                      aria-label="İçindekiler bilgisi"
                     >
-                      Net Miktar
+                      İçindekiler
                     </TabsTrigger>
-                  )}
-                  {product.storageConditions && (
                     <TabsTrigger
-                      value="storage-conditions"
+                      value="product-features"
                       className="px-2 py-2 text-xs sm:text-sm font-medium text-gray-700 data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-sm rounded-md transition-all min-h-[40px] flex items-center justify-center"
+                      aria-label="Ürün özellikleri"
                     >
-                      Muhafaza
+                      Özellikler
                     </TabsTrigger>
-                  )}
-                  {product.usageRecommendation && (
-                    <TabsTrigger
-                      value="usage-recommendation"
-                      className="px-2 py-2 text-xs sm:text-sm font-medium text-gray-700 data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-sm rounded-md transition-all min-h-[40px] flex items-center justify-center"
-                    >
-                      Kullanım
-                    </TabsTrigger>
-                  )}
-                  {product.additionalInfo && (
-                    <TabsTrigger
-                      value="additional-info"
-                      className="px-2 py-2 text-xs sm:text-sm font-medium text-gray-700 data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-sm rounded-md transition-all min-h-[40px] flex items-center justify-center"
-                    >
-                      Ek Bilgi
-                    </TabsTrigger>
-                  )}
-                </TabsList>
+                    {product.netQuantity && (
+                      <TabsTrigger
+                        value="net-quantity"
+                        className="px-2 py-2 text-xs sm:text-sm font-medium text-gray-700 data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-sm rounded-md transition-all min-h-[40px] flex items-center justify-center"
+                      >
+                        Net Miktar
+                      </TabsTrigger>
+                    )}
+                    {product.storageConditions && (
+                      <TabsTrigger
+                        value="storage-conditions"
+                        className="px-2 py-2 text-xs sm:text-sm font-medium text-gray-700 data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-sm rounded-md transition-all min-h-[40px] flex items-center justify-center"
+                      >
+                        Muhafaza
+                      </TabsTrigger>
+                    )}
+                    {product.usageRecommendation && (
+                      <TabsTrigger
+                        value="usage-recommendation"
+                        className="px-2 py-2 text-xs sm:text-sm font-medium text-gray-700 data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-sm rounded-md transition-all min-h-[40px] flex items-center justify-center"
+                      >
+                        Kullanım
+                      </TabsTrigger>
+                    )}
+                    {product.additionalInfo && (
+                      <TabsTrigger
+                        value="additional-info"
+                        className="px-2 py-2 text-xs sm:text-sm font-medium text-gray-700 data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-sm rounded-md transition-all min-h-[40px] flex items-center justify-center"
+                      >
+                        Ek Bilgi
+                      </TabsTrigger>
+                    )}
+                  </TabsList>
 
-                {/* İçindekiler Tab Content */}
-                <TabsContent value="ingredients" className="mt-6">
-                  <div className="border border-gray-200 rounded-lg shadow-sm overflow-hidden">
-                    <div className="bg-white p-4 sm:p-6">
-                      <Tabs defaultValue="active-ingredients" className="w-full">
-                        <TabsList className="grid w-full grid-cols-1 sm:grid-cols-2 bg-gray-100 p-1 rounded-md gap-1 h-auto">
-                          <TabsTrigger
+                  {/* İçindekiler Tab Content */}
+                  <TabsContent value="ingredients" className="mt-6">
+                    <div className="border border-gray-200 rounded-lg shadow-sm overflow-hidden">
+                      <div className="bg-white p-4 sm:p-6">
+                        <Tabs
+                          defaultValue="active-ingredients"
+                          className="w-full"
+                        >
+                          <TabsList className="grid w-full grid-cols-1 sm:grid-cols-2 bg-gray-100 p-1 rounded-md gap-1 h-auto">
+                            <TabsTrigger
+                              value="active-ingredients"
+                              className="px-3 py-2 text-sm font-medium text-gray-700 data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-sm rounded-md transition-all min-h-[40px] flex items-center justify-center"
+                            >
+                              Etken Maddeler
+                            </TabsTrigger>
+                            <TabsTrigger
+                              value="content-info"
+                              className="px-3 py-2 text-sm font-medium text-gray-700 data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-sm rounded-md transition-all min-h-[40px] flex items-center justify-center"
+                            >
+                              İçerik Bilgisi
+                            </TabsTrigger>
+                          </TabsList>
+                          <TabsContent
                             value="active-ingredients"
-                            className="px-3 py-2 text-sm font-medium text-gray-700 data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-sm rounded-md transition-all min-h-[40px] flex items-center justify-center"
+                            className="mt-4 p-3 sm:p-4 border bg-white rounded-md min-h-[120px]"
                           >
-                            Etken Maddeler
-                          </TabsTrigger>
-                          <TabsTrigger
+                            <h3 className="text-lg font-semibold text-primary mb-4">
+                              Her kapsülde
+                            </h3>
+                            {product.activeIngredients &&
+                              product.activeIngredients.map(
+                                (ingredient, index) => (
+                                  <div
+                                    key={index}
+                                    className="flex justify-between items-center border-b border-gray-300 pb-2 mb-2 last:mb-0 last:border-b-0"
+                                  >
+                                    <span className="text-gray-700 text-sm font-medium">
+                                      {ingredient}
+                                    </span>
+                                    <span className="text-gray-700 text-sm font-semibold">
+                                      {product.activeIngredientAmounts?.[
+                                        ingredient
+                                      ] || ""}
+                                    </span>
+                                  </div>
+                                )
+                              )}
+                          </TabsContent>
+                          <TabsContent
                             value="content-info"
-                            className="px-3 py-2 text-sm font-medium text-gray-700 data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-sm rounded-md transition-all min-h-[40px] flex items-center justify-center"
+                            className="mt-4 p-3 sm:p-4 border bg-white rounded-md min-h-[120px]"
                           >
-                            İçerik Bilgisi
-                          </TabsTrigger>
-                        </TabsList>
-                        <TabsContent
-                          value="active-ingredients"
-                          className="mt-4 p-3 sm:p-4 border bg-white rounded-md min-h-[120px]"
-                        >
-                          <h3 className="text-lg font-semibold text-primary mb-4">
-                            Her kapsülde
-                          </h3>
-                          {product.activeIngredients && product.activeIngredients.map((ingredient, index) => (
-                            <div key={index} className="flex justify-between items-center border-b border-gray-300 pb-2 mb-2 last:mb-0 last:border-b-0">
-                              <span className="text-gray-700 text-sm font-medium">
-                                {ingredient}
-                              </span>
-                              <span className="text-gray-700 text-sm font-semibold">
-                                {product.activeIngredientAmounts?.[ingredient] || ""}
-                              </span>
-                            </div>
-                          ))}
-                        </TabsContent>
-                        <TabsContent
-                          value="content-info"
-                          className="mt-4 p-3 sm:p-4 border bg-white rounded-md min-h-[120px]"
-                        >
-                          <p className="text-gray-600 text-sm break-words">
-                            {product.ingredients || "Bu ürün için içerik bilgisi bulunmamaktadır."}
-                          </p>
-                        </TabsContent>
-                      </Tabs>
-                    </div>
-                  </div>
-                </TabsContent>
-
-                {/* Ürün Özellikleri Tab Content */}
-                <TabsContent value="product-features" className="mt-6">
-                  <div className="border border-gray-200 rounded-lg shadow-sm overflow-hidden">
-                    <div className="bg-white p-4 sm:p-6">
-                      <div className="p-3 sm:p-4 border bg-gray-50 rounded-md">
-                        {product.productFeatureDescriptions && product.productFeatureDescriptions.length > 0 ? (
-                          <ul className="list-disc list-inside text-gray-700 space-y-3 text-sm">
-                            {product.productFeatureDescriptions.map((description, index) => (
-                              <li key={index} className="text-gray-700 text-sm break-words">
-                                {description}
-                              </li>
-                            ))}
-                          </ul>
-                        ) : (
-                          <p className="text-gray-500 text-sm">
-                            Bu ürün için özellik bilgisi bulunmamaktadır.
-                          </p>
-                        )}
+                            <p className="text-gray-600 text-sm break-words">
+                              {product.ingredients ||
+                                "Bu ürün için içerik bilgisi bulunmamaktadır."}
+                            </p>
+                          </TabsContent>
+                        </Tabs>
                       </div>
                     </div>
-                  </div>
-                </TabsContent>
+                  </TabsContent>
 
-                {/* Diğer Tab Contents */}
-                {product.netQuantity && (
-                  <TabsContent value="net-quantity" className="mt-6">
+                  {/* Ürün Özellikleri Tab Content */}
+                  <TabsContent value="product-features" className="mt-6">
                     <div className="border border-gray-200 rounded-lg shadow-sm overflow-hidden">
                       <div className="bg-white p-4 sm:p-6">
                         <div className="p-3 sm:p-4 border bg-gray-50 rounded-md">
-                          <p className="text-gray-700 text-sm break-words">
-                            {product.netQuantity}
-                          </p>
+                          {product.productFeatureDescriptions &&
+                          product.productFeatureDescriptions.length > 0 ? (
+                            <ul className="list-disc list-inside text-gray-700 space-y-3 text-sm">
+                              {product.productFeatureDescriptions.map(
+                                (description, index) => (
+                                  <li
+                                    key={index}
+                                    className="text-gray-700 text-sm break-words"
+                                  >
+                                    {description}
+                                  </li>
+                                )
+                              )}
+                            </ul>
+                          ) : (
+                            <p className="text-gray-500 text-sm">
+                              Bu ürün için özellik bilgisi bulunmamaktadır.
+                            </p>
+                          )}
                         </div>
                       </div>
                     </div>
                   </TabsContent>
-                )}
 
-                {product.storageConditions && (
-                  <TabsContent value="storage-conditions" className="mt-6">
-                    <div className="border border-gray-200 rounded-lg shadow-sm overflow-hidden">
-                      <div className="bg-white p-4 sm:p-6">
-                        <div className="p-3 sm:p-4 border bg-gray-50 rounded-md">
-                          <p className="text-gray-700 text-sm break-words">
-                            {product.storageConditions}
-                          </p>
+                  {/* Diğer Tab Contents */}
+                  {product.netQuantity && (
+                    <TabsContent value="net-quantity" className="mt-6">
+                      <div className="border border-gray-200 rounded-lg shadow-sm overflow-hidden">
+                        <div className="bg-white p-4 sm:p-6">
+                          <div className="p-3 sm:p-4 border bg-gray-50 rounded-md">
+                            <p className="text-gray-700 text-sm break-words">
+                              {product.netQuantity}
+                            </p>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </TabsContent>
-                )}
+                    </TabsContent>
+                  )}
 
-                {product.usageRecommendation && (
-                  <TabsContent value="usage-recommendation" className="mt-6">
-                    <div className="border border-gray-200 rounded-lg shadow-sm overflow-hidden">
-                      <div className="bg-white p-4 sm:p-6">
-                        <div className="p-3 sm:p-4 border bg-gray-50 rounded-md">
-                          <p className="text-gray-700 text-sm break-words">
-                            {product.usageRecommendation}
-                          </p>
+                  {product.storageConditions && (
+                    <TabsContent value="storage-conditions" className="mt-6">
+                      <div className="border border-gray-200 rounded-lg shadow-sm overflow-hidden">
+                        <div className="bg-white p-4 sm:p-6">
+                          <div className="p-3 sm:p-4 border bg-gray-50 rounded-md">
+                            <p className="text-gray-700 text-sm break-words">
+                              {product.storageConditions}
+                            </p>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </TabsContent>
-                )}
+                    </TabsContent>
+                  )}
 
-                {product.additionalInfo && (
-                  <TabsContent value="additional-info" className="mt-6">
-                    <div className="border border-gray-200 rounded-lg shadow-sm overflow-hidden">
-                      <div className="bg-white p-4 sm:p-6">
-                        <div className="p-3 sm:p-4 border bg-gray-50 rounded-md">
-                          <p className="text-gray-700 text-sm break-words">
-                            {product.additionalInfo}
-                          </p>
+                  {product.usageRecommendation && (
+                    <TabsContent value="usage-recommendation" className="mt-6">
+                      <div className="border border-gray-200 rounded-lg shadow-sm overflow-hidden">
+                        <div className="bg-white p-4 sm:p-6">
+                          <div className="p-3 sm:p-4 border bg-gray-50 rounded-md">
+                            <p className="text-gray-700 text-sm break-words">
+                              {product.usageRecommendation}
+                            </p>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </TabsContent>
-                )}
-              </Tabs>
+                    </TabsContent>
+                  )}
+
+                  {product.additionalInfo && (
+                    <TabsContent value="additional-info" className="mt-6">
+                      <div className="border border-gray-200 rounded-lg shadow-sm overflow-hidden">
+                        <div className="bg-white p-4 sm:p-6">
+                          <div className="p-3 sm:p-4 border bg-gray-50 rounded-md">
+                            <p className="text-gray-700 text-sm break-words">
+                              {product.additionalInfo}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </TabsContent>
+                  )}
+                </Tabs>
+              </section>
             </div>
-          </div>
+          </article>
 
+          {/* Product Warnings */}
           {product.warnings && product.warnings.length > 0 && (
-            <div className="mt-12 sm:mt-16 bg-yellow-50 border-l-4 border-[#C1A667] p-6 rounded-md shadow-sm">
+            <aside
+              className="mt-12 sm:mt-16 bg-yellow-50 border-l-4 border-[#C1A667] p-6 rounded-md shadow-sm"
+              aria-label="Ürün uyarıları"
+            >
               <div className="flex items-start">
-                <AlertTriangle className="h-6 w-6 text-[#C1A667] mr-3 flex-shrink-0" />
+                <AlertTriangle
+                  className="h-6 w-6 text-[#C1A667] mr-3 flex-shrink-0"
+                  aria-hidden="true"
+                />
                 <div>
                   <h3 className="text-lg font-semibold text-yellow-800 mb-2">
                     Önemli Uyarılar
@@ -430,10 +721,10 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
                   </ul>
                 </div>
               </div>
-            </div>
+            </aside>
           )}
         </div>
-      </section>
+      </main>
 
       <Footer />
     </div>

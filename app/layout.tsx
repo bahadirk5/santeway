@@ -1,14 +1,15 @@
-import type { Metadata } from 'next'
-import { GeistSans } from 'geist/font/sans'
-import { GeistMono } from 'geist/font/mono'
-import './globals.css'
+import type { Metadata } from "next";
+import { GeistSans } from "geist/font/sans";
+import { GeistMono } from "geist/font/mono";
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
     default: "Santeway - Sağlıklı Yaşama Giden Yol | Kaliteli Gıda Takviyeleri",
-    template: "%s | Santeway"
+    template: "%s | Santeway",
   },
-  description: "Santeway ile sağlıklı yaşamı keşfedin. L-Carnitine Carnipure ve diğer kaliteli gıda takviyeleri ile enerjinizi artırın, sağlığınızı destekleyin. Bilimsel formüller, doğal içerikler.",
+  description:
+    "Santeway ile sağlıklı yaşamı keşfedin. L-Carnitine Carnipure ve diğer kaliteli gıda takviyeleri ile enerjinizi artırın, sağlığınızı destekleyin. Bilimsel formüller, doğal içerikler.",
   keywords: [
     "santeway",
     "gıda takviyesi",
@@ -24,7 +25,7 @@ export const metadata: Metadata = {
     "bilimsel",
     "helal",
     "kosher",
-    "vegan"
+    "vegan",
   ],
   authors: [{ name: "Santeway" }],
   creator: "Santeway",
@@ -45,7 +46,8 @@ export const metadata: Metadata = {
     locale: "tr_TR",
     url: "https://santeway.com",
     title: "Santeway - Sağlıklı Yaşama Giden Yol",
-    description: "Kaliteli gıda takviyeleri ile sağlıklı yaşamı destekliyoruz. L-Carnitine Carnipure ve diğer premium ürünlerimizi keşfedin.",
+    description:
+      "Kaliteli gıda takviyeleri ile sağlıklı yaşamı destekliyoruz. L-Carnitine Carnipure ve diğer premium ürünlerimizi keşfedin.",
     siteName: "Santeway",
     images: [
       {
@@ -59,7 +61,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Santeway - Sağlıklı Yaşama Giden Yol",
-    description: "Kaliteli gıda takviyeleri ile sağlıklı yaşamı destekliyoruz. L-Carnitine Carnipure ve diğer premium ürünlerimizi keşfedin.",
+    description:
+      "Kaliteli gıda takviyeleri ile sağlıklı yaşamı destekliyoruz. L-Carnitine Carnipure ve diğer premium ürünlerimizi keşfedin.",
     images: ["/images/santeway-logo.png"],
     creator: "@santeway",
     site: "@santeway",
@@ -70,17 +73,23 @@ export const metadata: Metadata = {
   other: {
     "google-site-verification": "your-google-verification-code", // Google Search Console'dan alınacak
   },
-  metadataBase: new URL('https://santeway.com'),
-}
+  metadataBase: new URL("https://santeway.com"),
+};
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
   return (
     <html lang="tr">
       <head>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/images/santeway-logo.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="manifest" href="/site.webmanifest" />
+        <meta name="theme-color" content="#2E3A87" />
+        <meta name="msapplication-TileColor" content="#2E3A87" />
         <style>{`
 html {
   font-family: ${GeistSans.style.fontFamily};
@@ -91,5 +100,5 @@ html {
       </head>
       <body>{children}</body>
     </html>
-  )
+  );
 }
