@@ -33,17 +33,17 @@ export default function ContactPage() {
               {
                 icon: <MapPin className="h-6 w-6 sm:h-8 sm:w-8" />,
                 title: "Adres",
-                content: "Maslak Mahallesi, Büyükdere Cad. No:123, Sarıyer/İstanbul",
+                content: "Burç Mahallesi 681. Sokak Duru Sitesi 2 No:17/12 Yenimahalle/Ankara",
               },
               {
                 icon: <Phone className="h-6 w-6 sm:h-8 sm:w-8" />,
                 title: "Telefon",
-                content: "0850 123 45 67",
+                content: "+90 0507 292 88 67",
               },
               {
                 icon: <Mail className="h-6 w-6 sm:h-8 sm:w-8" />,
                 title: "E-posta",
-                content: "info@bettervits.com",
+                content: "info@santeway.com",
               },
               {
                 icon: <Clock className="h-6 w-6 sm:h-8 sm:w-8" />,
@@ -83,19 +83,7 @@ export default function ContactPage() {
                 <div>
                   <h3 className="font-semibold text-primary mb-2 text-base sm:text-lg">Müşteri Hizmetleri</h3>
                   <p className="text-gray-600 text-sm sm:text-base">Genel sorular ve sipariş desteği</p>
-                  <p className="text-primary font-medium text-sm sm:text-base">info@bettervits.com</p>
-                </div>
-
-                <div>
-                  <h3 className="font-semibold text-primary mb-2 text-base sm:text-lg">Basın ve Medya</h3>
-                  <p className="text-gray-600 text-sm sm:text-base">Basın açıklamaları ve medya sorguları</p>
-                  <p className="text-primary font-medium text-sm sm:text-base">press@bettervits.com</p>
-                </div>
-
-                <div>
-                  <h3 className="font-semibold text-primary mb-2 text-base sm:text-lg">İş Ortaklığı</h3>
-                  <p className="text-gray-600 text-sm sm:text-base">İş birliği ve ortaklık teklifleri</p>
-                  <p className="text-primary font-medium text-sm sm:text-base">partnership@bettervits.com</p>
+                  <p className="text-primary font-medium text-sm sm:text-base">info@santeway.com</p>
                 </div>
               </div>
             </div>
@@ -161,35 +149,6 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
-
-      {/* Map Section - Responsive */}
-      <section className="py-12 sm:py-16 md:py-20 lg:py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8 sm:mb-12">
-            <h2 className="text-2xl sm:text-3xl md:text-3xl font-bold text-primary mb-3 sm:mb-4">
-              Ofisimizi Ziyaret Edin
-            </h2>
-            <p className="text-gray-600 text-base sm:text-lg">
-              İstanbul Maslak'taki ofisimizde sizi ağırlamaktan mutluluk duyarız
-            </p>
-          </div>
-
-          <Card className="overflow-hidden">
-            <CardContent className="p-0">
-              <div className="bg-secondary/20 h-64 sm:h-80 md:h-96 flex items-center justify-center">
-                <div className="text-center">
-                  <MapPin className="h-12 w-12 sm:h-16 sm:w-16 text-primary mx-auto mb-3 sm:mb-4" />
-                  <h3 className="text-lg sm:text-xl font-semibold text-primary mb-2">Harita Yükleniyor</h3>
-                  <p className="text-gray-600 text-sm sm:text-base px-4">
-                    Maslak Mahallesi, Büyükdere Cad. No:123, Sarıyer/İstanbul
-                  </p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-
       <Footer />
     </div>
   )
