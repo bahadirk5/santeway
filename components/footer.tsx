@@ -8,20 +8,20 @@ export function Footer() {
     <footer className="bg-white">
       <div className="py-12 sm:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
             {/* Sütun 1: Takip Edin */}
-            <div className="text-center sm:text-left">
-              <h3 className="font-semibold text-gray-700 mb-3 sm:mb-4 text-base sm:text-lg">Takip Edin</h3>
+            <div className="text-left">
+              <h3 className="font-semibold text-gray-700 mb-3 sm:mb-4 text-sm sm:text-base lg:text-lg">Takip Edin</h3>
               <ul className="space-y-2 sm:space-y-3">
                 <li>
                   <Link
                     href="https://facebook.com"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center sm:justify-start text-gray-700 hover:text-primary group transition-colors"
+                    className="flex items-center text-gray-700 hover:text-primary group transition-colors"
                   >
-                    <Facebook className="h-4 w-4 sm:h-5 sm:w-5 mr-2 text-gray-700 group-hover:text-primary transition-colors" />
-                    <span className="text-sm sm:text-base">Facebook</span>
+                    <Facebook className="h-3 w-3 sm:h-4 sm:w-4 lg:h-5 lg:w-5 mr-1 sm:mr-2 text-gray-700 group-hover:text-primary transition-colors" />
+                    <span className="text-xs sm:text-sm lg:text-base">Facebook</span>
                   </Link>
                 </li>
                 <li>
@@ -29,10 +29,10 @@ export function Footer() {
                     href="https://instagram.com"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center sm:justify-start text-gray-700 hover:text-primary group transition-colors"
+                    className="flex items-center text-gray-700 hover:text-primary group transition-colors"
                   >
-                    <Instagram className="h-4 w-4 sm:h-5 sm:w-5 mr-2 text-gray-700 group-hover:text-primary transition-colors" />
-                    <span className="text-sm sm:text-base">Instagram</span>
+                    <Instagram className="h-3 w-3 sm:h-4 sm:w-4 lg:h-5 lg:w-5 mr-1 sm:mr-2 text-gray-700 group-hover:text-primary transition-colors" />
+                    <span className="text-xs sm:text-sm lg:text-base">Instagram</span>
                   </Link>
                 </li>
                 <li>
@@ -40,19 +40,19 @@ export function Footer() {
                     href="https://linkedin.com"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center sm:justify-start text-gray-700 hover:text-primary group transition-colors"
+                    className="flex items-center text-gray-700 hover:text-primary group transition-colors"
                   >
-                    <Linkedin className="h-4 w-4 sm:h-5 sm:w-5 mr-2 text-gray-700 group-hover:text-primary transition-colors" />
-                    <span className="text-sm sm:text-base">LinkedIn</span>
+                    <Linkedin className="h-3 w-3 sm:h-4 sm:w-4 lg:h-5 lg:w-5 mr-1 sm:mr-2 text-gray-700 group-hover:text-primary transition-colors" />
+                    <span className="text-xs sm:text-sm lg:text-base">LinkedIn</span>
                   </Link>
                 </li>
               </ul>
             </div>
 
             {/* Sütun 2: Keşfet */}
-            <div className="text-center sm:text-left">
-              <h3 className="font-semibold text-gray-700 mb-3 sm:mb-4 text-base sm:text-lg">Keşfet</h3>
-              <ul className="space-y-2 text-gray-700 text-sm sm:text-base">
+            <div className="text-left">
+              <h3 className="font-semibold text-gray-700 mb-3 sm:mb-4 text-sm sm:text-base lg:text-lg">Keşfet</h3>
+              <ul className="space-y-2 text-gray-700 text-xs sm:text-sm lg:text-base">
                 <li>
                   <Link href="/urunler" className="hover:text-primary transition-colors">
                     Ürünler
@@ -77,9 +77,9 @@ export function Footer() {
             </div>
 
             {/* Sütun 3: Kurumsal */}
-            <div className="text-center sm:text-left">
-              <h3 className="font-semibold text-gray-700 mb-3 sm:mb-4 text-base sm:text-lg">Kurumsal</h3>
-              <ul className="space-y-2 text-gray-700 text-sm sm:text-base">
+            <div className="text-left">
+              <h3 className="font-semibold text-gray-700 mb-3 sm:mb-4 text-sm sm:text-base lg:text-lg">Kurumsal</h3>
+              <ul className="space-y-2 text-gray-700 text-xs sm:text-sm lg:text-base">
                 <li>
                   <Link href="/iletisim" className="hover:text-primary transition-colors">
                     İletişim
@@ -98,22 +98,44 @@ export function Footer() {
               </ul>
             </div>
 
-            {/* Sütun 4: Logo ve İletişim - Versiyon 72'deki gibi hizalama */}
-            <div className="flex flex-col items-center sm:items-start lg:items-end text-center sm:text-left lg:text-right">
+            {/* Sütun 4: Logo ve İletişim */}
+            <div className="hidden sm:flex flex-col items-start sm:items-start lg:items-end text-left sm:text-left lg:text-right">
               <Link href="/" className="flex items-center mb-3 sm:mb-4">
                 <Image
                   src="/images/santeway-logo.png"
                   alt="Santeway Logo"
                   width={160}
                   height={40}
-                  className="object-contain w-32 h-10 sm:w-40 sm:h-12 md:w-48 md:h-14"
+                  className="object-contain w-24 h-6 sm:w-32 sm:h-8 lg:w-40 lg:h-10"
                 />
               </Link>
               <a
                 href="mailto:info@santeway.com"
-                className="flex items-center text-gray-700 hover:text-primary group transition-colors text-sm sm:text-base"
+                className="flex items-center text-gray-700 hover:text-primary group transition-colors text-xs sm:text-sm lg:text-base"
               >
-                <Mail className="h-4 w-4 sm:h-5 sm:w-5 mr-2 text-gray-700 group-hover:text-primary transition-colors" />
+                <Mail className="h-3 w-3 sm:h-4 sm:w-4 lg:h-5 lg:w-5 mr-1 sm:mr-2 text-gray-700 group-hover:text-primary transition-colors" />
+                info@santeway.com
+              </a>
+            </div>
+          </div>
+
+          {/* Alt kısım - Logo ve Email'i mobilde ayrı satır olarak göster */}
+          <div className="block sm:hidden mt-6 pt-6 border-t border-gray-200">
+            <div className="flex flex-col items-center space-y-3">
+              <Link href="/" className="flex items-center">
+                <Image
+                  src="/images/santeway-logo.png"
+                  alt="Santeway Logo"
+                  width={160}
+                  height={40}
+                  className="object-contain w-32 h-8"
+                />
+              </Link>
+              <a
+                href="mailto:info@santeway.com"
+                className="flex items-center text-gray-700 hover:text-primary group transition-colors text-sm"
+              >
+                <Mail className="h-4 w-4 mr-2 text-gray-700 group-hover:text-primary transition-colors" />
                 info@santeway.com
               </a>
             </div>
