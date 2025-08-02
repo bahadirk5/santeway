@@ -4,12 +4,6 @@ import { productsData } from "../products-data";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
 import { AlertTriangle, Wheat, Shield, Candy, Leaf, ExternalLink } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -239,180 +233,233 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
                 </div>
               )}
 
-              {/* Accordion for Product Details */}
-              <Accordion type="single" collapsible className="w-full space-y-3">
-                {/* İçindekiler - İçinde Tab yapısı var */}
-                <AccordionItem
-                  value="ingredients"
-                  className="border border-gray-200 rounded-lg shadow-sm overflow-hidden"
-                >
-                  <AccordionTrigger className="px-6 py-4 text-left text-primary font-medium hover:bg-secondary/10 hover:no-underline transition-colors duration-150 w-full flex justify-between items-center [&[data-state=open]>svg]:rotate-180">
+              {/* Tabs for Product Details */}
+              <Tabs defaultValue="ingredients" className="w-full">
+                <TabsList className="grid w-full grid-cols-3 lg:grid-cols-6 bg-gray-100 p-1 rounded-md">
+                  <TabsTrigger
+                    value="ingredients"
+                    className="px-3 py-2 text-sm font-medium text-gray-700 data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-sm rounded-md transition-all"
+                  >
                     İçindekiler
-                  </AccordionTrigger>
-                  <AccordionContent className="bg-white px-6 pb-6 pt-2">
-                    <Tabs defaultValue="active-ingredients" className="w-full">
-                      <TabsList className="grid w-full grid-cols-2 bg-gray-100 p-1 rounded-md">
-                        <TabsTrigger
-                          value="active-ingredients"
-                          className="px-3 py-2 text-sm font-medium text-gray-700 data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-sm rounded-md transition-all"
-                        >
-                          Etken Maddeler
-                        </TabsTrigger>
-                        <TabsTrigger
-                          value="content-info"
-                          className="px-3 py-2 text-sm font-medium text-gray-700 data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-sm rounded-md transition-all"
-                        >
-                          İçerik Bilgisi
-                        </TabsTrigger>
-                      </TabsList>
-                      <TabsContent
-                        value="active-ingredients"
-                        className="mt-4 p-4 border bg-white rounded-md min-h-[120px]"
-                      >
-                        {product.activeIngredients &&
-                        product.activeIngredients.length > 0 ? (
-                          <ul className="list-disc list-inside text-gray-600 space-y-2 text-sm">
-                            {product.activeIngredients.map(
-                              (ingredient, index) => (
-                                <li key={index}>{ingredient}</li>
-                              )
-                            )}
-                          </ul>
-                        ) : (
-                          <p className="text-gray-500 text-sm">
-                            Bu ürün için etken madde bilgisi bulunmamaktadır.
-                          </p>
-                        )}
-                      </TabsContent>
-                      <TabsContent
-                        value="content-info"
-                        className="mt-4 p-4 border bg-white rounded-md min-h-[120px]"
-                      >
-                        {product.ingredients &&
-                        product.ingredients.length > 0 ? (
-                          <ul className="list-disc list-inside text-gray-600 space-y-2 text-sm">
-                            {product.ingredients.map((ingredient, index) => (
-                              <li key={index}>{ingredient}</li>
-                            ))}
-                          </ul>
-                        ) : (
-                          <p className="text-gray-500 text-sm">
-                            Bu ürün için içerik bilgisi bulunmamaktadır.
-                          </p>
-                        )}
-                      </TabsContent>
-                    </Tabs>
-                  </AccordionContent>
-                </AccordionItem>
-
-                {/* Ürün Özellikleri Accordion - Maddeler halinde */}
-                <AccordionItem
-                  value="product-features"
-                  className="border border-gray-200 rounded-lg shadow-sm overflow-hidden"
-                >
-                  <AccordionTrigger className="px-6 py-4 text-left text-primary font-medium hover:bg-secondary/10 hover:no-underline transition-colors duration-150 w-full flex justify-between items-center [&[data-state=open]>svg]:rotate-180">
-                    Ürün Özellikleri
-                  </AccordionTrigger>
-                  <AccordionContent className="bg-white px-6 pb-6 pt-2">
-                    <div className="p-4 border bg-gray-50 rounded-md">
-                      <ul className="list-disc list-inside text-gray-700 space-y-3 text-sm">
-                        {[
-                          {
-                            key: "glutenFree",
-                            label: "Gluten İçermez",
-                            icon: <Wheat className="h-4 w-4" />,
-                          },
-                          {
-                            key: "preservativeFree",
-                            label: "Koruyucu İçermez",
-                            icon: <Shield className="h-4 w-4" />,
-                          },
-                          {
-                            key: "colorantFree",
-                            label: "Renklendirici İçermez",
-                            icon: null,
-                          },
-                          {
-                            key: "sugarFree",
-                            label: "Şeker İçermez",
-                            icon: <Candy className="h-4 w-4" />,
-                          },
-                          {
-                            key: "vegan",
-                            label: "Vegan",
-                            icon: <Leaf className="h-4 w-4" />,
-                          },
-                        ].map((feature) => {
-                          const value =
-                            product.features?.[
-                              feature.key as keyof typeof product.features
-                            ];
-                          return (
-                            <li
-                              key={feature.key}
-                              className="text-gray-700 text-sm"
-                            >
-                              <span>
-                                {feature.label}:{" "}
-                                <span className="text-gray-700">
-                                  {value === true
-                                    ? "Evet"
-                                    : value === false
-                                    ? "Hayır"
-                                    : "Belirtilmemiş"}
-                                </span>
-                              </span>
-                            </li>
-                          );
-                        })}
-                      </ul>
-                    </div>
-                  </AccordionContent>
-                </AccordionItem>
-
-                {/* Diğer Accordion Öğeleri */}
-                {[
-                  {
-                    value: "net-quantity",
-                    title: "Net Miktar",
-                    content: product.netQuantity,
-                  },
-                  {
-                    value: "storage-conditions",
-                    title: "Muhafaza Koşulları",
-                    content: product.storageConditions,
-                  },
-                  {
-                    value: "usage-recommendation",
-                    title: "Kullanım Önerisi",
-                    content: product.usageRecommendation,
-                  },
-                  {
-                    value: "additional-info",
-                    title: "Ek Bilgi",
-                    content: product.additionalInfo,
-                  },
-                ].map((item) =>
-                  item.content ? ( // Sadece content varsa accordion item'ı oluştur
-                    <AccordionItem
-                      key={item.value}
-                      value={item.value}
-                      className="border border-gray-200 rounded-lg shadow-sm overflow-hidden"
+                  </TabsTrigger>
+                  <TabsTrigger
+                    value="product-features"
+                    className="px-3 py-2 text-sm font-medium text-gray-700 data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-sm rounded-md transition-all"
+                  >
+                    Özellikler
+                  </TabsTrigger>
+                  {product.netQuantity && (
+                    <TabsTrigger
+                      value="net-quantity"
+                      className="px-3 py-2 text-sm font-medium text-gray-700 data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-sm rounded-md transition-all"
                     >
-                      <AccordionTrigger className="px-6 py-4 text-left text-primary font-medium hover:bg-secondary/10 hover:no-underline transition-colors duration-150 w-full flex justify-between items-center [&[data-state=open]>svg]:rotate-180">
-                        {item.title}
-                      </AccordionTrigger>
-                      <AccordionContent className="bg-white px-6 pb-6 pt-2">
+                      Net Miktar
+                    </TabsTrigger>
+                  )}
+                  {product.storageConditions && (
+                    <TabsTrigger
+                      value="storage-conditions"
+                      className="px-3 py-2 text-sm font-medium text-gray-700 data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-sm rounded-md transition-all"
+                    >
+                      Muhafaza
+                    </TabsTrigger>
+                  )}
+                  {product.usageRecommendation && (
+                    <TabsTrigger
+                      value="usage-recommendation"
+                      className="px-3 py-2 text-sm font-medium text-gray-700 data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-sm rounded-md transition-all"
+                    >
+                      Kullanım
+                    </TabsTrigger>
+                  )}
+                  {product.additionalInfo && (
+                    <TabsTrigger
+                      value="additional-info"
+                      className="px-3 py-2 text-sm font-medium text-gray-700 data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-sm rounded-md transition-all"
+                    >
+                      Ek Bilgi
+                    </TabsTrigger>
+                  )}
+                </TabsList>
+
+                {/* İçindekiler Tab Content */}
+                <TabsContent value="ingredients" className="mt-6">
+                  <div className="border border-gray-200 rounded-lg shadow-sm overflow-hidden">
+                    <div className="bg-white p-6">
+                      <Tabs defaultValue="active-ingredients" className="w-full">
+                        <TabsList className="grid w-full grid-cols-2 bg-gray-100 p-1 rounded-md">
+                          <TabsTrigger
+                            value="active-ingredients"
+                            className="px-3 py-2 text-sm font-medium text-gray-700 data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-sm rounded-md transition-all"
+                          >
+                            Etken Maddeler
+                          </TabsTrigger>
+                          <TabsTrigger
+                            value="content-info"
+                            className="px-3 py-2 text-sm font-medium text-gray-700 data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-sm rounded-md transition-all"
+                          >
+                            İçerik Bilgisi
+                          </TabsTrigger>
+                        </TabsList>
+                        <TabsContent
+                          value="active-ingredients"
+                          className="mt-4 p-4 border bg-white rounded-md min-h-[120px]"
+                        >
+                          {product.activeIngredients &&
+                          product.activeIngredients.length > 0 ? (
+                            <ul className="list-disc list-inside text-gray-600 space-y-2 text-sm">
+                              {product.activeIngredients.map(
+                                (ingredient, index) => (
+                                  <li key={index}>{ingredient}</li>
+                                )
+                              )}
+                            </ul>
+                          ) : (
+                            <p className="text-gray-500 text-sm">
+                              Bu ürün için etken madde bilgisi bulunmamaktadır.
+                            </p>
+                          )}
+                        </TabsContent>
+                        <TabsContent
+                          value="content-info"
+                          className="mt-4 p-4 border bg-white rounded-md min-h-[120px]"
+                        >
+                          {product.ingredients &&
+                          product.ingredients.length > 0 ? (
+                            <ul className="list-disc list-inside text-gray-600 space-y-2 text-sm">
+                              {product.ingredients.map((ingredient, index) => (
+                                <li key={index}>{ingredient}</li>
+                              ))}
+                            </ul>
+                          ) : (
+                            <p className="text-gray-500 text-sm">
+                              Bu ürün için içerik bilgisi bulunmamaktadır.
+                            </p>
+                          )}
+                        </TabsContent>
+                      </Tabs>
+                    </div>
+                  </div>
+                </TabsContent>
+
+                {/* Ürün Özellikleri Tab Content */}
+                <TabsContent value="product-features" className="mt-6">
+                  <div className="border border-gray-200 rounded-lg shadow-sm overflow-hidden">
+                    <div className="bg-white p-6">
+                      <div className="p-4 border bg-gray-50 rounded-md">
+                        <ul className="list-disc list-inside text-gray-700 space-y-3 text-sm">
+                          {[
+                            {
+                              key: "glutenFree",
+                              label: "Gluten İçermez",
+                              icon: <Wheat className="h-4 w-4" />,
+                            },
+                            {
+                              key: "preservativeFree",
+                              label: "Koruyucu İçermez",
+                              icon: <Shield className="h-4 w-4" />,
+                            },
+                            {
+                              key: "colorantFree",
+                              label: "Renklendirici İçermez",
+                              icon: null,
+                            },
+                            {
+                              key: "sugarFree",
+                              label: "Şeker İçermez",
+                              icon: <Candy className="h-4 w-4" />,
+                            },
+                            {
+                              key: "vegan",
+                              label: "Vegan",
+                              icon: <Leaf className="h-4 w-4" />,
+                            },
+                          ].map((feature) => {
+                            const value =
+                              product.features?.[
+                                feature.key as keyof typeof product.features
+                              ];
+                            return (
+                              <li
+                                key={feature.key}
+                                className="text-gray-700 text-sm"
+                              >
+                                <span>
+                                  {feature.label}:{" "}
+                                  <span className="text-gray-700">
+                                    {value === true
+                                      ? "Evet"
+                                      : value === false
+                                      ? "Hayır"
+                                      : "Belirtilmemiş"}
+                                  </span>
+                                </span>
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </TabsContent>
+
+                {/* Diğer Tab Contents */}
+                {product.netQuantity && (
+                  <TabsContent value="net-quantity" className="mt-6">
+                    <div className="border border-gray-200 rounded-lg shadow-sm overflow-hidden">
+                      <div className="bg-white p-6">
                         <div className="p-4 border bg-gray-50 rounded-md">
                           <p className="text-gray-700 text-sm">
-                            {item.content}
+                            {product.netQuantity}
                           </p>
                         </div>
-                      </AccordionContent>
-                    </AccordionItem>
-                  ) : null
+                      </div>
+                    </div>
+                  </TabsContent>
                 )}
-              </Accordion>
+
+                {product.storageConditions && (
+                  <TabsContent value="storage-conditions" className="mt-6">
+                    <div className="border border-gray-200 rounded-lg shadow-sm overflow-hidden">
+                      <div className="bg-white p-6">
+                        <div className="p-4 border bg-gray-50 rounded-md">
+                          <p className="text-gray-700 text-sm">
+                            {product.storageConditions}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </TabsContent>
+                )}
+
+                {product.usageRecommendation && (
+                  <TabsContent value="usage-recommendation" className="mt-6">
+                    <div className="border border-gray-200 rounded-lg shadow-sm overflow-hidden">
+                      <div className="bg-white p-6">
+                        <div className="p-4 border bg-gray-50 rounded-md">
+                          <p className="text-gray-700 text-sm">
+                            {product.usageRecommendation}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </TabsContent>
+                )}
+
+                {product.additionalInfo && (
+                  <TabsContent value="additional-info" className="mt-6">
+                    <div className="border border-gray-200 rounded-lg shadow-sm overflow-hidden">
+                      <div className="bg-white p-6">
+                        <div className="p-4 border bg-gray-50 rounded-md">
+                          <p className="text-gray-700 text-sm">
+                            {product.additionalInfo}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </TabsContent>
+                )}
+              </Tabs>
             </div>
           </div>
 
