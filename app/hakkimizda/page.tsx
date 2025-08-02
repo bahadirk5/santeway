@@ -1,7 +1,7 @@
-import { Navbar } from "@/components/navbar"
-import { Footer } from "@/components/footer"
-import { Card, CardContent } from "@/components/ui/card"
-import { Users, Award, Heart, Target, Lightbulb, Leaf } from "lucide-react"
+import { Navbar } from "@/components/navbar";
+import { Footer } from "@/components/footer";
+import { Card, CardContent } from "@/components/ui/card";
+import { Users, Award, Heart, Target, Lightbulb, Leaf } from "lucide-react";
 
 export default function AboutPage() {
   return (
@@ -16,7 +16,7 @@ export default function AboutPage() {
               Hakkımızda
             </h1>
             <p className="text-base sm:text-lg md:text-xl lg:text-xl text-gray-700 max-w-2xl mx-auto leading-relaxed">
-              Sağlığınız için en iyisini sunma misyonumuz ve değerlerimiz
+              Santeway ile Her Adımda Sağlığın Yanında
             </p>
           </div>
         </div>
@@ -29,15 +29,29 @@ export default function AboutPage() {
             {/* Text Content */}
             <div className="order-2 lg:order-1 text-center lg:text-left">
               <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-4xl font-bold text-primary mb-4 sm:mb-6 leading-tight">
-                Sağlığınızı Güçlendiriyoruz
+                Biz Kimiz?
               </h2>
               <p className="text-base sm:text-lg text-gray-700 mb-4 sm:mb-6 leading-relaxed">
-                BetterVits olarak, herkesin en iyi versiyonuna ulaşabilmesi için kaliteli, güvenilir ve etkili besin
-                takviyeleri sunuyoruz. Bilimsel araştırmalara dayalı formüllerimizle sağlığınızı destekliyoruz.
+                Santeway ailesi olarak, sağlıklı yaşamın herkes için temel bir
+                hak olduğuna inanıyoruz. Markamızın taşıdığı "Sağlığa giden yol"
+                anlamından yola çıkarak; modern yaşamın hızla değişen
+                dinamikleri içerisinde, bireylerin ihtiyaç duyduğu desteği
+                güvenilir ve etkili ürünlerle sunmayı hedefliyoruz.
               </p>
-              <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
-                Türkiye'de üretilen, uluslararası standartlarda ürünlerimizle sağlıklı yaşam yolculuğunuzda
-                yanınızdayız.
+              <p className="text-base sm:text-lg text-gray-700 mb-4 sm:mb-6 leading-relaxed">
+                Kuruluşumuzdan bu yana önceliğimiz; bilimsel veriler ışığında
+                formüle edilen, özenle seçilmiş ham maddelerle geliştirilen
+                ürünleri sizlerle buluşturmaktır. Tüm ürünlerimiz, uluslararası
+                kalite ve güvenlik standartlarına uygun olarak, modern ve
+                denetimli üretim tesislerinde yüksek hassasiyetle
+                üretilmektedir.
+              </p>
+              <p className="text-base sm:text-lg text-gray-700 mb-4 sm:mb-6 leading-relaxed">
+                Kaliteyi bir tercih değil, kurumsal bir sorumluluk olarak
+                benimsiyoruz. Sağlıklı yaşam bilincinin toplum genelinde
+                yaygınlaşmasına katkı sağlamak ve daha sağlıklı bir geleceğin
+                inşasında rol almak amacıyla çıktığımız bu yolda, Santeway
+                olarak daima yanınızda olmaktan memnuniyet duyuyoruz.
               </p>
             </div>
 
@@ -96,13 +110,20 @@ export default function AboutPage() {
                 description: "Doğadan ilham alan saf içerikler",
               },
             ].map((value, index) => (
-              <Card key={index} className="text-center p-4 sm:p-6 hover:shadow-lg transition-shadow duration-300">
+              <Card
+                key={index}
+                className="text-center p-4 sm:p-6 hover:shadow-lg transition-shadow duration-300"
+              >
                 <CardContent className="p-4 sm:p-6">
                   <div className="w-12 h-12 sm:w-16 sm:h-16 bg-secondary rounded-xl sm:rounded-2xl flex items-center justify-center mx-auto mb-3 sm:mb-4 text-primary">
                     {value.icon}
                   </div>
-                  <h3 className="text-lg sm:text-xl font-semibold text-primary mb-2 sm:mb-3">{value.title}</h3>
-                  <p className="text-sm sm:text-base text-gray-600 leading-relaxed">{value.description}</p>
+                  <h3 className="text-lg sm:text-xl font-semibold text-primary mb-2 sm:mb-3">
+                    {value.title}
+                  </h3>
+                  <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
+                    {value.description}
+                  </p>
                 </CardContent>
               </Card>
             ))}
@@ -112,5 +133,5 @@ export default function AboutPage() {
 
       <Footer />
     </div>
-  )
+  );
 }
