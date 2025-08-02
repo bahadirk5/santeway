@@ -103,14 +103,14 @@ export default function ProductsPage() {
                   <CardContent className="p-0 flex flex-col flex-grow">
                     {/* Product Image */}
                     <div className="relative">
-                      <div className="bg-secondary/20 p-6 sm:p-8 relative overflow-hidden">
+                      <div className=" relative overflow-hidden aspect-square flex items-center justify-center">
                         <img
                           src={
                             product.image ||
                             `/placeholder.svg?height=300&width=250&query=${product.slug}`
                           }
                           alt={product.name}
-                          className="w-full h-40 sm:h-48 md:h-52 lg:h-48 object-contain group-hover:scale-110 transition-transform duration-300"
+                          className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300 rounded-lg"
                         />
                       </div>
                     </div>
@@ -128,9 +128,6 @@ export default function ProductsPage() {
                         <h3 className="text-lg sm:text-xl font-semibold text-primary mb-2 sm:mb-3 leading-tight">
                           {product.name}
                         </h3>
-                        <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
-                          {product.shortDescription}
-                        </p>
                       </div>
                     </div>
                   </CardContent>
