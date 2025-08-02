@@ -24,16 +24,17 @@ import {
 } from "@/components/ui/carousel";
 
 interface ProductDetailPageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 // Generate metadata for SEO
 export async function generateMetadata({
   params,
 }: ProductDetailPageProps): Promise<Metadata> {
-  const product = productsData.find((p) => p.slug === params.slug);
+  const resolvedParams = await params;
+  const product = productsData.find((p) => p.slug === resolvedParams.slug);
 
   if (!product) {
     return {
@@ -83,8 +84,9 @@ export async function generateMetadata({
   };
 }
 
-export default function ProductDetailPage({ params }: ProductDetailPageProps) {
-  const product = productsData.find((p) => p.slug === params.slug);
+export default async function ProductDetailPage({ params }: ProductDetailPageProps) {
+  const resolvedParams = await params;
+  const product = productsData.find((p) => p.slug === resolvedParams.slug);
 
   if (!product) {
     return (

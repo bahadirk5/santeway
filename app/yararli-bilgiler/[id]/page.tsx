@@ -8,18 +8,19 @@ import Link from "next/link";
 import { Metadata } from "next";
 
 interface ArticleDetailPageProps {
-  params: {
+  params: Promise<{
     // Dinamik rota segmenti string olmalı, bu yüzden id'yi string olarak alıyoruz.
     // Veri kaynağımızda id number olduğu için parse etmemiz gerekecek.
     id: string;
-  };
+  }>;
 }
 
 // Generate metadata for SEO
 export async function generateMetadata({
   params,
 }: ArticleDetailPageProps): Promise<Metadata> {
-  const articleId = Number.parseInt(params.id, 10);
+  const resolvedParams = await params;
+  const articleId = Number.parseInt(resolvedParams.id, 10);
   const article = articlesData.find((a) => a.id === articleId);
 
   if (!article) {
@@ -125,8 +126,9 @@ const renderContentBlock = (block: ArticleContentBlock, index: number) => {
   }
 };
 
-export default function ArticleDetailPage({ params }: ArticleDetailPageProps) {
-  const articleId = Number.parseInt(params.id, 10); // ID'yi integer'a çevir
+export default async function ArticleDetailPage({ params }: ArticleDetailPageProps) {
+  const resolvedParams = await params;
+  const articleId = Number.parseInt(resolvedParams.id, 10); // ID'yi integer'a çevir
   const article = articlesData.find((a) => a.id === articleId);
 
   if (!article) {
