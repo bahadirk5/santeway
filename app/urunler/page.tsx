@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Filter } from "lucide-react";
 import Link from "next/link";
+import { productsData } from "./products-data";
 
 const toSlug = (str: string) => {
   return str
@@ -18,16 +19,11 @@ const toSlug = (str: string) => {
 export default function ProductsPage() {
   const [activeCategory, setActiveCategory] = useState("Tümü");
 
-  const products = [
-    {
-      id: 1,
-      name: "L-Carnitine Carnipure",
-      image: "/placeholder.svg?height=300&width=250",
-      category: "Özel Takviyeler",
-    },
-  ];
+  // productsData'dan ürünleri al
+  const products = productsData;
 
-  const categories = ["Tümü", "Özel Takviyeler"];
+  // Kategorileri dinamik olarak oluştur
+  const categories = ["Tümü", ...Array.from(new Set(products.map(product => product.category)))];
 
   const filteredProducts =
     activeCategory === "Tümü"
@@ -100,7 +96,7 @@ export default function ProductsPage() {
             {filteredProducts.map((product) => (
               <Link
                 key={product.id}
-                href={`/urunler/${toSlug(product.name)}`}
+                href={`/urunler/${product.slug}`}
                 className="block group h-full"
               >
                 <Card className="hover:shadow-xl transition-all duration-300 overflow-hidden hover:scale-105 flex flex-col h-full">
@@ -111,9 +107,7 @@ export default function ProductsPage() {
                         <img
                           src={
                             product.image ||
-                            `/placeholder.svg?height=300&width=250&query=${toSlug(
-                              product.name
-                            )}`
+                            `/placeholder.svg?height=300&width=250&query=${product.slug}`
                           }
                           alt={product.name}
                           className="w-full h-40 sm:h-48 md:h-52 lg:h-48 object-contain group-hover:scale-110 transition-transform duration-300"
@@ -134,6 +128,9 @@ export default function ProductsPage() {
                         <h3 className="text-lg sm:text-xl font-semibold text-primary mb-2 sm:mb-3 leading-tight">
                           {product.name}
                         </h3>
+                        <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
+                          {product.shortDescription}
+                        </p>
                       </div>
                     </div>
                   </CardContent>
