@@ -90,9 +90,8 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
       <section className="bg-gradient-to-br from-secondary/20 to-secondary/40 py-12 sm:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <Badge className="bg-primary text-white mb-3">{product.category}</Badge>
+            <Badge className="bg-primary text-white mb-2">{product.category}</Badge>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-primary mb-2">{product.name}</h1>
-            <p className="text-lg text-gray-700 max-w-2xl mx-auto">{product.shortDescription}</p>
           </div>
         </div>
       </section>
@@ -133,7 +132,7 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
               {/* Product Description (Always Visible) */}
               <div>
                 <h2 className="text-2xl font-semibold text-primary mb-3">Ürün Açıklaması</h2>
-                <p className="text-gray-700 leading-relaxed whitespace-pre-line">{product.longDescription}</p>
+                <p className="text-gray-700 leading-relaxed text-justify break-words hyphens-auto">{product.longDescription}</p>
               </div>
 
               {/* Product Features - Sadece true olanları göster */}
