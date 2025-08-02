@@ -385,104 +385,60 @@ export const articlesData: Article[] = [
   },
   {
     id: 4,
-    title: "Takviye Edici Gıdalar Ne İşe Yarar?",
+    title: "Dengeli Beslenme Nedir? Neden Önemlidir?",
     excerpt:
-      "Takviye edici gıdalar ne işe yarar? Nasıl ve ne zaman kullanılır? Takviye edici gıdalar hakkında daha detaylı bilgi edinmek için sayfamızı ziyaret edebilirsiniz.",
+      "Dengeli beslenme nedir? Neden önemlidir? Dengeli bir öğün nasıl olmalıdır? Dengeli beslenme hakkında daha detaylı bilgi edinmek için sayfamızı ziyaret edebilirsiniz.",
     date: "12 Mayıs 2024",
     category: "Beslenme",
     image:
-      "/placeholder.svg?height=128&width=200&query=abstract+supplements+texture",
+      "/placeholder.svg?height=128&width=200&query=abstract+balanced+nutrition+texture",
     content: [
       {
         type: "paragraph",
-        text: "Modern yaşamın getirdiği yoğun tempo, stres, dengesiz beslenme ve çevresel faktörler, vücudumuzun ihtiyaç duyduğu besin öğelerini yeterince alamamasına neden olabilir. İşte bu noktada takviye edici gıdalar devreye girer. Peki, takviye edici gıdalar nedir, ne işe yarar ve nasıl kullanılmalıdır? Gelin, birlikte inceleyelim.",
+        text: "Dengeli beslenme, sağlıklı yaşamın temelini oluşturur. Vücudumuzun ihtiyaç duyduğu tüm besin öğelerini uygun miktarlarda ve doğru zamanlarda alarak optimal sağlık durumunu koruyabiliriz.",
       },
       {
         type: "heading",
         level: 2,
-        text: "Takviye Edici Gıda Nedir?",
+        text: "Dengeli Beslenme Nedir?",
       },
       {
         type: "paragraph",
-        text: "Takviye edici gıdalar; vitamin, mineral, amino asit, lif, bitkisel ekstraktlar ve diğer besin öğelerini içeren ürünlerdir. Tablet, kapsül, toz veya sıvı formda olabilirler. İlaç değildirler; hastalıkları tedavi etmezler. Amaçları, günlük beslenmeyi desteklemek ve eksik kalan besin öğelerini tamamlamaktır.",
+        text: "Dengeli beslenme, vücudun tüm temel besin öğelerini (karbonhidratlar, proteinler, yağlar, vitaminler ve mineraller) günlük ihtiyaçlar doğrultusunda alması anlamına gelir. Bu beslenme tarzı, sadece kilo kontrolü değil, aynı zamanda genel sağlık, enerji seviyesi ve yaşam kalitesi için kritik öneme sahiptir.",
       },
       {
         type: "heading",
         level: 2,
-        text: "Ne İşe Yarar?",
-      },
-      {
-        type: "paragraph",
-        text: "Takviye edici gıdalar, vücudun genel sağlığını desteklemek için kullanılır. Başlıca faydaları şunlardır:",
+        text: "Neden Bu Kadar Önemli?",
       },
       {
         type: "list",
         items: [
-          "Bağışıklık sistemini güçlendirmek",
-          "Enerji ve dayanıklılığı artırmak",
-          "Cilt, saç ve tırnak sağlığını desteklemek",
-          "Kemik ve kas gelişimini desteklemek",
-          "Sindirim sistemine yardımcı olmak",
-          "Zihinsel odaklanma ve stres yönetimini desteklemek",
+          "Enerji Seviyesini Dengeler: Doğru besin kombinasyonu kan şekerini stabil tutar",
+          "Bağışıklık Sistemini Güçlendirir: Vitamin ve mineraller vücudun savunma mekanizmalarını destekler",
+          "Kronik Hastalık Riskini Azaltır: Kalp hastalığı, diyabet ve kanser gibi hastalıklara karşı koruma sağlar",
+          "Zihinsel Performansı Artırır: Beyin fonksiyonları için gerekli besinleri sağlar",
+          "Kilo Kontrolü: Metabolizmayı düzenleyerek sağlıklı kilo yönetimini destekler",
         ],
-      },
-      {
-        type: "paragraph",
-        text: "Örneğin, D vitamini eksikliği olan bir kişi için D vitamini takviyesi; yoğun tempoda çalışan biri için B kompleks vitaminleri ya da magnezyum takviyesi oldukça faydalı olabilir.",
       },
       {
         type: "heading",
         level: 2,
-        text: "Nasıl Kullanılır?",
+        text: "Dengeli Bir Öğün Nasıl Olmalı?",
       },
       {
         type: "paragraph",
-        text: "Her takviyenin kullanım şekli farklı olabilir. Bu nedenle ürün etiketinde belirtilen dozaj talimatlarına uyulması çok önemlidir. Genel olarak şu şekilde kullanılabilir:",
+        text: "İdeal bir öğün şu bileşenleri içermelidir:",
       },
       {
         type: "list",
         items: [
-          "Su ile birlikte alınır",
-          "Bazı takviyeler tok, bazıları aç karnına alınmalıdır",
-          "Günde 1 veya 2 defa kullanımı yaygındır",
-          "Hamilelik, emzirme, kronik hastalık veya ilaç kullanımı varsa mutlaka doktora danışılmalıdır",
+          "Yarım tabak sebze ve meyve",
+          "Çeyrek tabak kaliteli protein (tavuk, balık, baklagiller)",
+          "Çeyrek tabak kompleks karbonhidrat (tam tahıllar, quinoa)",
+          "Sağlıklı yağlar (zeytinyağı, avokado, fındık)",
+          "Bol su tüketimi",
         ],
-      },
-      {
-        type: "paragraph",
-        text: "Unutmayın, 'daha fazla' kullanmak, 'daha etkili' anlamına gelmez. Aksine, bazı vitamin ve minerallerin fazla alınması vücuda zarar verebilir.",
-      },
-      {
-        type: "heading",
-        level: 2,
-        text: "Ne Zaman Kullanılmalı?",
-      },
-      {
-        type: "paragraph",
-        text: "Takviye edici gıdalar genellikle şu durumlarda tercih edilir:",
-      },
-      {
-        type: "list",
-        items: [
-          "Mevsim geçişlerinde (özellikle sonbahar-kış aylarında)",
-          "Yoğun iş ve stres dönemlerinde",
-          "Dengesiz ve yetersiz beslenme durumlarında",
-          "Spor yapanların performans desteği için",
-          "Yaşlılık döneminde artan besin ihtiyacını karşılamak için",
-        ],
-      },
-      {
-        type: "paragraph",
-        text: "Öncelikle bir sağlık uzmanına danışarak, hangi takviyeye ihtiyaç duyduğunuzu öğrenmek en doğrusudur.",
-      },
-      {
-        type: "heading",
-        level: 2,
-        text: "Sonuç",
-      },
-      {
-        type: "paragraph",
-        text: "Takviye edici gıdalar, sağlıklı bir yaşam tarzının tamamlayıcısı olabilir. Ancak hiçbir takviye, dengeli ve çeşitli bir beslenmenin yerini tutmaz. Takviyeleri bilinçli, doğru zamanda ve doğru dozda kullanmak, hem sağlığınızı korumanıza hem de yaşam kalitenizi artırmanıza yardımcı olur. Herhangi bir takviye kullanmadan önce mutlaka bir uzmana danışmanız gerektiğini unutmayın.",
       },
     ],
   },
