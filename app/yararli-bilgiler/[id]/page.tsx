@@ -1,4 +1,4 @@
-import type React from "react";
+import React from "react";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { articlesData, type ArticleContentBlock } from "../articles-data"; // Güncellenmiş veri yolu
@@ -18,27 +18,25 @@ const renderContentBlock = (block: ArticleContentBlock, index: number) => {
   switch (block.type) {
     case "paragraph":
       return (
-        <p key={index} className="mb-4 text-gray-700 leading-relaxed">
+        <p key={index} className={`mb-4 text-gray-700 leading-relaxed ${block.bold ? 'font-bold' : ''}`}>
           {block.text}
         </p>
       );
     case "heading":
-      const HeadingTag = `h${
-        block.level || 2
-      }` as keyof (keyof React.JSX.IntrinsicElements);
+      const HeadingTag = `h${block.level || 2}` as string;
       const textSize =
         block.level === 2
           ? "text-2xl sm:text-3xl"
           : block.level === 3
           ? "text-xl sm:text-2xl"
           : "text-lg sm:text-xl";
-      return (
-        <HeadingTag
-          key={index}
-          className={`text-primary font-semibold mb-3 mt-6 ${textSize}`}
-        >
-          {block.text}
-        </HeadingTag>
+      return React.createElement(
+        HeadingTag,
+        {
+          key: index,
+          className: `text-primary font-semibold mb-3 mt-6 ${textSize}`,
+        },
+        block.text
       );
     case "list":
       return (
