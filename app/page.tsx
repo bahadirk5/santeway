@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight, CheckCircle } from "lucide-react";
 import Link from "next/link";
+import { articlesData } from "./yararli-bilgiler/articles-data";
 
 // Helper function to create slugs
 const toSlug = (str: string) => {
@@ -281,56 +282,25 @@ export default function HomePage() {
           </div>
 
           {/* Responsive Grid - Adjusts columns based on screen size */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 sm:gap-6">
-            {[
-              {
-                name: "L-Carnitine Nedir, Ne İşe Yarar?",
-                slug: "l-carnitine-nedir-ne-ise-yarar",
-                subtitle:
-                  "L-Carnitine nedir? Ne işe yarar? Faydaları nelerdir? L-Carnitine hakkında daha detaylı bilgi edinmek için sayfamızı ziyaret edebilirsiniz.",
-              },
-              {
-                name: "Bağışıklık Sistemi Nedir, Nasıl Güçlendirilir?",
-                slug: "bagisiklik-sistemi-nedir-nasil-guclendirilir",
-                subtitle:
-                  "Bağışıklık sistemi nedir? Bağışıklık sistemi neden zayıflar? Bağışıklık sistemi nasıl güçlendirilir? Bağışıklık sistemi hakkında daha detaylı bilgi edinmek için sayfamızı ziyaret edebilirsiniz.",
-              },
-              {
-                name: "Takviye Edici Gıdalar Ne İşe Yarar?",
-                slug: "takviye-edici-gidalar-ne-ise-yarar",
-                subtitle:
-                  "Takviye edici gıdalar ne işe yarar? Nasıl ve ne zaman kullanılır? Takviye edici gıdalar hakkında daha detaylı bilgi edinmek için sayfamızı ziyaret edebilirsiniz.",
-              },
-              {
-                name: "Yorgunluk Nedir? Nedenleri Neler Olabilir?",
-                slug: "yorgunluk-nedir-nedenleri-neler-olabilir",
-                subtitle:
-                  "Yorgunluk Nedir? Nedenleri neler olabilir? Yorgunlukla nasıl baş edilir? Yorgunluk hakkında daha detaylı bilgi edinmek için sayfamızı ziyaret edebilirsiniz.",
-              },
-              {
-                name: "Dengeli Beslenme Nedir? Neden Önemlidir?",
-                slug: "dengeli-beslenme-nedir-neden-onemlidir",
-                subtitle:
-                  "Dengeli beslenme nedir? Neden önemlidir? Dengeli bir öğün nasıl olmalıdır? Dengeli beslenme hakkında daha detaylı bilgi edinmek için sayfamızı ziyaret edebilirsiniz.",
-              },
-            ].map((article, index) => (
-              <Link key={index} href={`/yararli-bilgiler/${article.slug}`} aria-label={`${article.name} hakkında detaylı bilgi alın`}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+            {articlesData.slice(0, 4).map((article, index) => (
+              <Link key={article.id} href={`/yararli-bilgiler/${article.id}`} aria-label={`${article.title} hakkında detaylı bilgi alın`}>
                 <Card className="overflow-hidden hover:shadow-lg hover:scale-105 transition-all duration-300 h-full">
                   <CardContent className="p-0">
                     <div className="bg-secondary/20 h-24 sm:h-28 md:h-32 relative">
                       <img
-                        src={`/placeholder.svg?height=128&width=200&query=abstract+${article.name}+texture`}
-                        alt={`${article.name} ile ilgili görsel`}
-                        className="w-full h-full object-cover opacity-50"
+                        src={article.image || "/placeholder.svg"}
+                        alt={`${article.title} ile ilgili görsel`}
+                        className="w-full h-full object-cover"
                         loading="lazy"
                       />
                     </div>
                     <div className="p-3 sm:p-4 text-center">
                       <h3 className="font-semibold text-primary mb-1 text-sm sm:text-base">
-                        {article.name}
+                        {article.title}
                       </h3>
                       <p className="text-xs sm:text-sm text-gray-600 leading-tight">
-                        {article.subtitle}
+                        {article.excerpt}
                       </p>
                     </div>
                   </CardContent>
