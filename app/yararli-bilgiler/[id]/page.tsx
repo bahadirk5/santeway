@@ -145,10 +145,6 @@ export default function ArticleDetailPage({ params }: ArticleDetailPageProps) {
       {/* Author Bio / Related Articles (Optional) */}
       <section className="py-12 bg-secondary/10">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <Edit3 className="h-8 w-8 text-primary mx-auto mb-3" />
-          <h3 className="text-xl font-semibold text-primary mb-2">
-            Yazar Hakkında
-          </h3>
           <p className="text-sm text-gray-500">Yayın Tarihi: {article.date}</p>
           <div className="mt-6">
             <Link
