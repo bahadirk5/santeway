@@ -38,6 +38,8 @@ export interface Product {
   warnings?: string[];
   // Etken madde miktarları
   activeIngredientAmounts?: { [key: string]: string }; // Etken madde miktarları
+  // Ürün özellikleri açıklamaları
+  productFeatureDescriptions?: string[]; // Özellikler sekmesi için açıklamalar
 }
 
 export const productsData: Product[] = [
@@ -79,6 +81,14 @@ export const productsData: Product[] = [
     activeIngredientAmounts: {
       "L-Karnitin": "510 mg"
     },
+    productFeatureDescriptions: [
+      "Her 2 kapsülde 1020 mg L-Carnitine bulunur.",
+      "Yüksek biyoyararlanım imkanı sunan Carnipure® marka ham madde kullanılarak formüle edilmiştir.",
+      "Ham madde Kosher ve Helal sertifikalarına sahiptir.",
+      "Vcaps® marka bitkisel kapsül Kosher ve Helal sertifikalarına sahiptir.",
+      "Vegan ve vejetaryen bireylerin kullanımına uygundur.",
+      "Kalorisiz içeriğe sahiptir."
+    ],
     netQuantity: "60 tablet (30 günlük kullanım)",
     storageConditions:
       "Serin ve kuru yerde, direkt güneş ışığından uzak tutunuz. Oda sıcaklığında (15-25°C) saklayınız.",

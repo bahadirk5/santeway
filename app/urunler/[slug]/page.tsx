@@ -337,57 +337,19 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
                   <div className="border border-gray-200 rounded-lg shadow-sm overflow-hidden">
                     <div className="bg-white p-4 sm:p-6">
                       <div className="p-3 sm:p-4 border bg-gray-50 rounded-md">
-                        <ul className="list-disc list-inside text-gray-700 space-y-3 text-sm">
-                          {[
-                            {
-                              key: "glutenFree",
-                              label: "Gluten İçermez",
-                              icon: <Wheat className="h-4 w-4" />,
-                            },
-                            {
-                              key: "preservativeFree",
-                              label: "Koruyucu İçermez",
-                              icon: <Shield className="h-4 w-4" />,
-                            },
-                            {
-                              key: "colorantFree",
-                              label: "Renklendirici İçermez",
-                              icon: null,
-                            },
-                            {
-                              key: "sugarFree",
-                              label: "Şeker İçermez",
-                              icon: <Candy className="h-4 w-4" />,
-                            },
-                            {
-                              key: "vegan",
-                              label: "Vegan",
-                              icon: <Leaf className="h-4 w-4" />,
-                            },
-                          ].map((feature) => {
-                            const value =
-                              product.features?.[
-                                feature.key as keyof typeof product.features
-                              ];
-                            return (
-                              <li
-                                key={feature.key}
-                                className="text-gray-700 text-sm break-words"
-                              >
-                                <span className="flex flex-wrap items-center gap-1">
-                                  {feature.label}:{" "}
-                                  <span className="text-gray-700 font-medium">
-                                    {value === true
-                                      ? "Evet"
-                                      : value === false
-                                      ? "Hayır"
-                                      : "Belirtilmemiş"}
-                                  </span>
-                                </span>
+                        {product.productFeatureDescriptions && product.productFeatureDescriptions.length > 0 ? (
+                          <ul className="list-disc list-inside text-gray-700 space-y-3 text-sm">
+                            {product.productFeatureDescriptions.map((description, index) => (
+                              <li key={index} className="text-gray-700 text-sm break-words">
+                                {description}
                               </li>
-                            );
-                          })}
-                        </ul>
+                            ))}
+                          </ul>
+                        ) : (
+                          <p className="text-gray-500 text-sm">
+                            Bu ürün için özellik bilgisi bulunmamaktadır.
+                          </p>
+                        )}
                       </div>
                     </div>
                   </div>
