@@ -305,41 +305,27 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
                           value="active-ingredients"
                           className="mt-4 p-3 sm:p-4 border bg-white rounded-md min-h-[120px]"
                         >
-                          {product.activeIngredients &&
-                          product.activeIngredients.length > 0 ? (
-                            <ul className="list-disc list-inside text-gray-600 space-y-2 text-sm">
-                              {product.activeIngredients.map(
-                                (ingredient, index) => (
-                                  <li key={index} className="break-words">
-                                    {ingredient}
-                                  </li>
-                                )
-                              )}
-                            </ul>
-                          ) : (
-                            <p className="text-gray-500 text-sm">
-                              Bu ürün için etken madde bilgisi bulunmamaktadır.
-                            </p>
-                          )}
+                          <h3 className="text-lg font-semibold text-primary mb-4">
+                            Her kapsülde
+                          </h3>
+                          {product.activeIngredients && product.activeIngredients.map((ingredient, index) => (
+                            <div key={index} className="flex justify-between items-center border-b border-gray-300 pb-2 mb-2 last:mb-0 last:border-b-0">
+                              <span className="text-gray-700 text-sm font-medium">
+                                {ingredient}
+                              </span>
+                              <span className="text-gray-700 text-sm font-semibold">
+                                {product.activeIngredientAmounts?.[ingredient] || ""}
+                              </span>
+                            </div>
+                          ))}
                         </TabsContent>
                         <TabsContent
                           value="content-info"
                           className="mt-4 p-3 sm:p-4 border bg-white rounded-md min-h-[120px]"
                         >
-                          {product.ingredients &&
-                          product.ingredients.length > 0 ? (
-                            <ul className="list-disc list-inside text-gray-600 space-y-2 text-sm">
-                              {product.ingredients.map((ingredient, index) => (
-                                <li key={index} className="break-words">
-                                  {ingredient}
-                                </li>
-                              ))}
-                            </ul>
-                          ) : (
-                            <p className="text-gray-500 text-sm">
-                              Bu ürün için içerik bilgisi bulunmamaktadır.
-                            </p>
-                          )}
+                          <p className="text-gray-600 text-sm break-words">
+                            {product.ingredients || "Bu ürün için içerik bilgisi bulunmamaktadır."}
+                          </p>
                         </TabsContent>
                       </Tabs>
                     </div>

@@ -30,12 +30,14 @@ export interface Product {
   features?: ProductFeatures;
   // Accordion için alanlar
   activeIngredients?: string[]; // Etken Maddeler sekmesi için
-  ingredients?: string[]; // İçerik Bilgisi sekmesi için (eski ingredients alanı)
+  ingredients?: string; // İçerik Bilgisi sekmesi için (string olarak)
   netQuantity?: string; // Net Miktar
   storageConditions?: string; // Muhafaza Koşulları
   usageRecommendation?: string; // Kullanım Önerisi (eski usage alanının yerini alacak)
   additionalInfo?: string; // Ek Bilgi
   warnings?: string[];
+  // Etken madde miktarları
+  activeIngredientAmounts?: { [key: string]: string }; // Etken madde miktarları
 }
 
 export const productsData: Product[] = [
@@ -73,15 +75,10 @@ export const productsData: Product[] = [
     activeIngredients: [
       "L-Karnitin",
     ],
-    ingredients: [
-      "Magnezyum Bisglisinat",
-      "Magnezyum Sitrat",
-      "Magnezyum Malat",
-      "Vitamin B6 (P5P)",
-      "Mikrokristal Selüloz",
-      "Magnezyum Stearat",
-      "Silisyum Dioksit",
-    ],
+    ingredients: "L-Karnitin, L-Tartarik asit, hidroksipropil metil selüloz (bitkisel kapsül), topaklanma önleyici: magnezyum stearat (yağ asitlerinin magnezyum tuzları).",
+    activeIngredientAmounts: {
+      "L-Karnitin": "510 mg"
+    },
     netQuantity: "60 tablet (30 günlük kullanım)",
     storageConditions:
       "Serin ve kuru yerde, direkt güneş ışığından uzak tutunuz. Oda sıcaklığında (15-25°C) saklayınız.",
