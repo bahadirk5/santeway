@@ -32,6 +32,82 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-white">
+      {/* Structured Data for SEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            name: "Santeway",
+            description: "Sağlıklı yaşama giden yol - Kaliteli gıda takviyeleri",
+            url: "https://santeway.com",
+            logo: "https://santeway.com/images/santeway-logo.png",
+            sameAs: [
+              "https://www.instagram.com/santeway",
+              "https://www.facebook.com/santeway",
+              "https://www.linkedin.com/company/santeway"
+            ],
+            contactPoint: {
+              "@type": "ContactPoint",
+              contactType: "Customer Service",
+              areaServed: "TR",
+              availableLanguage: "Turkish"
+            },
+            address: {
+              "@type": "PostalAddress",
+              addressCountry: "TR"
+            }
+          })
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            name: "Santeway",
+            description: "Sağlıklı yaşama giden yol - Kaliteli gıda takviyeleri",
+            url: "https://santeway.com",
+            potentialAction: {
+              "@type": "SearchAction",
+              target: {
+                "@type": "EntryPoint",
+                urlTemplate: "https://santeway.com/urunler?search={search_term_string}"
+              },
+              "query-input": "required name=search_term_string"
+            }
+          })
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Product",
+            name: "Santeway L-Carnitine Carnipure",
+            description: "Vücuttaki yağ asitlerinin enerjiye dönüşümünü destekleyen saf ve kaliteli bir L-karnitin formu",
+            brand: {
+              "@type": "Brand",
+              name: "Santeway"
+            },
+            category: "Gıda Takviyesi",
+            offers: {
+              "@type": "AggregateOffer",
+              availability: "https://schema.org/InStock",
+              priceCurrency: "TRY"
+            },
+            aggregateRating: {
+              "@type": "AggregateRating",
+              ratingValue: "4.8",
+              reviewCount: "150"
+            }
+          })
+        }}
+      />
+
       <Navbar />
 
       {/* Hero Section - Fully Responsive */}
@@ -50,15 +126,17 @@ export default function HomePage() {
               </h1>
               <p className="text-base sm:text-lg md:text-xl lg:text-xl text-gray-700 mb-6 sm:mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0">
                 Santeway ile enerjinizi yeniden keşfedin ve içinizdeki gücü
-                ortaya çıkarın!
+                ortaya çıkarın! Kaliteli gıda takviyeleri ile sağlıklı yaşamınızı destekleyin.
               </p>
-              <Button
-                size="lg"
-                className="group bg-primary hover:bg-primary/90 rounded-full px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-lg font-medium w-full sm:w-auto"
-              >
-                Ürünü Keşfet
-                <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 transition-transform duration-300 group-hover:translate-x-2" />
-              </Button>
+              <Link href="/urunler/l-carnitine-carnipure" aria-label="L-Carnitine Carnipure ürününü keşfet">
+                <Button
+                  size="lg"
+                  className="group bg-primary hover:bg-primary/90 rounded-full px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-lg font-medium w-full sm:w-auto"
+                >
+                  Ürünü Keşfet
+                  <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 transition-transform duration-300 group-hover:translate-x-2" />
+                </Button>
+              </Link>
             </div>
 
             {/* Image Content */}
@@ -67,8 +145,9 @@ export default function HomePage() {
               <div className="relative bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 shadow-xl sm:shadow-2xl">
                 <img
                   src="/placeholder.svg?height=400&width=600"
-                  alt="Vitamin Ürünleri"
+                  alt="Santeway kaliteli gıda takviyeleri ve vitamin ürünleri"
                   className="w-full h-auto max-h-64 sm:max-h-80 md:max-h-96 object-contain"
+                  loading="eager"
                 />
               </div>
             </div>
@@ -170,17 +249,19 @@ export default function HomePage() {
               </h2>
               <p className="text-base sm:text-lg text-gray-700 mb-4 sm:mb-6 leading-relaxed">
                 Santeway olarak, sağlıklı yaşamı destekleyen, güvenilir ve
-                etkili takviyeler üretmek amacıyla çıktığımız bu yolda; sağlığın
+                etkili gıda takviyeleri üretmek amacıyla çıktığımız bu yolda; sağlığın
                 sadece bir hedef değil, yaşam tarzı olduğuna inanmaktayız.
                 Bilimsel araştırmalar ışığında formüle edilen ürünlerimiz ile
                 yaşam kalitenizi arttırmayı hedefliyoruz. Ürün yelpazemizi
                 geliştirerek sağlıklı yaşam yolculuğunuzda sizlere eşlik etmek
                 amacıyla var gücümüzle çalışmaya devam ediyoruz.
               </p>
-              <Button className="group bg-primary hover:bg-primary/90 rounded-full px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-lg w-full sm:w-auto">
-                Devamı
-                <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 transition-transform duration-300 group-hover:translate-x-2" />
-              </Button>
+              <Link href="/hakkimizda" aria-label="Santeway hakkında daha fazla bilgi alın">
+                <Button className="group bg-primary hover:bg-primary/90 rounded-full px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-lg w-full sm:w-auto">
+                  Devamı
+                  <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 transition-transform duration-300 group-hover:translate-x-2" />
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
@@ -204,52 +285,57 @@ export default function HomePage() {
             {[
               {
                 name: "L-Carnitine Nedir, Ne İşe Yarar?",
+                slug: "l-carnitine-nedir-ne-ise-yarar",
                 subtitle:
                   "L-Carnitine nedir? Ne işe yarar? Faydaları nelerdir? L-Carnitine hakkında daha detaylı bilgi edinmek için sayfamızı ziyaret edebilirsiniz.",
               },
               {
                 name: "Bağışıklık Sistemi Nedir, Nasıl Güçlendirilir?",
+                slug: "bagisiklik-sistemi-nedir-nasil-guclendirilir",
                 subtitle:
                   "Bağışıklık sistemi nedir? Bağışıklık sistemi neden zayıflar? Bağışıklık sistemi nasıl güçlendirilir? Bağışıklık sistemi hakkında daha detaylı bilgi edinmek için sayfamızı ziyaret edebilirsiniz.",
               },
               {
                 name: "Takviye Edici Gıdalar Ne İşe Yarar?",
+                slug: "takviye-edici-gidalar-ne-ise-yarar",
                 subtitle:
                   "Takviye edici gıdalar ne işe yarar? Nasıl ve ne zaman kullanılır? Takviye edici gıdalar hakkında daha detaylı bilgi edinmek için sayfamızı ziyaret edebilirsiniz.",
               },
               {
                 name: "Yorgunluk Nedir? Nedenleri Neler Olabilir?",
+                slug: "yorgunluk-nedir-nedenleri-neler-olabilir",
                 subtitle:
                   "Yorgunluk Nedir? Nedenleri neler olabilir? Yorgunlukla nasıl baş edilir? Yorgunluk hakkında daha detaylı bilgi edinmek için sayfamızı ziyaret edebilirsiniz.",
               },
               {
                 name: "Dengeli Beslenme Nedir? Neden Önemlidir?",
+                slug: "dengeli-beslenme-nedir-neden-onemlidir",
                 subtitle:
                   "Dengeli beslenme nedir? Neden önemlidir? Dengeli bir öğün nasıl olmalıdır? Dengeli beslenme hakkında daha detaylı bilgi edinmek için sayfamızı ziyaret edebilirsiniz.",
               },
-            ].map((ingredient, index) => (
-              <Card
-                key={index}
-                className="overflow-hidden hover:shadow-lg hover:scale-105 transition-all duration-300"
-              >
-                <CardContent className="p-0">
-                  <div className="bg-secondary/20 h-24 sm:h-28 md:h-32 relative">
-                    <img
-                      src={`/placeholder.svg?height=128&width=200&query=abstract+${ingredient.name}+texture`}
-                      alt={`${ingredient.name} dokusu`}
-                      className="w-full h-full object-cover opacity-50"
-                    />
-                  </div>
-                  <div className="p-3 sm:p-4 text-center">
-                    <h3 className="font-semibold text-primary mb-1 text-sm sm:text-base">
-                      {ingredient.name}
-                    </h3>
-                    <p className="text-xs sm:text-sm text-gray-600 leading-tight">
-                      {ingredient.subtitle}
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
+            ].map((article, index) => (
+              <Link key={index} href={`/yararli-bilgiler/${article.slug}`} aria-label={`${article.name} hakkında detaylı bilgi alın`}>
+                <Card className="overflow-hidden hover:shadow-lg hover:scale-105 transition-all duration-300 h-full">
+                  <CardContent className="p-0">
+                    <div className="bg-secondary/20 h-24 sm:h-28 md:h-32 relative">
+                      <img
+                        src={`/placeholder.svg?height=128&width=200&query=abstract+${article.name}+texture`}
+                        alt={`${article.name} ile ilgili görsel`}
+                        className="w-full h-full object-cover opacity-50"
+                        loading="lazy"
+                      />
+                    </div>
+                    <div className="p-3 sm:p-4 text-center">
+                      <h3 className="font-semibold text-primary mb-1 text-sm sm:text-base">
+                        {article.name}
+                      </h3>
+                      <p className="text-xs sm:text-sm text-gray-600 leading-tight">
+                        {article.subtitle}
+                      </p>
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
             ))}
           </div>
         </div>
