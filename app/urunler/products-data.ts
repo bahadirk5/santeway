@@ -71,10 +71,7 @@ export const productsData: Product[] = [
       vegan: true,
     },
     activeIngredients: [
-      "Magnezyum Bisglisinat 200mg",
-      "Magnezyum Sitrat 150mg",
-      "Magnezyum Malat 100mg",
-      "Vitamin B6 (P5P) 5mg",
+      "L-Karnitin",
     ],
     ingredients: [
       "Magnezyum Bisglisinat",

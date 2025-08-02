@@ -235,23 +235,23 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
 
               {/* Tabs for Product Details */}
               <Tabs defaultValue="ingredients" className="w-full">
-                <TabsList className="grid w-full grid-cols-3 lg:grid-cols-6 bg-gray-100 p-1 rounded-md">
+                <TabsList className="grid w-full grid-cols-2 md:grid-cols-3 lg:grid-cols-6 bg-gray-100 p-1 rounded-md gap-1 h-auto">
                   <TabsTrigger
                     value="ingredients"
-                    className="px-3 py-2 text-sm font-medium text-gray-700 data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-sm rounded-md transition-all"
+                    className="px-2 py-2 text-xs sm:text-sm font-medium text-gray-700 data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-sm rounded-md transition-all min-h-[40px] flex items-center justify-center"
                   >
                     İçindekiler
                   </TabsTrigger>
                   <TabsTrigger
                     value="product-features"
-                    className="px-3 py-2 text-sm font-medium text-gray-700 data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-sm rounded-md transition-all"
+                    className="px-2 py-2 text-xs sm:text-sm font-medium text-gray-700 data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-sm rounded-md transition-all min-h-[40px] flex items-center justify-center"
                   >
                     Özellikler
                   </TabsTrigger>
                   {product.netQuantity && (
                     <TabsTrigger
                       value="net-quantity"
-                      className="px-3 py-2 text-sm font-medium text-gray-700 data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-sm rounded-md transition-all"
+                      className="px-2 py-2 text-xs sm:text-sm font-medium text-gray-700 data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-sm rounded-md transition-all min-h-[40px] flex items-center justify-center"
                     >
                       Net Miktar
                     </TabsTrigger>
@@ -259,7 +259,7 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
                   {product.storageConditions && (
                     <TabsTrigger
                       value="storage-conditions"
-                      className="px-3 py-2 text-sm font-medium text-gray-700 data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-sm rounded-md transition-all"
+                      className="px-2 py-2 text-xs sm:text-sm font-medium text-gray-700 data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-sm rounded-md transition-all min-h-[40px] flex items-center justify-center"
                     >
                       Muhafaza
                     </TabsTrigger>
@@ -267,7 +267,7 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
                   {product.usageRecommendation && (
                     <TabsTrigger
                       value="usage-recommendation"
-                      className="px-3 py-2 text-sm font-medium text-gray-700 data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-sm rounded-md transition-all"
+                      className="px-2 py-2 text-xs sm:text-sm font-medium text-gray-700 data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-sm rounded-md transition-all min-h-[40px] flex items-center justify-center"
                     >
                       Kullanım
                     </TabsTrigger>
@@ -275,7 +275,7 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
                   {product.additionalInfo && (
                     <TabsTrigger
                       value="additional-info"
-                      className="px-3 py-2 text-sm font-medium text-gray-700 data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-sm rounded-md transition-all"
+                      className="px-2 py-2 text-xs sm:text-sm font-medium text-gray-700 data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-sm rounded-md transition-all min-h-[40px] flex items-center justify-center"
                     >
                       Ek Bilgi
                     </TabsTrigger>
@@ -285,32 +285,34 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
                 {/* İçindekiler Tab Content */}
                 <TabsContent value="ingredients" className="mt-6">
                   <div className="border border-gray-200 rounded-lg shadow-sm overflow-hidden">
-                    <div className="bg-white p-6">
+                    <div className="bg-white p-4 sm:p-6">
                       <Tabs defaultValue="active-ingredients" className="w-full">
-                        <TabsList className="grid w-full grid-cols-2 bg-gray-100 p-1 rounded-md">
+                        <TabsList className="grid w-full grid-cols-1 sm:grid-cols-2 bg-gray-100 p-1 rounded-md gap-1 h-auto">
                           <TabsTrigger
                             value="active-ingredients"
-                            className="px-3 py-2 text-sm font-medium text-gray-700 data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-sm rounded-md transition-all"
+                            className="px-3 py-2 text-sm font-medium text-gray-700 data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-sm rounded-md transition-all min-h-[40px] flex items-center justify-center"
                           >
                             Etken Maddeler
                           </TabsTrigger>
                           <TabsTrigger
                             value="content-info"
-                            className="px-3 py-2 text-sm font-medium text-gray-700 data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-sm rounded-md transition-all"
+                            className="px-3 py-2 text-sm font-medium text-gray-700 data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:shadow-sm rounded-md transition-all min-h-[40px] flex items-center justify-center"
                           >
                             İçerik Bilgisi
                           </TabsTrigger>
                         </TabsList>
                         <TabsContent
                           value="active-ingredients"
-                          className="mt-4 p-4 border bg-white rounded-md min-h-[120px]"
+                          className="mt-4 p-3 sm:p-4 border bg-white rounded-md min-h-[120px]"
                         >
                           {product.activeIngredients &&
                           product.activeIngredients.length > 0 ? (
                             <ul className="list-disc list-inside text-gray-600 space-y-2 text-sm">
                               {product.activeIngredients.map(
                                 (ingredient, index) => (
-                                  <li key={index}>{ingredient}</li>
+                                  <li key={index} className="break-words">
+                                    {ingredient}
+                                  </li>
                                 )
                               )}
                             </ul>
@@ -322,13 +324,15 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
                         </TabsContent>
                         <TabsContent
                           value="content-info"
-                          className="mt-4 p-4 border bg-white rounded-md min-h-[120px]"
+                          className="mt-4 p-3 sm:p-4 border bg-white rounded-md min-h-[120px]"
                         >
                           {product.ingredients &&
                           product.ingredients.length > 0 ? (
                             <ul className="list-disc list-inside text-gray-600 space-y-2 text-sm">
                               {product.ingredients.map((ingredient, index) => (
-                                <li key={index}>{ingredient}</li>
+                                <li key={index} className="break-words">
+                                  {ingredient}
+                                </li>
                               ))}
                             </ul>
                           ) : (
@@ -345,8 +349,8 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
                 {/* Ürün Özellikleri Tab Content */}
                 <TabsContent value="product-features" className="mt-6">
                   <div className="border border-gray-200 rounded-lg shadow-sm overflow-hidden">
-                    <div className="bg-white p-6">
-                      <div className="p-4 border bg-gray-50 rounded-md">
+                    <div className="bg-white p-4 sm:p-6">
+                      <div className="p-3 sm:p-4 border bg-gray-50 rounded-md">
                         <ul className="list-disc list-inside text-gray-700 space-y-3 text-sm">
                           {[
                             {
@@ -382,11 +386,11 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
                             return (
                               <li
                                 key={feature.key}
-                                className="text-gray-700 text-sm"
+                                className="text-gray-700 text-sm break-words"
                               >
-                                <span>
+                                <span className="flex flex-wrap items-center gap-1">
                                   {feature.label}:{" "}
-                                  <span className="text-gray-700">
+                                  <span className="text-gray-700 font-medium">
                                     {value === true
                                       ? "Evet"
                                       : value === false
@@ -407,9 +411,9 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
                 {product.netQuantity && (
                   <TabsContent value="net-quantity" className="mt-6">
                     <div className="border border-gray-200 rounded-lg shadow-sm overflow-hidden">
-                      <div className="bg-white p-6">
-                        <div className="p-4 border bg-gray-50 rounded-md">
-                          <p className="text-gray-700 text-sm">
+                      <div className="bg-white p-4 sm:p-6">
+                        <div className="p-3 sm:p-4 border bg-gray-50 rounded-md">
+                          <p className="text-gray-700 text-sm break-words">
                             {product.netQuantity}
                           </p>
                         </div>
@@ -421,9 +425,9 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
                 {product.storageConditions && (
                   <TabsContent value="storage-conditions" className="mt-6">
                     <div className="border border-gray-200 rounded-lg shadow-sm overflow-hidden">
-                      <div className="bg-white p-6">
-                        <div className="p-4 border bg-gray-50 rounded-md">
-                          <p className="text-gray-700 text-sm">
+                      <div className="bg-white p-4 sm:p-6">
+                        <div className="p-3 sm:p-4 border bg-gray-50 rounded-md">
+                          <p className="text-gray-700 text-sm break-words">
                             {product.storageConditions}
                           </p>
                         </div>
@@ -435,9 +439,9 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
                 {product.usageRecommendation && (
                   <TabsContent value="usage-recommendation" className="mt-6">
                     <div className="border border-gray-200 rounded-lg shadow-sm overflow-hidden">
-                      <div className="bg-white p-6">
-                        <div className="p-4 border bg-gray-50 rounded-md">
-                          <p className="text-gray-700 text-sm">
+                      <div className="bg-white p-4 sm:p-6">
+                        <div className="p-3 sm:p-4 border bg-gray-50 rounded-md">
+                          <p className="text-gray-700 text-sm break-words">
                             {product.usageRecommendation}
                           </p>
                         </div>
@@ -449,9 +453,9 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
                 {product.additionalInfo && (
                   <TabsContent value="additional-info" className="mt-6">
                     <div className="border border-gray-200 rounded-lg shadow-sm overflow-hidden">
-                      <div className="bg-white p-6">
-                        <div className="p-4 border bg-gray-50 rounded-md">
-                          <p className="text-gray-700 text-sm">
+                      <div className="bg-white p-4 sm:p-6">
+                        <div className="p-3 sm:p-4 border bg-gray-50 rounded-md">
+                          <p className="text-gray-700 text-sm break-words">
                             {product.additionalInfo}
                           </p>
                         </div>
