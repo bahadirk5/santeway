@@ -41,25 +41,26 @@ export default function HomePage() {
             "@context": "https://schema.org",
             "@type": "Organization",
             name: "Santeway",
-            description: "Sağlıklı yaşama giden yol - Kaliteli gıda takviyeleri",
+            description:
+              "Sağlıklı yaşama giden yol - Kaliteli gıda takviyeleri",
             url: "https://santeway.com",
             logo: "https://santeway.com/images/santeway-logo.png",
             sameAs: [
               "https://www.instagram.com/santeway",
               "https://www.facebook.com/santeway",
-              "https://www.linkedin.com/company/santeway/?viewAsMember=true"
+              "https://www.linkedin.com/company/santeway/?viewAsMember=true",
             ],
             contactPoint: {
               "@type": "ContactPoint",
               contactType: "Customer Service",
               areaServed: "TR",
-              availableLanguage: "Turkish"
+              availableLanguage: "Turkish",
             },
             address: {
               "@type": "PostalAddress",
-              addressCountry: "TR"
-            }
-          })
+              addressCountry: "TR",
+            },
+          }),
         }}
       />
       <script
@@ -69,17 +70,19 @@ export default function HomePage() {
             "@context": "https://schema.org",
             "@type": "WebSite",
             name: "Santeway",
-            description: "Sağlıklı yaşama giden yol - Kaliteli gıda takviyeleri",
+            description:
+              "Sağlıklı yaşama giden yol - Kaliteli gıda takviyeleri",
             url: "https://santeway.com",
             potentialAction: {
               "@type": "SearchAction",
               target: {
                 "@type": "EntryPoint",
-                urlTemplate: "https://santeway.com/urunler?search={search_term_string}"
+                urlTemplate:
+                  "https://santeway.com/urunler?search={search_term_string}",
               },
-              "query-input": "required name=search_term_string"
-            }
-          })
+              "query-input": "required name=search_term_string",
+            },
+          }),
         }}
       />
       <script
@@ -89,23 +92,24 @@ export default function HomePage() {
             "@context": "https://schema.org",
             "@type": "Product",
             name: "Santeway L-Carnitine Carnipure",
-            description: "Vücuttaki yağ asitlerinin enerjiye dönüşümünü destekleyen saf ve kaliteli bir L-karnitin formu",
+            description:
+              "Vücuttaki yağ asitlerinin enerjiye dönüşümünü destekleyen saf ve kaliteli bir L-karnitin formu",
             brand: {
               "@type": "Brand",
-              name: "Santeway"
+              name: "Santeway",
             },
             category: "Gıda Takviyesi",
             offers: {
               "@type": "AggregateOffer",
               availability: "https://schema.org/InStock",
-              priceCurrency: "TRY"
+              priceCurrency: "TRY",
             },
             aggregateRating: {
               "@type": "AggregateRating",
               ratingValue: "4.8",
-              reviewCount: "150"
-            }
-          })
+              reviewCount: "150",
+            },
+          }),
         }}
       />
 
@@ -129,7 +133,10 @@ export default function HomePage() {
                 Santeway ile enerjinizi yeniden keşfedin ve içinizdeki gücü
                 ortaya çıkarın!
               </p>
-              <Link href="/urunler/l-carnitine-carnipure" aria-label="L-Carnitine Carnipure ürününü keşfet">
+              <Link
+                href="/urunler/l-carnitine-carnipure"
+                aria-label="L-Carnitine Carnipure ürününü keşfet"
+              >
                 <Button
                   size="lg"
                   className="group bg-primary hover:bg-primary/90 rounded-full px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-lg font-medium w-full sm:w-auto"
@@ -208,7 +215,7 @@ export default function HomePage() {
 
               {/* CTA Button - Responsive - Buton yukarı yaklaştırıldı */}
               <div className="pt-0 sm:pt-2">
-                <Link href={`/urunler/${toSlug(featuredProduct.name)}`}>
+                <Link href="/urunler/l-carnitine-carnipure">
                   <Button className="group bg-primary hover:bg-primary/90 rounded-full text-base sm:text-lg py-4 sm:py-6 shadow-lg hover:shadow-xl transition-shadow px-6 sm:px-8 w-full sm:w-auto">
                     Ürünü Keşfet
                     <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 transition-transform duration-300 group-hover:translate-x-2" />
@@ -250,14 +257,17 @@ export default function HomePage() {
               </h2>
               <p className="text-base sm:text-lg text-gray-700 mb-4 sm:mb-6 leading-relaxed">
                 Santeway olarak, sağlıklı yaşamı destekleyen, güvenilir ve
-                etkili gıda takviyeleri üretmek amacıyla çıktığımız bu yolda; sağlığın
-                sadece bir hedef değil, yaşam tarzı olduğuna inanmaktayız.
-                Bilimsel araştırmalar ışığında formüle edilen ürünlerimiz ile
-                yaşam kalitenizi arttırmayı hedefliyoruz. Ürün yelpazemizi
-                geliştirerek sağlıklı yaşam yolculuğunuzda sizlere eşlik etmek
-                amacıyla var gücümüzle çalışmaya devam ediyoruz.
+                etkili gıda takviyeleri üretmek amacıyla çıktığımız bu yolda;
+                sağlığın sadece bir hedef değil, yaşam tarzı olduğuna
+                inanmaktayız. Bilimsel araştırmalar ışığında formüle edilen
+                ürünlerimiz ile yaşam kalitenizi arttırmayı hedefliyoruz. Ürün
+                yelpazemizi geliştirerek sağlıklı yaşam yolculuğunuzda sizlere
+                eşlik etmek amacıyla var gücümüzle çalışmaya devam ediyoruz.
               </p>
-              <Link href="/hakkimizda" aria-label="Santeway hakkında daha fazla bilgi alın">
+              <Link
+                href="/hakkimizda"
+                aria-label="Santeway hakkında daha fazla bilgi alın"
+              >
                 <Button className="group bg-primary hover:bg-primary/90 rounded-full px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-lg w-full sm:w-auto">
                   Devamı
                   <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 transition-transform duration-300 group-hover:translate-x-2" />
@@ -284,7 +294,11 @@ export default function HomePage() {
           {/* Responsive Grid - Adjusts columns based on screen size */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {articlesData.slice(0, 4).map((article, index) => (
-              <Link key={article.id} href={`/yararli-bilgiler/${article.id}`} aria-label={`${article.title} hakkında detaylı bilgi alın`}>
+              <Link
+                key={article.id}
+                href={`/yararli-bilgiler/${article.id}`}
+                aria-label={`${article.title} hakkında detaylı bilgi alın`}
+              >
                 <Card className="overflow-hidden hover:shadow-lg hover:scale-105 transition-all duration-300 h-full">
                   <CardContent className="p-0">
                     <div className="bg-secondary/20 h-24 sm:h-28 md:h-32 relative">

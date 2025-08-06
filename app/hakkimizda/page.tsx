@@ -6,7 +6,8 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Hakkımızda | Santeway",
-  description: "Sağlıklı yaşamı destekleyen, güvenilir ve etkili gıda takviyeleri üretiyoruz. Misyonumuz, vizyonumuz ve değerlerimizi keşfedin.",
+  description:
+    "Sağlıklı yaşamı destekleyen, güvenilir ve etkili gıda takviyeleri üretiyoruz. Misyonumuz, vizyonumuz ve değerlerimizi keşfedin.",
   keywords: [
     "santeway hakkında",
     "santeway misyon",
@@ -19,11 +20,12 @@ export const metadata: Metadata = {
     "bilimsel formül",
     "uluslararası standart",
     "helal sertifika",
-    "kosher sertifika"
+    "kosher sertifika",
   ],
   openGraph: {
     title: "Hakkımızda | Santeway - Sağlıklı Yaşama Giden Yol",
-    description: "Sağlıklı yaşamı destekleyen güvenilir gıda takviyeleri üreticisi. Misyonumuz ve değerlerimizi keşfedin.",
+    description:
+      "Sağlıklı yaşamı destekleyen güvenilir gıda takviyeleri üreticisi. Misyonumuz ve değerlerimizi keşfedin.",
     type: "website",
     url: "https://santeway.com/hakkimizda",
     images: [
@@ -38,7 +40,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Hakkımızda | Santeway",
-    description: "Sağlıklı yaşamı destekleyen güvenilir gıda takviyeleri üreticisi.",
+    description:
+      "Sağlıklı yaşamı destekleyen güvenilir gıda takviyeleri üreticisi.",
     images: ["/images/about-us.png"],
   },
   alternates: {
@@ -56,31 +59,32 @@ export default function AboutPage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "AboutPage",
-            "mainEntity": {
+            mainEntity: {
               "@type": "Organization",
-              "name": "Santeway",
-              "description": "Sağlıklı yaşamı destekleyen, güvenilir ve etkili gıda takviyeleri üreticisi",
-              "url": "https://santeway.com",
-              "logo": "https://santeway.com/images/santeway-logo.png",
-              "foundingDate": "2023",
-              "knowsAbout": [
+              name: "Santeway",
+              description:
+                "Sağlıklı yaşamı destekleyen, güvenilir ve etkili gıda takviyeleri üreticisi",
+              url: "https://santeway.com",
+              logo: "https://santeway.com/images/santeway-logo.png",
+              foundingDate: "2023",
+              knowsAbout: [
                 "Gıda Takviyeleri",
                 "L-Carnitine",
                 "Sağlıklı Yaşam",
                 "Vitamin ve Mineraller",
-                "Doğal Ürünler"
+                "Doğal Ürünler",
               ],
-              "areaServed": "Turkey",
-              "serviceType": "Gıda Takviyesi Üretimi",
-              "brand": {
+              areaServed: "Turkey",
+              serviceType: "Gıda Takviyesi Üretimi",
+              brand: {
                 "@type": "Brand",
-                "name": "Santeway"
-              }
-            }
-          })
+                name: "Santeway",
+              },
+            },
+          }),
         }}
       />
-      
+
       <Navbar />
 
       {/* Header Section - Responsive */}
@@ -126,7 +130,7 @@ export default function AboutPage() {
                 benimsiyoruz. Sağlıklı yaşam bilincinin toplum genelinde
                 yaygınlaşmasına katkı sağlamak ve daha sağlıklı bir geleceğin
                 inşasında rol almak amacıyla çıktığımız bu yolda, Santeway
-                olarak daima yanınızda olmaktan memnuniyet duyuyoruz.
+                olarak daima yanınızda olmaktan mutluluk duyuyoruz.
               </p>
             </div>
 

@@ -11,7 +11,8 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Sıkça Sorulan Sorular (SSS) | Santeway",
-  description: "Gıda takviyeleri hakkında merak ettiğiniz tüm soruların cevapları burada. L-Carnitine, genel sağlık soruları ve ürün bilgileri için SSS sayfamızı ziyaret edin.",
+  description:
+    "Gıda takviyeleri hakkında merak ettiğiniz tüm soruların cevapları burada. L-Carnitine, genel sağlık soruları ve ürün bilgileri için SSS sayfamızı ziyaret edin.",
   keywords: [
     "santeway sss",
     "gıda takviyesi sorular",
@@ -23,11 +24,12 @@ export const metadata: Metadata = {
     "santeway müşteri destek",
     "gıda takviyesi nasıl kullanılır",
     "yan etki",
-    "saklama koşulları"
+    "saklama koşulları",
   ],
   openGraph: {
     title: "Sıkça Sorulan Sorular | Santeway",
-    description: "Gıda takviyeleri ve sağlık hakkında merak ettiğiniz tüm soruların cevapları burada.",
+    description:
+      "Gıda takviyeleri ve sağlık hakkında merak ettiğiniz tüm soruların cevapları burada.",
     type: "website",
     url: "https://santeway.com/sss",
     images: [
@@ -42,7 +44,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Sıkça Sorulan Sorular | Santeway",
-    description: "Gıda takviyeleri ve sağlık hakkında merak ettiğiniz tüm soruların cevapları burada.",
+    description:
+      "Gıda takviyeleri ve sağlık hakkında merak ettiğiniz tüm soruların cevapları burada.",
     images: ["/images/santeway-logo.png"],
   },
   alternates: {
@@ -85,7 +88,7 @@ export default function FAQPage() {
         {
           question: "Sağlık Bakanlığını onayınız var mı?",
           answer:
-            "Gıda takviyesi kategorisinde yer alan tüm ürünlerin onayları yalnızca T.C Tarım ve Orman Bakanlığı tarafından verilmektedir. Ürünlerimiz T.C Tarım ve Orman Bakanlığı onaylıdır.",
+            "Gıda takviyesi kategorisinde yer alan tüm ürünlerin onayları yalnızca T.C. Tarım ve Orman Bakanlığı tarafından verilmektedir. Ürünlerimiz T.C. Tarım ve Orman Bakanlığı onaylıdır.",
         },
         {
           question:
@@ -154,20 +157,20 @@ export default function FAQPage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "FAQPage",
-            "mainEntity": faqCategories.flatMap(category =>
-              category.questions.map(faq => ({
+            mainEntity: faqCategories.flatMap((category) =>
+              category.questions.map((faq) => ({
                 "@type": "Question",
-                "name": faq.question,
-                "acceptedAnswer": {
+                name: faq.question,
+                acceptedAnswer: {
                   "@type": "Answer",
-                  "text": faq.answer
-                }
+                  text: faq.answer,
+                },
               }))
-            )
-          })
+            ),
+          }),
         }}
       />
-      
+
       <Navbar />
 
       {/* Header Section - Responsive */}

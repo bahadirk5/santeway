@@ -50,7 +50,8 @@ export const productsData: Product[] = [
     name: "L-Carnitine Carnipure",
     shortDescription:
       "Santeway L-Carnitine Carnipure, vücutta doğal olarak üretilen bir amino asit türevidir. Yağ asitlerinin enerjiye dönüştürülmesine yardımcı olur.",
-    longDescription: `Santeway L-Carnitine Carnipure, vücutta doğal olarak üretilen bir
+    longDescription: `Santeway L-Carnitine Carnipure, vücutta doğal olarak üretilen bir amino asit türevi olan L-karnitini
+      vücuduna düzenli olarak kazandırmak isteyenler için geliştirilmiş bir gıda takviyesidir. Santeway L-Carnitine Carnipure, vücutta doğal olarak üretilen bir
       amino asit olan karnitini vücuduna düzenli olarak kazandırmak isteyenler için geliştirilmiş bir
       gıda takviyesidir. Düzenli kullanımı, fiziksel performansın artmasına, egzersiz sonrası
       toparlanmanın hızlanmasına ve kas yorgunluğunun azalmasına katkı sağlar. Aynı zamanda
@@ -64,9 +65,9 @@ export const productsData: Product[] = [
     image: "/images/lcarnitine1.webp",
     images: [
       "/images/lcarnitine1.webp",
-      "/images/lcarnitine2.webp", 
+      "/images/lcarnitine2.webp",
       "/images/lcarnitine3.webp",
-      "/images/lcarnitine4.webp"
+      "/images/lcarnitine4.webp",
     ],
     category: "Özel Takviyeler",
     saleLinks: {

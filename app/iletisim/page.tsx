@@ -125,7 +125,7 @@ export default function ContactPage() {
               {
                 icon: <Phone className="h-6 w-6 sm:h-8 sm:w-8" />,
                 title: "Telefon",
-                content: "+90 0507 292 88 67",
+                content: "+90 507 292 88 67",
               },
               {
                 icon: <Mail className="h-6 w-6 sm:h-8 sm:w-8" />,

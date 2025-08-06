@@ -699,7 +699,11 @@ export const articlesData: Article[] = [
     content: [
       {
         type: "paragraph",
-        text: "Nefes almak hayattaki en temel refleksimiz olsa da, çoğumuz doğru nefes alma alışkanlığına sahip değiliz. Oysa ki nefes egzersizleri, hem bedensel hem zihinsel sağlığımızı destekleyen, son derece etkili bir yöntemdir.",
+        text: `Nefes almak hayattaki en temel refleksimiz olsa da, çoğumuz doğru nefes alma alışkanlığına sahip
+          değiliz. Oysa ki nefes egzersizleri, hem bedensel hem zihinsel sağlığımızı destekleyen, son derece
+          etkili bir yöntemdir. Bu yazımızda, “nefes egzersizi nedir?”, “nefes egzersizi nasıl yapılır?”, “doğru
+          nefes almanın faydaları nelerdir?” ve “kolay nefes teknikleri nelerdir?” gibi soruların yanıtlarını
+          bulabilirsiniz.`,
       },
       {
         type: "heading",
@@ -845,7 +849,11 @@ export const articlesData: Article[] = [
     content: [
       {
         type: "paragraph",
-        text: "Güneş, hayatımızın vazgeçilmez bir kaynağıdır. Hem ruh halimizi hem de fiziksel sağlığımızı olumlu etkiler. Ancak cildimiz üzerinde hem yararlı hem de zararlı etkileri bulunmaktadır.",
+        text: `Güneş, hayatımızın vazgeçilmez bir kaynağıdır. Hem ruh halimizi hem de fiziksel sağlığımızı
+        olumlu etkiler. Ancak cildimiz üzerinde hem yararlı hem de zararlı etkileri bulunmaktadır. Bu
+        yazıda, “Güneşin cildimiz üzerindeki etkileri nelerdir?”, “Güneşin yararlı yönleri nelerdir?”,
+        “Güneşin zararlı ışınları nelerdir?” ve “Zararlı güneş ışınları hangi sorunlara sebep olur?” gibi
+        merak edilen önemli soruları ele alıyoruz.`,
       },
       {
         type: "heading",

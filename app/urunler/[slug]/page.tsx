@@ -341,9 +341,6 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-primary mb-2">
               {product.name}
             </h1>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              {product.shortDescription}
-            </p>
           </div>
         </div>
       </header>
