@@ -47,7 +47,7 @@ export default function HomePage() {
             sameAs: [
               "https://www.instagram.com/santeway",
               "https://www.facebook.com/santeway",
-              "https://www.linkedin.com/company/santeway"
+              "https://www.linkedin.com/company/santeway/?viewAsMember=true"
             ],
             contactPoint: {
               "@type": "ContactPoint",
@@ -127,7 +127,7 @@ export default function HomePage() {
               </h1>
               <p className="text-base sm:text-lg md:text-xl lg:text-xl text-gray-700 mb-6 sm:mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0">
                 Santeway ile enerjinizi yeniden keşfedin ve içinizdeki gücü
-                ortaya çıkarın! Kaliteli gıda takviyeleri ile sağlıklı yaşamınızı destekleyin.
+                ortaya çıkarın!
               </p>
               <Link href="/urunler/l-carnitine-carnipure" aria-label="L-Carnitine Carnipure ürününü keşfet">
                 <Button

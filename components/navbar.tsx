@@ -66,7 +66,7 @@ export function Navbar() {
                 <Instagram className="h-3 w-3 sm:h-4 sm:w-4" />
               </Link>
               <Link
-                href="https://www.linkedin.com/company/santeway/"
+                href="https://www.linkedin.com/company/santeway/?viewAsMember=true"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white hover:text-[#191970] transition-colors duration-200"

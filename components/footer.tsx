@@ -37,7 +37,7 @@ export function Footer() {
                 </li>
                 <li>
                   <Link
-                    href="https://linkedin.com"
+                    href="https://www.linkedin.com/company/santeway/?viewAsMember=true"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center text-gray-700 hover:text-primary group transition-colors"
