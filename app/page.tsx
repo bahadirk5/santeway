@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight, CheckCircle } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { articlesData } from "./yararli-bilgiler/articles-data";
 
 // Helper function to create slugs
@@ -150,13 +151,17 @@ export default function HomePage() {
             {/* Image Content */}
             <div className="relative order-1 lg:order-2">
               <div className="absolute inset-0 bg-gradient-to-r from-secondary to-primary/20 rounded-2xl sm:rounded-3xl transform rotate-2 sm:rotate-3"></div>
-              <div className="relative bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 shadow-xl sm:shadow-2xl">
-                <img
-                  src="/placeholder.svg?height=400&width=600"
-                  alt="Santeway kaliteli gıda takviyeleri ve vitamin ürünleri"
-                  className="w-full h-auto max-h-64 sm:max-h-80 md:max-h-96 object-contain"
-                  loading="eager"
-                />
+              <div className="relative bg-white rounded-2xl sm:rounded-3xl shadow-xl sm:shadow-2xl overflow-hidden">
+                <div className="relative w-full h-96 sm:h-[420px] md:h-[560px] lg:h-[680px] xl:h-[760px]">
+                  <Image
+                    src="/Santeway.png"
+                    alt="Santeway kaliteli gıda takviyeleri ve vitamin ürünleri"
+                    fill
+                    className="object-cover object-center scale-110 sm:scale-125 md:scale-[1.35]"
+                    priority
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 45vw"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -170,13 +175,17 @@ export default function HomePage() {
             {/* Product Image - Responsive Sizing */}
             <div className="relative order-1 lg:order-1">
               <div className="absolute inset-0 bg-gradient-to-tr from-secondary/20 to-primary/10 rounded-2xl sm:rounded-3xl transform scale-105 rotate-2 transition-all duration-500 hover:scale-110 hover:rotate-3"></div>
-              <div className="relative bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 shadow-lg sm:shadow-xl border border-gray-100">
-                <div className="bg-white rounded-xl sm:rounded-2xl p-3 sm:p-4">
-                  <img
-                    src={`/placeholder.svg?height=500&width=400&query=${featuredProduct.imageQuery}`}
-                    alt={featuredProduct.name}
-                    className="w-full h-64 sm:h-80 md:h-96 lg:h-[400px] xl:h-[450px] object-contain mx-auto transition-transform duration-500 hover:scale-105"
-                  />
+              <div className="relative bg-white rounded-2xl sm:rounded-3xl p-2 sm:p-3 md:p-4 shadow-lg sm:shadow-xl border border-gray-100">
+                <div className="bg-white rounded-xl sm:rounded-2xl p-2 sm:p-3">
+                  <div className="relative w-full h-80 sm:h-96 md:h-[450px] lg:h-[500px] xl:h-[550px]">
+                    <Image
+                      src="/Santeway.png"
+                      alt={featuredProduct.name}
+                      fill
+                      className="object-contain transition-transform duration-500 hover:scale-105"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 45vw"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -234,16 +243,24 @@ export default function HomePage() {
             {/* Image Grid - Responsive Layout */}
             <div className="relative order-2 lg:order-1">
               <div className="grid grid-cols-2 gap-3 sm:gap-4">
-                <img
-                  src="/placeholder.svg?height=300&width=250"
-                  alt="Sağlıklı Yaşam"
-                  className="rounded-xl sm:rounded-2xl shadow-md sm:shadow-lg w-full h-48 sm:h-64 md:h-72 lg:h-80 object-cover"
-                />
-                <img
-                  src="/placeholder.svg?height=200&width=250"
-                  alt="Egzersiz"
-                  className="rounded-xl sm:rounded-2xl shadow-md sm:shadow-lg mt-4 sm:mt-6 md:mt-8 w-full h-40 sm:h-52 md:h-60 lg:h-64 object-cover"
-                />
+                <div className="relative w-full h-48 sm:h-64 md:h-72 lg:h-80">
+                  <Image
+                    src="/placeholder.svg"
+                    alt="Sağlıklı Yaşam"
+                    fill
+                    className="rounded-xl sm:rounded-2xl shadow-md sm:shadow-lg object-cover"
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 20vw"
+                  />
+                </div>
+                <div className="relative w-full h-40 sm:h-52 md:h-60 lg:h-64 mt-4 sm:mt-6 md:mt-8">
+                  <Image
+                    src="/placeholder.svg"
+                    alt="Egzersiz"
+                    fill
+                    className="rounded-xl sm:rounded-2xl shadow-md sm:shadow-lg object-cover"
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 20vw"
+                  />
+                </div>
               </div>
               {/* Decorative Elements - Responsive Sizing */}
               <div className="absolute -top-2 sm:-top-4 -right-2 sm:-right-4 w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 bg-secondary rounded-full opacity-50"></div>
@@ -302,11 +319,12 @@ export default function HomePage() {
                 <Card className="overflow-hidden hover:shadow-lg hover:scale-105 transition-all duration-300 h-full">
                   <CardContent className="p-0">
                     <div className="bg-secondary/20 h-24 sm:h-28 md:h-32 relative">
-                      <img
+                      <Image
                         src={article.image || "/placeholder.svg"}
                         alt={`${article.title} ile ilgili görsel`}
-                        className="w-full h-full object-cover"
-                        loading="lazy"
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                       />
                     </div>
                     <div className="p-3 sm:p-4 text-center">
