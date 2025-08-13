@@ -152,12 +152,12 @@ export default function HomePage() {
             <div className="relative order-1 lg:order-2">
               <div className="absolute inset-0 bg-gradient-to-r from-secondary to-primary/20 rounded-2xl sm:rounded-3xl transform rotate-2 sm:rotate-3"></div>
               <div className="relative bg-white rounded-2xl sm:rounded-3xl shadow-xl sm:shadow-2xl overflow-hidden">
-                <div className="relative w-full h-96 sm:h-[420px] md:h-[560px] lg:h-[680px] xl:h-[760px]">
+                <div className="relative w-full h-80 sm:h-96 md:h-[420px] lg:h-[480px] xl:h-[520px]">
                   <Image
                     src="/Santeway.png"
                     alt="Santeway kaliteli gıda takviyeleri ve vitamin ürünleri"
                     fill
-                    className="object-cover object-center scale-110 sm:scale-125 md:scale-[1.35]"
+                    className="object-cover object-center"
                     priority
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 45vw"
                   />
