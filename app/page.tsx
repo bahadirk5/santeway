@@ -7,6 +7,8 @@ import Link from "next/link";
 import Image from "next/image";
 import heroImage from "@/assets/hero-image.jpg";
 import productImage from "@/assets/product-image.jpg";
+import arniteImage from "@/assets/arnite.png";
+import aboutImage from "@/assets/about-image.jpg";
 import { articlesData } from "./yararli-bilgiler/articles-data";
 
 export default function HomePage() {
@@ -238,22 +240,22 @@ export default function HomePage() {
             {/* Image Grid - Responsive Layout */}
             <div className="relative order-2 lg:order-1">
               <div className="grid grid-cols-2 gap-3 sm:gap-4">
-                <div className="relative w-full h-48 sm:h-64 md:h-72 lg:h-80">
+                <div className="relative w-full">
                   <Image
-                    src="/placeholder.svg"
-                    alt="Sağlıklı Yaşam"
-                    fill
-                    className="rounded-xl sm:rounded-2xl shadow-md sm:shadow-lg object-cover"
+                    src={arniteImage}
+                    alt="Santeway Arnite ürünü"
+                    className="w-full h-auto rounded-xl sm:rounded-2xl shadow-md sm:shadow-lg"
                     sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 20vw"
+                    placeholder="blur"
                   />
                 </div>
-                <div className="relative w-full h-40 sm:h-52 md:h-60 lg:h-64 mt-4 sm:mt-6 md:mt-8">
+                <div className="relative w-full mt-4 sm:mt-6 md:mt-8">
                   <Image
-                    src="/placeholder.svg"
-                    alt="Egzersiz"
-                    fill
-                    className="rounded-xl sm:rounded-2xl shadow-md sm:shadow-lg object-cover"
+                    src={aboutImage}
+                    alt="Santeway kaliteli gıda takviyeleri"
+                    className="w-full h-auto rounded-xl sm:rounded-2xl shadow-md sm:shadow-lg"
                     sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 20vw"
+                    placeholder="blur"
                   />
                 </div>
               </div>
