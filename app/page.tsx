@@ -5,15 +5,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight, CheckCircle } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import heroImage from "@/assets/hero-image.jpg";
 import { articlesData } from "./yararli-bilgiler/articles-data";
-
-// Helper function to create slugs
-const toSlug = (str: string) => {
-  return str
-    .toLowerCase()
-    .replace(/\s+/g, "-")
-    .replace(/[^\w-]+/g, "");
-};
 
 export default function HomePage() {
   // Tek ürün bilgisi
@@ -31,7 +24,7 @@ export default function HomePage() {
       "Vcaps® Bitkisel Kapsül",
     ],
   };
-
+3
   return (
     <div className="min-h-screen bg-white">
       {/* Structured Data for SEO */}
@@ -152,14 +145,14 @@ export default function HomePage() {
             <div className="relative order-1 lg:order-2">
               <div className="absolute inset-0 bg-gradient-to-r from-secondary to-primary/20 rounded-2xl sm:rounded-3xl transform rotate-2 sm:rotate-3"></div>
               <div className="relative bg-white rounded-2xl sm:rounded-3xl shadow-xl sm:shadow-2xl overflow-hidden">
-                <div className="relative w-full h-80 sm:h-96 md:h-[420px] lg:h-[480px] xl:h-[520px]">
+                <div className="relative w-full">
                   <Image
-                    src="/nov29/DSC08086 kopya 2.jpg"
+                    src={heroImage}
                     alt="Santeway kaliteli gıda takviyeleri ve vitamin ürünleri"
-                    fill
-                    className="object-cover object-center"
+                    className="w-full h-auto"
                     priority
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 45vw"
+                    placeholder="blur"
                   />
                 </div>
               </div>
