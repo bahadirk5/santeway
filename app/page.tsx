@@ -154,10 +154,10 @@ export default function HomePage() {
               <div className="relative bg-white rounded-2xl sm:rounded-3xl shadow-xl sm:shadow-2xl overflow-hidden">
                 <div className="relative w-full h-80 sm:h-96 md:h-[420px] lg:h-[480px] xl:h-[520px]">
                   <Image
-                    src="/Santeway.png"
+                    src="/nov29/DSC08086 kopya 2.jpg"
                     alt="Santeway kaliteli gıda takviyeleri ve vitamin ürünleri"
                     fill
-                    className="object-cover object-center pt-2"
+                    className="object-cover object-center"
                     priority
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 45vw"
                   />
