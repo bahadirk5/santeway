@@ -6,6 +6,7 @@ import { ArrowRight, CheckCircle } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import heroImage from "@/assets/hero-image.jpg";
+import productImage from "@/assets/product-image.jpg";
 import { articlesData } from "./yararli-bilgiler/articles-data";
 
 export default function HomePage() {
@@ -170,14 +171,14 @@ export default function HomePage() {
               <div className="absolute inset-0 bg-gradient-to-tr from-secondary/20 to-primary/10 rounded-2xl sm:rounded-3xl transform scale-105 rotate-2 transition-all duration-500 hover:scale-110 hover:rotate-3"></div>
               <div className="relative bg-white rounded-2xl sm:rounded-3xl p-2 sm:p-3 md:p-4 shadow-lg sm:shadow-xl border border-gray-100">
                 <div className="bg-white rounded-xl sm:rounded-2xl p-2 sm:p-3">
-                  <div className="relative w-full h-80 sm:h-96 md:h-[420px] lg:h-[480px] xl:h-[520px]">
+                  <div className="relative w-full">
                   <Image
-                    src="/Santeway.png"
-                    alt="Santeway kaliteli gıda takviyeleri ve vitamin ürünleri"
-                    fill
-                    className="object-cover object-center"
+                    src={productImage}
+                    alt="Santeway L-Carnitine Carnipure gıda takviyesi"
+                    className="w-full h-auto"
                     priority
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 45vw"
+                    placeholder="blur"
                   />
                 </div>
                 </div>
