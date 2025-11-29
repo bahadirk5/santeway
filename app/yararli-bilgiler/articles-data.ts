@@ -29,7 +29,7 @@ export const articlesData: Article[] = [
     date: "6 Haziran 2025",
     category: "Amino Asitler",
     image:
-      "/placeholder.svg?height=128&width=200&query=abstract+L-Carnitine+texture",
+      "/l-carnitine.jpg",
     content: [
       {
         type: "paragraph",
@@ -158,7 +158,7 @@ export const articlesData: Article[] = [
     date: "17 Haziran 2025",
     category: "Bağışıklık",
     image:
-      "/placeholder.svg?height=128&width=200&query=abstract+immune+system+texture",
+      "/immune-system.png",
     content: [
       {
         type: "paragraph",
@@ -299,7 +299,7 @@ export const articlesData: Article[] = [
     date: "24 Haziran 2025",
     category: "Beslenme",
     image:
-      "/placeholder.svg?height=128&width=200&query=abstract+supplements+texture",
+      "/supplements.png",
     content: [
       {
         type: "paragraph",
@@ -407,7 +407,7 @@ export const articlesData: Article[] = [
     date: "3 Temmuz 2025",
     category: "Beslenme",
     image:
-      "/placeholder.svg?height=128&width=200&query=abstract+balanced+nutrition+texture",
+      "/balanced-nutrition.png",
     content: [
       {
         type: "paragraph",

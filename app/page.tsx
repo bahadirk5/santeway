@@ -5,10 +5,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight, CheckCircle } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import heroImage from "@/assets/hero-image.jpg";
-import productImage from "@/assets/product-image.jpg";
-import arniteImage from "@/assets/arnite.png";
-import aboutImage from "@/assets/about-image.jpg";
 import { articlesData } from "./yararli-bilgiler/articles-data";
 
 export default function HomePage() {
@@ -150,12 +146,13 @@ export default function HomePage() {
               <div className="relative bg-white rounded-2xl sm:rounded-3xl shadow-xl sm:shadow-2xl overflow-hidden">
                 <div className="relative w-full">
                   <Image
-                    src={heroImage}
+                    src="/hero-image.jpg"
                     alt="Santeway kaliteli gıda takviyeleri ve vitamin ürünleri"
+                    width={1200}
+                    height={800}
                     className="w-full h-auto"
                     priority
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 45vw"
-                    placeholder="blur"
                   />
                 </div>
               </div>
@@ -175,12 +172,13 @@ export default function HomePage() {
                 <div className="bg-white rounded-xl sm:rounded-2xl p-2 sm:p-3">
                   <div className="relative w-full">
                   <Image
-                    src={productImage}
+                    src="/product-image.jpg"
                     alt="Santeway L-Carnitine Carnipure gıda takviyesi"
+                    width={800}
+                    height={800}
                     className="w-full h-auto"
                     priority
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 45vw"
-                    placeholder="blur"
                   />
                 </div>
                 </div>
@@ -242,20 +240,22 @@ export default function HomePage() {
               <div className="grid grid-cols-2 gap-3 sm:gap-4">
                 <div className="relative w-full">
                   <Image
-                    src={arniteImage}
+                    src="/arnite.png"
                     alt="Santeway Arnite ürünü"
+                    width={600}
+                    height={600}
                     className="w-full h-auto rounded-xl sm:rounded-2xl shadow-md sm:shadow-lg"
                     sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 20vw"
-                    placeholder="blur"
                   />
                 </div>
                 <div className="relative w-full mt-4 sm:mt-6 md:mt-8">
                   <Image
-                    src={aboutImage}
+                    src="/about-image.jpg"
                     alt="Santeway kaliteli gıda takviyeleri"
+                    width={600}
+                    height={800}
                     className="w-full h-auto rounded-xl sm:rounded-2xl shadow-md sm:shadow-lg"
                     sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 20vw"
-                    placeholder="blur"
                   />
                 </div>
               </div>
