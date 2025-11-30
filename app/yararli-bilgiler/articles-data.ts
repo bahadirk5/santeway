@@ -299,7 +299,7 @@ export const articlesData: Article[] = [
     date: "24 Haziran 2025",
     category: "Beslenme",
     image:
-      "/supplements.png",
+      "/supplements-info.png",
     content: [
       {
         type: "paragraph",
@@ -560,7 +560,7 @@ export const articlesData: Article[] = [
     date: "12 Temmuz 2025",
     category: "Sağlık",
     image:
-      "/placeholder.svg?height=128&width=200&query=abstract+fatigue+texture",
+      "/fatigue.png",
     content: [
       {
         type: "paragraph",
@@ -695,7 +695,7 @@ export const articlesData: Article[] = [
     date: "16 Temmuz 2025",
     category: "Sağlık",
     image:
-      "/placeholder.svg?height=128&width=200&query=abstract+breathing+exercise+texture",
+      "/breathing-exercise.png",
     content: [
       {
         type: "paragraph",
@@ -845,7 +845,7 @@ export const articlesData: Article[] = [
     date: "29 Temmuz 2025",
     category: "Sağlık",
     image:
-      "/placeholder.svg?height=128&width=200&query=abstract+sun+skin+protection+texture",
+      "/sun-skin-effect.png",
     content: [
       {
         type: "paragraph",

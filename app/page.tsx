@@ -250,7 +250,7 @@ export default function HomePage() {
                 </div>
                 <div className="relative w-full mt-4 sm:mt-6 md:mt-8">
                   <Image
-                    src="/about-image.jpg"
+                    src="/about-us-new.jpg"
                     alt="Santeway kaliteli gıda takviyeleri"
                     width={600}
                     height={800}
