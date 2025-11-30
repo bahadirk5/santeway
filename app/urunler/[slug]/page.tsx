@@ -352,7 +352,7 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
             {/* Product Images Carousel */}
             <section aria-label="Ürün görselleri">
               <div className="relative">
-                <div className="bg-secondary/10 p-8 rounded-xl shadow-lg flex justify-center items-center">
+                <div className="bg-gradient-to-br from-gray-50 to-white p-8 rounded-xl shadow-lg flex justify-center items-center">
                   <Carousel
                     className="w-full max-w-md"
                     aria-label="Ürün resim galerisi"
@@ -361,16 +361,18 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
                       {productImages.map((image, index) => (
                         <CarouselItem key={index}>
                           <div className="p-1">
-                            <div className="bg-white rounded-lg p-6 flex items-center justify-center">
-                              <Image
-                                src={image.src || "/placeholder.svg"}
-                                alt={image.alt}
-                                width={400}
-                                height={500}
-                                className="object-contain rounded-lg max-h-[400px]"
-                                priority={index === 0}
-                                loading={index === 0 ? "eager" : "lazy"}
-                              />
+                            <div className="bg-white rounded-lg p-6 flex items-center justify-center aspect-square">
+                              <div className="relative w-full h-full">
+                                <Image
+                                  src={image.src || "/placeholder.svg"}
+                                  alt={image.alt}
+                                  fill
+                                  className="object-contain rounded-lg"
+                                  priority={index === 0}
+                                  loading={index === 0 ? "eager" : "lazy"}
+                                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 400px"
+                                />
+                              </div>
                             </div>
                           </div>
                         </CarouselItem>
