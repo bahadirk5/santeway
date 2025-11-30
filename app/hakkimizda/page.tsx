@@ -137,8 +137,8 @@ export default function AboutPage() {
             {/* Image */}
             <div className="relative order-1 lg:order-2">
               <img
-                src="/placeholder.svg?height=400&width=600"
-                alt="Laboratuvar Araştırması"
+                src="/about-us-new.jpg"
+                alt="Santeway Hakkımızda"
                 className="rounded-xl sm:rounded-2xl shadow-lg sm:shadow-xl w-full h-64 sm:h-80 md:h-96 lg:h-[400px] object-cover"
               />
             </div>
