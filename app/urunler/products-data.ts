@@ -60,12 +60,11 @@ export const productsData: Product[] = [
       edilmiştir. Bitkisel kapsül (Vcaps®) kullanılarak üretilen bu ürün, vegan ve vejetaryen
       kullanıma uygundur. Kalorisiz içeriği, gluten ve koruyucu içermeyen formülü sayesinde
       güvenle tüketilebilir.`,
-    image: "/images/lcarnitine1.webp",
+    image: "hero-image.jpg",
     images: [
-      "/images/lcarnitine1.webp",
-      "/images/lcarnitine2.webp",
-      "/images/lcarnitine3.webp",
-      "/images/lcarnitine4.webp",
+      "/hero-image.jpg",
+      "/product-lcarnitine-front.png",
+      "/product-lcarnitine-back.png",
     ],
     category: "Özel Takviyeler",
     saleLinks: {

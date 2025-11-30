@@ -51,13 +51,6 @@ export const metadata: Metadata = {
   },
 };
 
-const toSlug = (str: string) => {
-  return str
-    .toLowerCase()
-    .replace(/\s+/g, "-")
-    .replace(/[^\w-]+/g, "");
-};
-
 export default function ProductsPage() {
   // productsData'dan ürünleri al
   const products = productsData;

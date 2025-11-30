@@ -84,21 +84,21 @@ export function ProductsClient({ products }: ProductsClientProps) {
                 <Card className="hover:shadow-xl transition-all duration-300 overflow-hidden hover:scale-105 flex flex-col h-full">
                   <CardContent className="p-0 flex flex-col flex-grow">
                     {/* Product Image */}
-                    <div className="relative">
-                      <div className=" relative overflow-hidden aspect-square flex items-center justify-center">
+                    <div className="relative bg-gradient-to-br from-gray-50 to-white">
+                      <div className="relative overflow-hidden aspect-square flex items-center justify-center p-4 sm:p-6">
                         <img
                           src={
                             product.image ||
                             `/placeholder.svg?height=300&width=250&query=${product.slug}`
                           }
                           alt={product.name}
-                          className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300 rounded-lg"
+                          className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300"
                         />
                       </div>
                     </div>
 
                     {/* Product Info */}
-                    <div className="p-4 sm:p-6 flex flex-col flex-grow justify-between">
+                    <div className="p-4 sm:p-6 flex flex-col flex-grow justify-between bg-white">
                       <Button
                         variant="default"
                         size="sm"
