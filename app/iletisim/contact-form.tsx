@@ -7,6 +7,12 @@ import { Card, CardContent } from "@/components/ui/card"
 import { useState } from "react"
 import { toast } from "sonner"
 
+const encode = (data: Record<string, string>) => {
+  return Object.keys(data)
+    .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+    .join("&")
+}
+
 export function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
 
@@ -16,12 +22,18 @@ export function ContactForm() {
 
     const form = e.currentTarget
     const formData = new FormData(form)
+    
+    // FormData'yı objeye çevir
+    const data: Record<string, string> = {}
+    formData.forEach((value, key) => {
+      data[key] = value.toString()
+    })
 
     try {
       const response = await fetch("/", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams(formData as any).toString(),
+        body: encode({ "form-name": "contact", ...data })
       })
 
       if (response.ok) {
